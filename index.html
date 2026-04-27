@@ -61,6 +61,7 @@ animation:{
 'pulse-urgent':'pulse-urgent 2s ease-in-out infinite',
 'micro-bounce':'micro-bounce 0.6s ease-in-out',
 'micro-tilt':'micro-tilt 0.3s ease-out',
+'shimmer':'shimmer 2.5s infinite linear',
 },
 keyframes:{
 float:{
@@ -80,6 +81,10 @@ float:{
 '25%':{transform:'perspective(400px) rotateX(-2deg) rotateY(2deg)'},
 '75%':{transform:'perspective(400px) rotateX(2deg) rotateY(-2deg)'},
 '100%':{transform:'perspective(400px) rotateX(0) rotateY(0)'},
+},
+shimmer:{
+'0%':{backgroundPosition:'-200% 0'},
+'100%':{backgroundPosition:'200% 0'}
 }
 }
 }
@@ -159,7 +164,7 @@ color: #fff;
 font-size: 0.95rem;
 font-weight: 600;
 text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-transition: transform 0.3s ease;
+transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .banner-item:hover{
@@ -229,7 +234,7 @@ filter: brightness(0.6) contrast(1.2);
 75%{ transform: scale(1.05) translate(1%, -1%); }
 }
 
-/* Glassmorphism moderno*/
+/* Glassmorphism moderno con micro-efectos*/
 .glass{
 background: rgba(26, 26, 26, 0.75);
 backdrop-filter: blur(20px);
@@ -255,7 +260,7 @@ transform: translateY(-6px);
 box-shadow: var(--shadow-card), 0 0 30px rgba(212, 175, 55, 0.15);
 }
 
-/* Textos y efectos*/
+/* Textos y efectos mejorados*/
 .glow-text{
 text-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 40px rgba(255, 179, 0, 0.3);
 letter-spacing:-0.02em;
@@ -266,11 +271,11 @@ text-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 60px rgba(255, 179, 0, 0.5);
 }
 .gradient-text{
 background: var(--gradient-primary);
+background-size: 200% 200%;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 background-clip: text;
-background-size: 200% 200%;
-animation: gradient-shift 3s ease infinite;
+animation: gradient-shift 4s ease infinite;
 }
 @keyframes gradient-shift{
 0%, 100%{ background-position: 0% 50%; }
@@ -303,15 +308,6 @@ transform: translateY(-8px);
 box-shadow: var(--shadow-glow), var(--shadow-card); 
 animation: micro-bounce 0.6s ease-in-out;
 }
-.hover-glow{ transition: all 0.4s ease; position: relative; overflow: hidden; }
-.hover-glow::before{
-content:''; position: absolute; top: 0; left:-100%;
-width: 100%; height: 100%;
-background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
-transition: left 0.6s ease;
-}
-.hover-glow:hover::before{ left: 100%; }
-.hover-glow:hover{ box-shadow: 0 0 35px rgba(212, 175, 55, 0.35); transform: translateY(-6px); }
 
 /* Parallax suave*/
 .parallax-image{ transition: transform 0.4s ease-out; will-change: transform; filter: brightness(0.85) contrast(1.1); }
@@ -410,31 +406,6 @@ animation: micro-bounce 0.5s ease;
 .btn-review:hover::after{ opacity: 1; }
 .btn-review:active{ transform: translateY(-1px) scale(0.98); }
 
-/* BOTÓN INSTAGRAM - Solo icono, mejor posicionado */
-.btn-instagram{
-background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-color: #fff;
-padding: 0.6rem;
-border-radius: 10px;
-cursor: pointer;
-transition: all 0.3s ease;
-display: flex;
-align-items: center;
-justify-content: center;
-box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
-width: 40px;
-height: 40px;
-}
-.btn-instagram:hover{
-transform: translateY(-2px) scale(1.05);
-box-shadow: 0 8px 25px rgba(220, 39, 67, 0.5);
-filter: brightness(1.1);
-animation: micro-bounce 0.4s ease;
-}
-.btn-instagram:active{ transform: scale(0.95); }
-.btn-instagram i{ font-size: 1.2rem; transition: transform 0.3s ease; }
-.btn-instagram:hover i{ transform: rotate(10deg); }
-
 /* Scrollbar personalizado*/
 ::-webkit-scrollbar{ width: 8px; height: 8px; }
 ::-webkit-scrollbar-track{ background: rgba(26, 26, 26, 0.6); border-radius: 4px; transition: background 0.3s ease; }
@@ -453,11 +424,7 @@ animation: micro-bounce 0.4s ease;
 /* Separador decorativo*/
 .divider{ height: 1px; background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent); margin: 2rem 0; }
 
-/* Animación de carga sutil*/
-.loading-skeleton{ background: linear-gradient(90deg, rgba(45,45,45,0.3) 25%, rgba(60,60,60,0.5) 50%, rgba(45,45,45,0.3) 75%); background-size: 200% 100%; animation: loading 1.5s infinite; border-radius: 8px; }
-@keyframes loading{ 0%{background-position: 200% 0;} 100%{background-position:-200% 0;} }
-
-/* Efecto de partículas sutil con micro-efectos*/
+/* Efecto de partículas sutil con micro-interacciones*/
 .particles{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden; z-index: 0; }
 .particle{ 
 position: absolute; 
@@ -469,8 +436,9 @@ opacity: 0.7;
 transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .particle:hover{
-transform: scale(2);
+transform: scale(2.5);
 opacity: 1;
+box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
 }
 @keyframes float-particle{ 
 0%{transform: translateY(100vh) translateX(0);} 
@@ -480,9 +448,9 @@ opacity: 1;
 }
 
 /* Labels debajo de inputs */
-.label-below{ display: block; margin-top: 0.5rem; margin-left: 0.25rem; font-size: 0.75rem; font-weight: 500; color: #D4AF37; transition: color 0.3s ease; }
+.label-below{ display: block; margin-top: 0.5rem; margin-left: 0.25rem; font-size: 0.75rem; font-weight: 500; color: #D4AF37; transition: color 0.3s ease, transform 0.3s ease; }
 .label-below span.required{ color: #EF4444; margin-left: 2px; }
-.input-modern:focus + .label-below{ color: #FFB300; }
+.input-modern:focus + .label-below{ color: #FFB300; transform: translateX(4px); }
 
 /* Logo styles - CON EFECTO REFLEJO Y MICRO-ANIMACIONES */
 .navbar-logo{
@@ -535,30 +503,12 @@ animation: micro-bounce 0.4s ease;
 }
 .lang-switcher:active{ transform: translateY(0) scale(0.98); }
 
-/* Modal de Auxilio Mecánico */
-.modal{ display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(8px); }
-.modal.active{ display: flex; animation: modalFadeIn 0.3s ease; }
-@keyframes modalFadeIn{ from{opacity: 0;} to{opacity: 1;} }
-.modal-content{
-background: linear-gradient(145deg, rgba(45, 45, 45, 0.95), rgba(26, 26, 26, 0.98));
-border: 2px solid rgba(212, 175, 55, 0.5); border-radius: 24px; padding: 2rem;
-max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative;
-box-shadow: 0 25px 80px rgba(212, 175, 55, 0.3);
-}
-.modal-close{
-position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.1);
-border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%;
-cursor: pointer; display: flex; align-items: center; justify-content: center;
-transition: all 0.2s;
-}
-.modal-close:hover{ background: rgba(212, 175, 55, 0.3); transform: rotate(90deg); }
-
 /* Cards de servicios con micro-efectos adicionales */
 .glass-card .fa-solid, .glass-card .fa-brands{
 transition: transform 0.3s ease, color 0.3s ease;
 }
 .glass-card:hover .fa-solid, .glass-card:hover .fa-brands{
-transform: scale(1.1) rotate(5deg);
+transform: scale(1.15) rotate(8deg);
 color: #FFB300;
 }
 
@@ -573,13 +523,13 @@ box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.2);
 }
 
 /* Iconos de marcas con micro-efectos */
-.flex.flex-wrap.justify-center.gap-8 i{
+.brand-icons i{
 transition: all 0.3s ease;
 cursor: pointer;
 }
-.flex.flex-wrap.justify-center.gap-8 i:hover{
+.brand-icons i:hover{
 transform: scale(1.2) translateY(-5px);
-filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.6));
 }
 </style>
 </head>
@@ -612,7 +562,7 @@ filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
 <div class="container mx-auto px-4 h-16 md:h-20 flex items-center relative">
 <!-- LOGO -->
 <a href="#" class="flex items-center md:absolute md:left-4 md:translate-x-0">
-<img src="TALLERKAISER.png" alt="Taller Mecánico TR Logo" class="navbar-logo">
+<img src="TALLERTR.png" alt="Taller Mecánico TR Logo" class="navbar-logo">
 </a>
 <!-- Título centrado -->
 <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg" data-es="Taller Mecánico TR" data-en="Taller Mecánico TR">Taller Mecánico TR</a>
@@ -668,9 +618,18 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 <h1 class="font-display font-black text-4xl md:text-5xl lg:text-7xl leading-tight glow-text main-title fade-in-up flex items-center gap-6" style="animation-delay: 0.2s;">
 <span data-es="DIAGNÓSTICO Y<br>MANTENIMIENTO INTEGRAL" data-en="DIAGNOSIS AND<br>INTEGRAL MAINTENANCE">DIAGNÓSTICO Y<br><span class="gradient-text">MANTENIMIENTO INTEGRAL</span></span>
-<img src="TALLERKAISER.png" alt="Taller Mecánico TR Logo" class="hero-logo flex-shrink-0">
+<img src="TALLERTR.png" alt="Taller Mecánico TR Logo" class="hero-logo flex-shrink-0">
 </h1>
-<p class="text-gray-300/90 text-base md:text-lg max-w-xl description-text fade-in-up leading-relaxed" style="animation-delay: 0.3s;" data-es="Tu vehículo habla. Nosotros escuchamos con tecnología de punta. Pre-carga síntomas y recibe un diagnóstico preciso antes de visitar nuestro taller." data-en="Your vehicle speaks. We listen with cutting-edge technology. Pre-load symptoms and receive an accurate diagnosis before visiting our workshop.">Tu vehículo habla. Nosotros escuchamos con tecnología de punta. Pre-carga síntomas y recibe un diagnóstico preciso antes de visitar nuestro taller.</p>
+
+<p class="text-gray-300/90 text-base md:text-lg max-w-xl description-text fade-in-up leading-relaxed" style="animation-delay: 0.3s;" 
+   data-es="Tu auto tiene algo que decir. Nosotros lo interpretamos con tecnología avanzada. Cargá los síntomas en segundos y obtené un diagnóstico claro y confiable antes de llegar al taller. Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo en cada visita." 
+   data-en="Your car has something to say. We interpret it with advanced technology. Load symptoms in seconds and get a clear, reliable diagnosis before arriving. Arrive with peace of mind knowing what your vehicle needs and save time on every visit.">
+   Tu auto tiene algo que decir.<br>
+   Nosotros lo interpretamos con tecnología avanzada.<br>
+   Cargá los síntomas en segundos y obtené un diagnóstico claro y confiable antes de llegar al taller.<br>
+   Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo en cada visita.
+</p>
+
 <!-- Stats animados-->
 <div class="grid grid-cols-3 gap-3 md:gap-5 pt-2 md:pt-4 fade-in-up" style="animation-delay: 0.5s;">
 <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-green/30 transition">
@@ -951,7 +910,7 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 <!-- SECCIÓN: UBICACIÓN Y CONFIANZA -->
 <section class="py-14 md:py-20 bg-[#0D0D0D] border-t border-white/5">
 <div class="container mx-auto px-4 text-center">
-<div class="flex flex-wrap justify-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 mb-12 md:mb-16">
+<div class="flex flex-wrap justify-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 mb-12 md:mb-16 brand-icons">
 <i class="fa-brands fa-toyota text-4xl md:text-5xl hover:text-white transition-colors"></i>
 <i class="fa-solid fa-car text-4xl md:text-5xl hover:text-white transition-colors"></i>
 <i class="fa-brands fa-honda text-4xl md:text-5xl hover:text-white transition-colors"></i>
@@ -980,14 +939,13 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 </div>
 </div>
-<div class="flex flex-col sm:flex-row gap-3">
+<div class="flex flex-col sm:flex-row gap-3 mt-8">
 <a href="https://maps.app.goo.gl/GeWiYxvDSCN3ZDEo9" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
 <i class="fa-solid fa-map-location-dot text-lg"></i><span data-es="Ver en Google Maps" data-en="View on Google Maps">Ver en Google Maps</span>
 </a>
 <a href="https://maps.app.goo.gl/GeWiYxvDSCN3ZDEo9" target="_blank" rel="noopener noreferrer" class="btn-review px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
 <i class="fa-solid fa-star text-lg"></i><span data-es="Deja tu Reseña" data-en="Leave Review">Deja tu Reseña</span>
 </a>
-</div>
 </div>
 <div class="mt-10 inline-flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3 rounded-full">
 <i class="fa-solid fa-certificate text-primary-green text-lg"></i>
@@ -1070,15 +1028,6 @@ particle.style.left= Math.random()*100+'%';
 particle.style.animationDelay= Math.random()*15+'s';
 particle.style.animationDuration=(15+ Math.random()*20)+'s';
 particle.style.width= particle.style.height=(2+ Math.random()*3)+'px';
-// Micro-interacción: partículas reaccionan al cursor
-particle.addEventListener('mouseenter', function(){
-this.style.transform = 'scale(2)';
-this.style.opacity = '1';
-});
-particle.addEventListener('mouseleave', function(){
-this.style.transform = 'scale(1)';
-this.style.opacity = '0.7';
-});
 container.appendChild(particle);
 }
 }
@@ -1095,14 +1044,9 @@ const hour = now.getHours();
 const minutes = now.getMinutes();
 const currentTime = hour * 60 + minutes;
 
-// Horarios: Lun-Vie 09:00-18:00 (540-1080), Sáb 09:00-13:00 (540-780), Dom cerrado
 let isOpen = false;
-
-if(day >= 1 && day <= 5){ // Lunes a Viernes
-isOpen = currentTime >= 540 && currentTime < 1080;
-} else if(day === 6){ // Sábado
-isOpen = currentTime >= 540 && currentTime < 780;
-} // Domingo: siempre cerrado
+if(day >= 1 && day <= 5){ isOpen = currentTime >= 540 && currentTime < 1080; } 
+else if(day === 6){ isOpen = currentTime >= 540 && currentTime < 780; }
 
 if(isOpen){
 dotDesktop.className='status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-green';
@@ -1232,29 +1176,16 @@ ticking = true;
 // Navbar scroll effect con micro-transiciones
 const navbar= document.getElementById('navbar');
 if(navbar){
-let lastScroll = 0;
 window.addEventListener('scroll',()=>{
-const currentScroll = window.scrollY;
-if(currentScroll>50){ 
-navbar.classList.add('shadow-lg','bg-gray-900/95'); 
-navbar.classList.remove('glass'); 
-}
-else{ 
-navbar.classList.remove('shadow-lg','bg-gray-900/95'); 
-navbar.classList.add('glass'); 
-}
-lastScroll = currentScroll;
+if(window.scrollY>50){ navbar.classList.add('shadow-lg','bg-gray-900/95'); navbar.classList.remove('glass'); }
+else{ navbar.classList.remove('shadow-lg','bg-gray-900/95'); navbar.classList.add('glass'); }
 },{passive: true});
 }
 
 // Micro-efecto: hover en enlaces del navbar
 document.querySelectorAll('nav a[href^="#"]').forEach(link => {
-link.addEventListener('mouseenter', function(){
-this.style.animation = 'micro-bounce 0.3s ease';
-});
-link.addEventListener('animationend', function(){
-this.style.animation = '';
-});
+link.addEventListener('mouseenter', function(){ this.style.animation = 'micro-bounce 0.3s ease'; });
+link.addEventListener('animationend', function(){ this.style.animation = ''; });
 });
 
 // Inicialización
@@ -1280,7 +1211,7 @@ window.scrollTo({ top: targetElement.offsetTop-80, behavior:'smooth' });
 // Micro-efecto: partículas siguen sutilmente el cursor (performance optimized)
 let particleFollow = false;
 document.addEventListener('mousemove', (e) => {
-if(!particleFollow && Math.random() > 0.95){ // Solo 5% de las veces para performance
+if(!particleFollow && Math.random() > 0.95){
 particleFollow = true;
 const particles = document.querySelectorAll('.particle');
 const randomParticle = particles[Math.floor(Math.random() * particles.length)];
