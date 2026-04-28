@@ -104,6 +104,7 @@ shimmer:{
 }
 *{
 -webkit-tap-highlight-color: transparent;
+box-sizing: border-box;
 }
 body{
 background: var(--gradient-dark);
@@ -433,7 +434,7 @@ transition: background 0.3s ease;
 background: linear-gradient(180deg,#FBBF24,#F59E0B,#FBBF24); 
 }
 
-@media(max-width: 640px){ .text-5xl{font-size: 2.25rem; line-height: 1.15;} .text-7xl{font-size: 2.75rem; line-height: 1.1;} h1{font-size: 2.3rem;} .container{padding-left: 1.25rem; padding-right: 1.25rem;} }
+@media(max-width: 640px){ .text-5xl{font-size: 2.25rem; line-height: 1.15;} .text-7xl{font-size: 2.75rem; line-height: 1.1;} h1{font-size: 2.3rem;} .container{padding-left: 1rem; padding-right: 1rem;} }
 @media(max-width: 475px){ .text-3xl{font-size: 1.75rem;} .py-24{padding-top: 3.5rem; padding-bottom: 3.5rem;} .glass-card{border-radius: 16px;} }
 
 .status-dot{ position: relative; }
@@ -770,7 +771,6 @@ font-weight: 500;
 color: #E2E8F0;
 }
 
-/* ========== BOTONES FUNCIONALES EN FOOTER ========== */
 .footer-btn{
 display: inline-flex;
 align-items: center;
@@ -790,7 +790,282 @@ transform: scale(1.15);
 .footer-btn-icon{
 transition: transform 0.3s ease;
 }
-/* ========== FIN BOTONES FUNCIONALES EN FOOTER ========== */
+
+/* ============================================================ */
+/* ===== RESPONSIVIDAD MEJORADA PARA MÓVIL Y TABLET ===== */
+/* ============================================================ */
+
+/* HERO SECTION - Título y logo en columna en móvil */
+@media(max-width: 768px){
+    header h1{
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+    }
+    .hero-logo-wrapper{
+        margin-left: 0 !important;
+        margin-top: 0.75rem;
+    }
+    header h1 .gradient-text{
+        display: inline;
+    }
+}
+@media(max-width: 475px){
+    header h1{
+        font-size: 1.8rem !important;
+    }
+    .hero-logo-wrapper{
+        justify-content: center;
+        width: 100%;
+    }
+    .hero-logo{
+        height: 3.5rem !important;
+        width: 8rem !important;
+    }
+}
+
+/* NAVBAR - Mejor ajuste en móvil */
+@media(max-width: 768px){
+    #navbar .container{
+        justify-content: center;
+        position: relative;
+    }
+    #navbar a.md\\:absolute{
+        position: absolute !important;
+        left: 0.75rem !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin: 0 !important;
+    }
+    #navbar .ml-auto{
+        margin-left: auto !important;
+    }
+}
+@media(max-width: 475px){
+    #navbar a.md\\:absolute{
+        left: 0.5rem !important;
+    }
+    #navbar .ml-auto{
+        gap: 0.25rem !important;
+    }
+    .lang-switcher{
+        padding: 0.4rem 0.6rem !important;
+        font-size: 0.75rem !important;
+    }
+    #status-bar-mobile{
+        font-size: 0.65rem !important;
+    }
+}
+
+/* TARJETAS DE ASESORAMIENTO - 1 columna en móvil */
+@media(max-width: 768px){
+    #asesoramiento .grid{
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem !important;
+    }
+    #asesoramiento .glass-card{
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
+
+/* TARJETAS DE SERVICIOS - 1 columna en móvil, 2 en tablet */
+@media(max-width: 768px){
+    section .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3{
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 0 0.5rem;
+    }
+}
+@media(min-width: 640px) and (max-width: 1024px){
+    section .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3{
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+}
+
+/* STATS - Mejor ajuste en móvil */
+@media(max-width: 475px){
+    .grid.grid-cols-3.gap-3{
+        gap: 0.5rem !important;
+    }
+    .grid.grid-cols-3.gap-3 > div{
+        padding: 0.5rem !important;
+    }
+    .grid.grid-cols-3.gap-3 span.block{
+        font-size: 1.25rem !important;
+    }
+}
+
+/* BOTONES CTA - Stack vertical en móvil pequeño */
+@media(max-width: 475px){
+    .flex.flex-col.sm\\:flex-row.gap-3\\.5{
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+    }
+    .flex.flex-col.sm\\:flex-row.gap-3\\.5 a{
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* FORMULARIO - 1 columna en móvil */
+@media(max-width: 768px){
+    #diagnostico .grid.grid-cols-1.md\\:grid-cols-3{
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    #diagnostico .grid.grid-cols-1.md\\:grid-cols-2{
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    #diagnostico .lg\\:w-1\\/3,
+    #diagnostico .lg\\:w-2\\/3{
+        width: 100% !important;
+    }
+    #diagnostico .flex.flex-col.lg\\:flex-row{
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+}
+
+/* TESTIMONIOS - Scroll horizontal suave en móvil */
+@media(max-width: 768px){
+    .testimonial-carousel{
+        gap: 1rem !important;
+        padding: 0 1rem 1rem 1rem !important;
+        margin: 0 !important;
+    }
+    .testimonial-card{
+        width: 85% !important;
+        min-width: 280px;
+    }
+}
+
+/* TARJETA UBICACIÓN - Ajuste en móvil */
+@media(max-width: 768px){
+    .location-card{
+        padding: 1.5rem 1rem !important;
+        margin: 0 0.5rem;
+    }
+    .location-card .flex.flex-col.sm\\:flex-row{
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+    }
+    .location-card .flex.flex-col.sm\\:flex-row a{
+        width: 100% !important;
+        justify-content: center;
+    }
+    .brand-icons{
+        gap: 1.5rem !important;
+    }
+    .brand-icons i{
+        font-size: 2rem !important;
+    }
+}
+
+/* FOOTER - Apilado en móvil */
+@media(max-width: 768px){
+    footer .flex.flex-col.md\\:flex-row{
+        flex-direction: column !important;
+        text-align: center;
+        gap: 1.5rem !important;
+    }
+    footer .text-center.md\\:text-left{
+        text-align: center !important;
+    }
+    footer .flex.items-center.gap-4{
+        justify-content: center;
+    }
+    .footer-btn{
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* BOTONES FLOTANTES - Ajuste en móvil pequeño */
+@media(max-width: 475px){
+    .fixed.bottom-24.md\\:bottom-8.right-4{
+        bottom: 4.5rem !important;
+        right: 0.5rem !important;
+        gap: 0.5rem !important;
+    }
+    .fixed.bottom-24.md\\:bottom-8.right-4 a{
+        padding: 0.6rem !important;
+    }
+}
+
+/* STICKY MOBILE CTA - Mejor ajuste */
+@media(max-width: 768px){
+    .fixed.bottom-0.left-0.w-full{
+        padding: 0.5rem !important;
+        gap: 0.5rem !important;
+    }
+}
+
+/* IMÁGENES DE TARJETAS - Ajuste en móvil */
+@media(max-width: 475px){
+    .glass-card .relative.h-44{
+        height: 10rem !important;
+    }
+    .glass-card .relative.h-48{
+        height: 10rem !important;
+    }
+    .glass-card .w-14.h-14{
+        width: 3rem !important;
+        height: 3rem !important;
+    }
+    .glass-card .w-14.h-14 i{
+        font-size: 1.25rem !important;
+    }
+}
+
+/* SECCIONES - Padding reducido en móvil */
+@media(max-width: 475px){
+    section.py-16, section.py-14{
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+    }
+    section.py-24{
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+}
+
+/* TEXTOS - Ajuste de tamaño en móvil */
+@media(max-width: 475px){
+    .description-text{
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+    }
+    .main-title{
+        font-size: 1.6rem !important;
+    }
+}
+
+/* CONTAINER - Padding consistente */
+@media(max-width: 475px){
+    .container{
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+}
+
+/* OVERFLOW - Prevenir scroll horizontal */
+html, body{
+    overflow-x: hidden !important;
+    max-width: 100vw;
+}
+
+/* IMÁGENES - Nunca desbordar */
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+/* ============================================================ */
+/* ===== FIN RESPONSIVIDAD MEJORADA ===== */
+/* ============================================================ */
 </style>
 </head>
 <body class="antialiased relative">
@@ -1219,7 +1494,6 @@ Lun-Vie: 09:00-18:00 | Sáb: 09:00-13:00 | Dom: Cerrado
 </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
 <footer class="bg-primary-dark/95 text-gray-500 py-10 md:py-14 border-t border-white/10">
 <div class="container mx-auto px-4">
 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -1227,21 +1501,18 @@ Lun-Vie: 09:00-18:00 | Sáb: 09:00-13:00 | Dom: Cerrado
 <p class="mb-2 text-white font-display font-bold text-xl md:text-2xl glow-text tracking-tight main-title">Taller Mecánico TR</p>
 <p class="text-sm" data-es="Diagnóstico Automotriz Profesional" data-en="Professional Automotive Diagnosis">Diagnóstico Automotriz Profesional</p>
 <div class="mt-3 text-xs text-gray-400 space-y-2">
-<!-- Ubicación - BOTÓN FUNCIONAL -->
 <p>
 <a href="https://maps.app.goo.gl/GeWiYxvDSCN3ZDEo9" target="_blank" rel="noopener noreferrer" class="footer-btn" title="Ver ubicación en Google Maps">
 <span class="footer-btn-icon"><i class="fa-solid fa-location-dot"></i></span>
 <span>8324, Cipolletti, Río Negro</span>
 </a>
 </p>
-<!-- WhatsApp - BOTÓN FUNCIONAL -->
 <p>
 <a href="https://api.whatsapp.com/send?phone=542995570772" target="_blank" rel="noopener noreferrer" class="footer-btn" title="Chatear por WhatsApp">
 <span class="footer-btn-icon"><i class="fa-brands fa-whatsapp"></i></span>
 <span>0299 557 0772</span>
 </a>
 </p>
-<!-- Horarios (no es botón) -->
 <p>
 <i class="fa-regular fa-clock text-primary-green mr-1"></i>
 <span>Lun-Vie: 09:00-18:00 | Sáb: 09:00-13:00 | Dom: Cerrado</span>
