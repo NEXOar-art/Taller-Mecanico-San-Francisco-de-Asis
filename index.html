@@ -28,30 +28,66 @@ display:['Space Grotesk','sans-serif'],
 },
 colors:{
 primary:{
-green:'#32CD32',
-lime:'#00FF00',
+green:'#22C55E',
+lime:'#10B981',
 dark:'#0A0A0A',
 gray:'#1A1A1A',
-card:'#2D2D2D',
-metallic:'#C0C0C0',
+card:'#262626',
+metallic:'#E5E7EB',
 light:'#F1F5F9',
-gold:'#D4AF37',
-amber:'#FFB300',
-bronze:'#CD7F32',
+gold:'#F59E0B',
+amber:'#FBBF24',
+bronze:'#B45309',
 },
 accent:{
-blue:'#1E90FF',
-cyan:'#00CED1',
-silver:'#E8E8E8',
+blue:'#3B82F6',
+cyan:'#06B6D4',
+silver:'#E5E7EB',
 },
 },
 boxShadow:{
-'neon':'0 0 25px rgba(50, 205, 50, 0.45)',
-'glow':'0 0 40px rgba(50, 205, 50, 0.25)',
+'neon':'0 0 25px rgba(34, 197, 94, 0.45)',
+'glow':'0 0 40px rgba(34, 197, 94, 0.25)',
 'card':'0 10px 40px-10px rgba(0, 0, 0, 0.5)',
 'soft':'0 4px 20px rgba(0, 0, 0, 0.15)',
-'gold-glow':'0 0 25px rgba(212, 175, 55, 0.45)',
-'logo-glow':'0 8px 30px rgba(212, 175, 55, 0.4), 0 0 60px rgba(212, 175, 55, 0.2)',
+'gold-glow':'0 0 25px rgba(245, 158, 11, 0.45)',
+'logo-glow':'0 8px 30px rgba(245, 158, 11, 0.4), 0 0 60px rgba(245, 158, 11, 0.2)',
+},
+screens:{
+'xs':'475px',
+'2xl':'1400px',
+},
+animation:{
+'float':'float 6s ease-in-out infinite',
+'pulse-slow':'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+'pulse-urgent':'pulse-urgent 2s ease-in-out infinite',
+'micro-bounce':'micro-bounce 0.6s ease-in-out',
+'micro-tilt':'micro-tilt 0.3s ease-out',
+'shimmer':'shimmer 2.5s infinite linear',
+},
+keyframes:{
+float:{
+'0%, 100%':{transform:'translateY(0)'},
+'50%':{transform:'translateY(-12px)'},
+},
+'pulse-urgent':{
+'0%, 100%':{boxShadow:'0 0 0 0 rgba(251, 191, 36, 0.4), 0 0 20px rgba(245, 158, 11, 0.3)'},
+'50%':{boxShadow:'0 0 0 12px rgba(251, 191, 36, 0), 0 0 35px rgba(245, 158, 11, 0.6)'},
+},
+'micro-bounce':{
+'0%, 100%':{transform:'scale(1)'},
+'50%':{transform:'scale(1.03)'},
+},
+'micro-tilt':{
+'0%':{transform:'perspective(400px) rotateX(0) rotateY(0)'},
+'25%':{transform:'perspective(400px) rotateX(-2deg) rotateY(2deg)'},
+'75%':{transform:'perspective(400px) rotateX(2deg) rotateY(-2deg)'},
+'100%':{transform:'perspective(400px) rotateX(0) rotateY(0)'},
+},
+shimmer:{
+'0%':{backgroundPosition:'-200% 0'},
+'100%':{backgroundPosition:'200% 0'}
+}
 }
 }
 }
@@ -59,30 +95,19 @@ boxShadow:{
 </script>
 <style>
 :root{
-/* ========== PALETA DE COLORES MEJORADA ========== */
---gradient-primary: linear-gradient(135deg, #D4AF37 0%, #FFD700 30%, #FFB300 70%, #D4AF37 100%);
---gradient-dark: linear-gradient(180deg, #0A0A0A 0%, #121212 35%, #1A1A1A 100%);
---gradient-metallic: linear-gradient(135deg, #F0F0F0 0%, #C0C0C0 35%, #A8A8A8 65%, #E8E8E8 100%);
---gradient-green-glow: linear-gradient(135deg, rgba(50,205,50,0.35) 0%, rgba(0,255,0,0.15) 100%);
---gradient-gold: linear-gradient(135deg, #D4AF37 0%, #FFD700 40%, #FFB300 60%, #D4AF37 100%);
---gradient-accent: linear-gradient(135deg, #1E90FF 0%, #00CED1 40%, #32CD32 70%, #22C55E 100%);
---gradient-premium: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
---gradient-card: linear-gradient(145deg, rgba(45,45,45,0.95), rgba(26,26,26,0.98));
---color-text-primary: #FFFFFF;
---color-text-secondary: #E2E8F0;
---color-text-muted: #94A3B8;
---color-border-subtle: rgba(255,255,255,0.12);
---color-border-gold: rgba(212,175,55,0.35);
---color-bg-glass: rgba(26,26,26,0.82);
---color-bg-glass-hover: rgba(32,32,32,0.88);
---shadow-neon-enhanced: 0 0 30px rgba(212,175,55,0.5), 0 0 60px rgba(255,179,0,0.25);
---shadow-card-enhanced: 0 20px 60px -15px rgba(0,0,0,0.6);
---shadow-logo-premium: 0 0 45px rgba(212,175,55,0.65), 0 0 90px rgba(255,215,0,0.35), inset 0 0 25px rgba(212,175,55,0.2);
+--gradient-primary: linear-gradient(135deg,#F59E0B 0%,#FBBF24 100%);
+--gradient-dark: linear-gradient(180deg,#0A0A0A 0%,#171717 100%);
+--gradient-metallic: linear-gradient(135deg,#F3F4F6 0%,#9CA3AF 50%,#F3F4F6 100%);
+--gradient-green-glow: linear-gradient(135deg, rgba(34,197,94,0.3) 0%, rgba(16,185,129,0.1) 100%);
+--gradient-gold: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #F59E0B 100%);
+--gradient-accent: linear-gradient(135deg, #3B82F6 0%, #06B6D4 50%, #22C55E 100%);
 }
-*{ -webkit-tap-highlight-color: transparent; }
+*{
+-webkit-tap-highlight-color: transparent;
+}
 body{
 background: var(--gradient-dark);
-color: var(--color-text-secondary);
+color:#E2E8F0;
 font-feature-settings:"cv02","cv03","cv04","cv11";
 overflow-x: hidden;
 position: relative;
@@ -95,342 +120,620 @@ position: fixed;
 top: 0;
 left: 0;
 width: 100%;
-background: linear-gradient(90deg, #1a1a1a 0%, #252525 50%, #1a1a1a 100%);
-border-bottom: 2.5px solid #D4AF37;
+background: linear-gradient(90deg, #1a1a1a 0%, #262626 50%, #1a1a1a 100%);
+border-bottom: 2px solid #F59E0B;
 z-index: 1000;
 overflow: hidden;
-box-shadow: 0 4px 25px rgba(212, 175, 55, 0.35);
+box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
 }
-.info-banner-wrapper{ display: flex; align-items: center; padding: 12px 0; position: relative; }
-.info-banner-icon{ flex-shrink: 0; margin-left: 20px; margin-right: 15px; animation: pulse-gold 2s infinite; }
-.info-banner-icon i{ color: #D4AF37; font-size: 1.5rem; }
-.banner-scroll-container{ flex: 1; overflow: hidden; position: relative; }
-.banner-text{ display: inline-flex; white-space: nowrap; animation: bannerScroll 25s linear infinite; padding-left: 100%; }
-.banner-item{ display: inline-flex; align-items: center; margin: 0 40px; color: #fff; font-size: 0.95rem; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5); transition: all 0.3s ease; }
-.banner-item:hover{ transform: scale(1.03); color: #FFD700; text-shadow: 0 0 15px rgba(212,175,55,0.6); }
-.banner-item i{ margin: 0 8px; color: #FFB300; transition: all 0.3s ease; }
-.banner-item:hover i{ transform: rotate(15deg) scale(1.15); filter: drop-shadow(0 0 8px rgba(255,179,0,0.7)); }
-.banner-divider{ color: #D4AF37; margin: 0 20px; opacity: 0.6; }
-@keyframes bannerScroll{ 0%{ transform: translateX(0); } 100%{ transform: translateX(-100%); } }
+
+.info-banner-wrapper{
+display: flex;
+align-items: center;
+padding: 12px 0;
+position: relative;
+}
+
+.info-banner-icon{
+flex-shrink: 0;
+margin-left: 20px;
+margin-right: 15px;
+animation: pulse-gold 2s infinite;
+}
+
+.info-banner-icon i{
+color: #F59E0B;
+font-size: 1.5rem;
+}
+
+.banner-scroll-container{
+flex: 1;
+overflow: hidden;
+position: relative;
+}
+
+.banner-text{
+display: inline-flex;
+white-space: nowrap;
+animation: bannerScroll 25s linear infinite;
+padding-left: 100%;
+}
+
+.banner-item{
+display: inline-flex;
+align-items: center;
+margin: 0 40px;
+color: #fff;
+font-size: 0.95rem;
+font-weight: 600;
+text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.banner-item:hover{
+transform: scale(1.02);
+color: #F59E0B;
+}
+
+.banner-item i{
+margin: 0 8px;
+color: #FBBF24;
+transition: transform 0.3s ease;
+}
+
+.banner-item:hover i{
+transform: rotate(15deg) scale(1.1);
+}
+
+.banner-divider{
+color: #F59E0B;
+margin: 0 20px;
+opacity: 0.6;
+}
+
+/* WhatsApp en el banner */
+.banner-whatsapp{
+display: inline-flex;
+align-items: center;
+margin: 0 40px;
+color: #22C55E;
+font-size: 0.95rem;
+font-weight: 700;
+text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+transition: transform 0.3s ease;
+}
+.banner-whatsapp:hover{
+transform: scale(1.05);
+color: #10B981;
+}
+.banner-whatsapp i{
+margin-right: 6px;
+font-size: 1.1rem;
+}
+
+@keyframes bannerScroll{
+0%{ transform: translateX(0); }
+100%{ transform: translateX(-100%); }
+}
+
 #navbar{ top: 56px !important; }
-@media (max-width: 768px){ .banner-item{ font-size: 0.85rem; margin: 0 25px; } .banner-item i{ font-size: 0.9rem; } .info-banner-icon{ margin-left: 10px; margin-right: 10px; } body{ padding-top: 50px; } #navbar{ top: 50px !important; } }
-@media (max-width: 475px){ .banner-item{ font-size: 0.75rem; margin: 0 15px; } .banner-divider{ margin: 0 10px; } .info-banner-icon i{ font-size: 1.2rem; } body{ padding-top: 46px; } #navbar{ top: 46px !important; } }
+
+@media (max-width: 768px){
+.banner-item{ font-size: 0.85rem; margin: 0 25px; }
+.banner-item i{ font-size: 0.9rem; }
+.banner-whatsapp{ font-size: 0.85rem; margin: 0 25px; }
+.info-banner-icon{ margin-left: 10px; margin-right: 10px; }
+body{ padding-top: 50px; }
+#navbar{ top: 50px !important; }
+}
+
+@media (max-width: 475px){
+.banner-item{ font-size: 0.75rem; margin: 0 15px; }
+.banner-whatsapp{ font-size: 0.75rem; margin: 0 15px; }
+.banner-divider{ margin: 0 10px; }
+.info-banner-icon i{ font-size: 1.2rem; }
+body{ padding-top: 46px; }
+#navbar{ top: 46px !important; }
+}
+/* ========== FIN BANNER INFORMATIVO ========== */
 
 /* Background Image with Animation */
 body::before{
-content:''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+content:'';
+position: fixed;
+top: 0; left: 0;
+width: 100%; height: 100%;
 background-image: url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1920&q=80');
-background-size: cover; background-position: center; background-repeat: no-repeat;
-opacity: 0.07; z-index: -2; animation: backgroundMove 30s ease-in-out infinite;
-filter: brightness(0.45) contrast(1.4) saturate(0.9);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+opacity: 0.06;
+z-index: -2;
+animation: backgroundMove 30s ease-in-out infinite;
+filter: brightness(0.5) contrast(1.3) saturate(0.8);
 }
-@keyframes backgroundMove{ 0%,100%{transform:scale(1) translate(0,0);} 25%{transform:scale(1.06) translate(-1.2%,-1.2%);} 50%{transform:scale(1) translate(0,-2.5%);} 75%{transform:scale(1.06) translate(1.2%,-1.2%);} }
+@keyframes backgroundMove{
+0%, 100%{ transform: scale(1) translate(0, 0); }
+25%{ transform: scale(1.05) translate(-1%, -1%); }
+50%{ transform: scale(1) translate(0, -2%); }
+75%{ transform: scale(1.05) translate(1%, -1%); }
+}
 
-/* Glassmorphism premium */
+/* Glassmorphism moderno con micro-efectos*/
 .glass{
-background: var(--color-bg-glass);
-backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-border: 1px solid var(--color-border-gold);
-box-shadow: 0 10px 40px rgba(0,0,0,0.35);
-transition: all 0.35s cubic-bezier(0.165,0.84,0.44,1);
-}
-.glass:hover{ border-color: rgba(212,175,55,0.5); box-shadow: 0 15px 50px rgba(0,0,0,0.45), 0 0 35px rgba(212,175,55,0.15); }
-.glass-card{
-background: var(--gradient-card);
+background: rgba(23, 23, 23, 0.8);
 backdrop-filter: blur(20px);
-border: 1px solid var(--color-border-subtle);
-border-radius: 22px;
-transition: all 0.45s cubic-bezier(0.165,0.84,0.44,1);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(245, 158, 11, 0.15);
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+transition: all 0.3s ease;
+}
+.glass:hover{
+border-color: rgba(245, 158, 11, 0.3);
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+.glass-card{
+background: linear-gradient(145deg, rgba(38, 38, 38, 0.95), rgba(23, 23, 23, 0.98));
+backdrop-filter: blur(16px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 20px;
+transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .glass-card:hover{
-border-color: rgba(212,175,55,0.5);
-transform: translateY(-7px);
-box-shadow: var(--shadow-card-enhanced), 0 0 40px rgba(212,175,55,0.18);
+border-color: rgba(245, 158, 11, 0.4);
+transform: translateY(-6px);
+box-shadow: var(--shadow-card), 0 0 30px rgba(245, 158, 11, 0.15);
 }
 
-/* Textos y efectos premium */
+/* Textos y efectos mejorados*/
 .glow-text{
-text-shadow: 0 0 25px rgba(212,175,55,0.7), 0 0 50px rgba(255,179,0,0.4);
-letter-spacing: -0.025em;
-transition: text-shadow 0.35s ease;
+text-shadow: 0 0 20px rgba(245, 158, 11, 0.6), 0 0 40px rgba(251, 191, 36, 0.3);
+letter-spacing:-0.02em;
+transition: text-shadow 0.3s ease;
 }
-.glow-text:hover{ text-shadow: 0 0 35px rgba(212,175,55,0.9), 0 0 70px rgba(255,179,0,0.6); }
+.glow-text:hover{
+text-shadow: 0 0 30px rgba(245, 158, 11, 0.8), 0 0 60px rgba(251, 191, 36, 0.5);
+}
 .gradient-text{
 background: var(--gradient-primary);
-background-size: 300% 300%;
--webkit-background-clip: text; -webkit-text-fill-color: transparent;
+background-size: 200% 200%;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 background-clip: text;
-animation: gradient-shift 4.5s ease infinite;
+animation: gradient-shift 4s ease infinite;
+font-weight: 800;
 }
-@keyframes gradient-shift{ 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
+@keyframes gradient-shift{
+0%, 100%{ background-position: 0% 50%; }
+50%{ background-position: 100% 50%; }
+}
 .metallic-text{
 background: var(--gradient-metallic);
--webkit-background-clip: text; -webkit-text-fill-color: transparent;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 background-clip: text;
 }
-.pulse-glow{ animation: pulse-gold 3.5s ease-in-out infinite; }
-@keyframes pulse-gold{ 0%,100%{opacity:1; box-shadow:0 0 25px rgba(212,175,55,0.5);} 50%{opacity:0.9; box-shadow:0 0 45px rgba(212,175,55,0.85);} }
+.pulse-glow{ animation: pulse-gold 3s ease-in-out infinite; }
+@keyframes pulse-gold{
+0%, 100%{opacity: 1; box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);}
+50%{opacity: 0.85; box-shadow: 0 0 35px rgba(245, 158, 11, 0.7);}
+}
 
-/* Animaciones de entrada */
-.fade-in-up{ opacity:0; transform:translateY(35px); animation:fadeInUp 0.9s cubic-bezier(0.165,0.84,0.44,1) forwards; }
-@keyframes fadeInUp{ to{opacity:1; transform:translateY(0);} }
+/* Animaciones de entrada*/
+.fade-in-up{
+opacity: 0;
+transform: translateY(30px);
+animation: fadeInUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+@keyframes fadeInUp{ to{opacity: 1; transform: translateY(0);} }
 
-/* Hover effects premium */
-.hover-lift{ transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1); }
-.hover-lift:hover{ transform:translateY(-9px); box-shadow: var(--shadow-neon-enhanced), var(--shadow-card-enhanced); animation: micro-bounce 0.65s ease-in-out; }
+/* Hover effects profesionales con micro-efectos*/
+.hover-lift{ transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.hover-lift:hover{ 
+transform: translateY(-8px); 
+box-shadow: var(--shadow-glow), var(--shadow-card); 
+animation: micro-bounce 0.6s ease-in-out;
+}
 
-/* Parallax suave */
-.parallax-image{ transition: transform 0.5s ease-out; will-change: transform; filter: brightness(0.8) contrast(1.15); }
-.parallax-bg{ animation: subtle-move 28s ease-in-out infinite alternate; }
-@keyframes subtle-move{ 0%{transform:translate(0,0) scale(1.04);} 50%{transform:translate(3.5%,2.5%) scale(1.09);} 100%{transform:translate(0,0) scale(1.04);} }
+/* Parallax suave*/
+.parallax-image{ transition: transform 0.4s ease-out; will-change: transform; filter: brightness(0.85) contrast(1.1); }
+.parallax-bg{ animation: subtle-move 25s ease-in-out infinite alternate; }
+@keyframes subtle-move{
+0%{transform: translate(0, 0) scale(1.03);}
+50%{transform: translate(3%, 2%) scale(1.07);}
+100%{transform: translate(0, 0) scale(1.03);}
+}
 
-/* Inputs premium */
+/* Inputs modernos con micro-efectos*/
 .input-modern{
-background: rgba(22,22,22,0.85);
-border: 1.5px solid rgba(255,255,255,0.15);
-border-radius: 16px;
-transition: all 0.35s ease;
-color: #fff;
+background: rgba(23, 23, 23, 0.85);
+border: 1px solid rgba(255, 255, 255, 0.12);
+border-radius: 14px;
+transition: all 0.3s ease;
+color:#fff;
 }
 .input-modern:focus{
-border-color: #D4AF37;
-box-shadow: 0 0 0 4px rgba(212,175,55,0.3), 0 0 28px rgba(212,175,55,0.2);
+border-color:#F59E0B;
+box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25), 0 0 20px rgba(245, 158, 11, 0.15);
 outline: none;
-background: rgba(22,22,22,0.98);
-animation: micro-bounce 0.45s ease;
+background: rgba(23, 23, 23, 0.98);
+animation: micro-bounce 0.4s ease;
 }
-.input-modern::placeholder{ color: rgba(226,232,240,0.55); transition: color 0.3s ease; }
-.input-modern:focus::placeholder{ color: rgba(226,232,240,0.35); }
-.input-valid{ border-color:#22C55E!important; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2322c55e'%3e%3cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3e%3c/svg%3e"); background-repeat:no-repeat; background-position:right 1rem center; background-size:1.3em; }
-.input-invalid{ border-color:#EF4444!important; animation: shake 0.55s ease-in-out; }
-@keyframes shake{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-5px);} 75%{transform:translateX(5px);} }
+.input-modern::placeholder{ color: rgba(226, 232, 240, 0.5); transition: color 0.3s ease; }
+.input-modern:focus::placeholder{ color: rgba(226, 232, 240, 0.3); }
+.input-valid{
+border-color:#22C55E!important;
+background-image: url("image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2322c55e'%3e%3cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3e%3c/svg%3e");
+background-repeat: no-repeat;
+background-position: right 1rem center;
+background-size: 1.3em;
+}
+.input-invalid{ border-color:#EF4444!important; animation: shake 0.5s ease-in-out; }
+@keyframes shake{ 0%, 100%{transform: translateX(0);} 25%{transform: translateX(-4px);} 75%{transform: translateX(4px);} }
 
-/* Botones premium */
+/* Botones premium con micro-efectos*/
 .btn-primary{
 background: var(--gradient-primary);
-color: #0A0A0A;
-font-weight: 750;
-letter-spacing: 0.025em;
+color:#0A0A0A;
+font-weight: 700;
+letter-spacing: 0.02em;
 position: relative;
 overflow: hidden;
-transition: all 0.4s ease;
+transition: all 0.35s ease;
 }
-.btn-primary::after{ content:''; position:absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%, rgba(255,255,255,0.12) 100%); opacity:0; transition: opacity 0.35s ease; }
-.btn-primary:hover{ transform: translateY(-4px); box-shadow: 0 18px 50px rgba(212,175,55,0.5), 0 0 40px rgba(212,175,55,0.35); animation: micro-bounce 0.55s ease; }
-.btn-primary:hover::after{ opacity:1; }
-.btn-primary:active{ transform: translateY(-2px) scale(0.985); }
+.btn-primary::after{
+content:''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+opacity: 0; transition: opacity 0.3s ease;
+}
+.btn-primary:hover{ 
+transform: translateY(-3px); 
+box-shadow: 0 15px 40px rgba(245, 158, 11, 0.45), 0 0 30px rgba(245, 158, 11, 0.3); 
+animation: micro-bounce 0.5s ease;
+}
+.btn-primary:hover::after{ opacity: 1; }
+.btn-primary:active{ transform: translateY(-1px) scale(0.98); }
 
-.btn-outline{ background:transparent; border:2px solid rgba(255,255,255,0.3); color:#fff; font-weight:650; transition:all 0.35s ease; }
-.btn-outline:hover{ border-color:#D4AF37; background:rgba(212,175,55,0.12); transform:translateY(-4px); animation:micro-bounce 0.55s ease; }
-.btn-outline:active{ transform:translateY(-2px) scale(0.985); }
+.btn-outline{
+background: transparent;
+border: 2px solid rgba(255, 255, 255, 0.25);
+color:#fff;
+font-weight: 600;
+transition: all 0.3s ease;
+}
+.btn-outline:hover{ 
+border-color:#F59E0B; 
+background: rgba(245, 158, 11, 0.1); 
+transform: translateY(-3px); 
+animation: micro-bounce 0.5s ease;
+}
+.btn-outline:active{ transform: translateY(-1px) scale(0.98); }
 
+/* Botón de reseñas con micro-efectos*/
 .btn-review{
-background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
-color:#0A0A0A; font-weight:750; letter-spacing:0.025em; position:relative; overflow:hidden; transition:all 0.4s ease;
+background: linear-gradient(135deg,#FBBF24 0%,#F59E0B 100%);
+color:#0A0A0A;
+font-weight: 700;
+letter-spacing: 0.02em;
+position: relative;
+overflow: hidden;
+transition: all 0.35s ease;
 }
-.btn-review::after{ content:''; position:absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(135deg, rgba(255,255,255,0.35) 0%, transparent 50%, rgba(255,255,255,0.18) 100%); opacity:0; transition:opacity 0.35s ease; }
-.btn-review:hover{ transform:translateY(-4px); box-shadow: 0 18px 50px rgba(255,215,0,0.5), 0 0 40px rgba(255,165,0,0.35); animation:micro-bounce 0.55s ease; }
-.btn-review:hover::after{ opacity:1; }
-.btn-review:active{ transform:translateY(-2px) scale(0.985); }
+.btn-review::after{
+content:''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(255,255,255,0.15) 100%);
+opacity: 0; transition: opacity 0.3s ease;
+}
+.btn-review:hover{ 
+transform: translateY(-3px); 
+box-shadow: 0 15px 40px rgba(251, 191, 36, 0.45), 0 0 30px rgba(245, 158, 11, 0.3);
+animation: micro-bounce 0.5s ease;
+}
+.btn-review:hover::after{ opacity: 1; }
+.btn-review:active{ transform: translateY(-1px) scale(0.98); }
 
-/* Scrollbar premium */
-::-webkit-scrollbar{ width:9px; height:9px; }
-::-webkit-scrollbar-track{ background: linear-gradient(180deg, #1a1a1a, #0a0a0a); border-radius:5px; }
-::-webkit-scrollbar-thumb{ background: var(--gradient-gold); border-radius:5px; border:2.5px solid #1a1a1a; background-clip:content-box; transition:background 0.35s ease; }
-::-webkit-scrollbar-thumb:hover{ background: linear-gradient(180deg, #FFB300, #D4AF37, #FFD700); }
+/* Scrollbar personalizado mejorado*/
+::-webkit-scrollbar{ width: 8px; height: 8px; }
+::-webkit-scrollbar-track{ background: linear-gradient(180deg, #1a1a1a, #0a0a0a); border-radius: 4px; }
+::-webkit-scrollbar-thumb{ 
+background: linear-gradient(180deg,#F59E0B,#FBBF24,#F59E0B); 
+border-radius: 4px; 
+border: 2px solid #1a1a1a; 
+background-clip: content-box;
+transition: background 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover{ 
+background: linear-gradient(180deg,#FBBF24,#F59E0B,#FBBF24); 
+}
 
 /* Responsive typography */
-@media(max-width:640px){ .text-5xl{font-size:2.3rem; line-height:1.15;} .text-7xl{font-size:2.85rem; line-height:1.1;} h1{font-size:2.4rem;} .container{padding-left:1.3rem; padding-right:1.3rem;} }
-@media(max-width:475px){ .text-3xl{font-size:1.8rem;} .py-24{padding-top:3.8rem; padding-bottom:3.8rem;} .glass-card{border-radius:18px;} }
+@media(max-width: 640px){ .text-5xl{font-size: 2.25rem; line-height: 1.15;} .text-7xl{font-size: 2.75rem; line-height: 1.1;} h1{font-size: 2.3rem;} .container{padding-left: 1.25rem; padding-right: 1.25rem;} }
+@media(max-width: 475px){ .text-3xl{font-size: 1.75rem;} .py-24{padding-top: 3.5rem; padding-bottom: 3.5rem;} .glass-card{border-radius: 16px;} }
 
-/* Badge de estado */
-.status-dot{ position:relative; }
-.status-dot::after{ content:''; position:absolute; top:-2.5px; left:-2.5px; right:-2.5px; bottom:-2.5px; border-radius:50%; background:inherit; filter:blur(5px); opacity:0.75; animation:pulse 2.2s infinite; }
+/* Badge de estado animado*/
+.status-dot{ position: relative; }
+.status-dot::after{ content:''; position: absolute; top:-2px; left:-2px; right:-2px; bottom:-2px; border-radius: 50%; background: inherit; filter: blur(4px); opacity: 0.7; animation: pulse 2s infinite; }
 
-/* Separador decorativo */
-.divider{ height:1.5px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), rgba(50,205,50,0.4), transparent); margin:2.2rem 0; }
+/* Separador decorativo mejorado*/
+.divider{ height: 1px; background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.4), rgba(34, 205, 94, 0.3), transparent); margin: 2rem 0; }
 
-/* Partículas premium */
-.particles{ position:absolute; top:0; left:0; right:0; bottom:0; pointer-events:none; overflow:hidden; z-index:0; }
-.particle{ position:absolute; width:3.5px; height:3.5px; background: rgba(212,175,55,0.7); border-radius:50%; animation:float-particle 18s infinite linear; opacity:0.75; transition: all 0.35s ease; }
-.particle:hover{ transform: scale(3); opacity:1; box-shadow: 0 0 15px rgba(212,175,55,0.9); }
-@keyframes float-particle{ 0%{transform:translateY(100vh) translateX(0);} 10%{opacity:0.85;} 90%{opacity:0.85;} 100%{transform:translateY(-25px) translateX(60px); opacity:0;} }
+/* Efecto de partículas sutil con micro-interacciones*/
+.particles{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.particle{ 
+position: absolute; 
+width: 3px; height: 3px; 
+background: rgba(245, 158, 11, 0.6); 
+border-radius: 50%; 
+animation: float-particle 15s infinite linear; 
+opacity: 0.7;
+transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.particle:hover{
+transform: scale(2.5);
+opacity: 1;
+box-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+}
+@keyframes float-particle{ 
+0%{transform: translateY(100vh) translateX(0);} 
+10%{opacity: 0.8;} 
+90%{opacity: 0.8;} 
+100%{transform: translateY(-20px) translateX(50px); opacity: 0;} 
+}
 
-/* Labels */
-.label-below{ display:block; margin-top:0.6rem; margin-left:0.3rem; font-size:0.78rem; font-weight:550; color:#D4AF37; transition:all 0.3s ease; }
-.label-below span.required{ color:#EF4444; margin-left:2px; }
-.input-modern:focus + .label-below{ color:#FFD700; transform:translateX(5px); }
+/* Labels debajo de inputs */
+.label-below{ display: block; margin-top: 0.5rem; margin-left: 0.25rem; font-size: 0.75rem; font-weight: 500; color: #F59E0B; transition: color 0.3s ease, transform 0.3s ease; }
+.label-below span.required{ color: #EF4444; margin-left: 2px; }
+.input-modern:focus + .label-below{ color: #FBBF24; transform: translateX(4px); }
 
-/* ========== LOGO NAVBAR - RECTANGULAR HORIZONTAL PREMIUM ========== */
+/* ========== LOGO RECTANGULAR CON REFLEJO HOVER ========== */
+
+/* Navbar Logo - RECTANGULAR CON BORDES REDONDEADOS */
 .navbar-logo{
-height: 68px;
-width: 155px;
+height: 62px;
+width: 140px;
 object-fit: contain;
-border-radius: 20px;
-border: 3px solid rgba(212,175,55,0.95);
-box-shadow: var(--shadow-logo-premium);
-transition: all 0.45s cubic-bezier(0.165,0.84,0.44,1);
+border-radius: 16px;
+border: 2.5px solid rgba(245, 158, 11, 0.9);
+box-shadow: 0 0 25px rgba(245, 158, 11, 0.5), inset 0 0 12px rgba(245, 158, 11, 0.15);
+transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 position: relative;
 overflow: visible;
-background: rgba(12,12,12,0.5);
-filter: drop-shadow(0 0 10px rgba(212,175,55,0.3));
+background: rgba(10, 10, 10, 0.4);
 }
+
+/* Efecto de brillo/reflejo superior en logo navbar */
 .navbar-logo::before{
-content:''; position:absolute; top:8%; left:8%; width:52%; height:38%;
-background: linear-gradient(160deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 45%, transparent 75%);
-border-radius: 14px; filter: blur(2.5px); opacity:0.8; transition:opacity 0.35s ease; pointer-events:none; z-index:2;
+content:'';
+position: absolute;
+top: 8%;
+left: 10%;
+width: 50%;
+height: 35%;
+background: linear-gradient(160deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.25) 45%, transparent 75%);
+border-radius: 12px;
+filter: blur(2px);
+opacity: 0;
+transition: opacity 0.3s ease;
+pointer-events: none;
+z-index: 2;
 }
-.navbar-logo::after{
-content:''; position:absolute; bottom:-80%; left:50%; transform:translateX(-50%) scaleY(-1);
-width:90%; height:60%;
-background: linear-gradient(to top, rgba(212,175,55,0.25) 0%, transparent 80%);
-border-radius: 16px; filter: blur(6px); opacity:0.6; pointer-events:none; transition:opacity 0.35s ease;
-}
-.navbar-logo:hover{
-transform: scale(1.1) translateY(-4px) rotateX(5deg);
-box-shadow: 0 0 50px rgba(212,175,55,0.9), 0 0 100px rgba(255,215,0,0.5), inset 0 0 30px rgba(212,175,55,0.3);
-border-color: #FFD700;
-animation: micro-bounce 0.5s ease, micro-tilt 0.35s ease-out;
-filter: drop-shadow(0 0 20px rgba(212,175,55,0.6));
-}
-.navbar-logo:hover::before{ opacity:1; filter:blur(1.5px); }
-.navbar-logo:hover::after{ opacity:0.85; filter:blur(4px); }
 
-/* ========== LOGO HERO - HORIZONTAL GRANDE PREMIUM ========== */
+/* REFLEJO ESPEJO debajo del logo navbar - EFECTO HOVER */
+.navbar-logo::after{
+content:'';
+position: absolute;
+bottom: -85%;
+left: 50%;
+transform: translateX(-50%) scaleY(-1);
+width: 90%;
+height: 60%;
+background: linear-gradient(to top, rgba(245, 158, 11, 0.3) 0%, rgba(245, 158, 11, 0.1) 40%, transparent 80%);
+border-radius: 16px;
+filter: blur(5px);
+opacity: 0;
+pointer-events: none;
+transition: all 0.3s ease;
+}
+
+.navbar-logo:hover{ 
+transform: scale(1.08) translateY(-3px);
+box-shadow: 0 0 40px rgba(245, 158, 11, 0.85), 0 10px 50px rgba(245, 158, 11, 0.4), var(--logo-glow);
+border-color: #FBBF24;
+animation: micro-bounce 0.5s ease;
+}
+.navbar-logo:hover::before{ opacity: 1; }
+.navbar-logo:hover::after{ 
+opacity: 0.85; 
+animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Hero Logo - RECTANGULAR CON BORDES REDONDEADOS (para posicionar junto al título) */
 .hero-logo{
-height: 10rem;
-width: 22rem;
+height: 5.5rem;
+width: 12rem;
 object-fit: contain;
-border-radius: 26px;
-border: 4px solid rgba(212,175,55,0.98);
-box-shadow: var(--shadow-logo-premium), 0 0 120px rgba(212,175,55,0.25);
-transition: all 0.5s cubic-bezier(0.165,0.84,0.44,1);
+border-radius: 16px;
+border: 3px solid rgba(245, 158, 11, 0.95);
+box-shadow: 0 0 35px rgba(245, 158, 11, 0.65), 0 0 70px rgba(245, 158, 11, 0.35), inset 0 0 18px rgba(245, 158, 11, 0.2);
+transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 position: relative;
 overflow: visible;
-animation: pulse-gold 3.5s ease-in-out infinite;
-background: rgba(12,12,12,0.3);
-filter: drop-shadow(0 0 15px rgba(212,175,55,0.4));
+background: rgba(10, 10, 10, 0.3);
 }
+
+/* Efecto de brillo/reflejo superior en logo hero */
 .hero-logo::before{
-content:''; position:absolute; top:5%; left:6%; width:48%; height:35%;
-background: linear-gradient(160deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.35) 40%, transparent 70%);
-border-radius: 20px; filter: blur(4px); opacity:0.9; transition:opacity 0.35s ease; pointer-events:none; z-index:2;
+content:'';
+position: absolute;
+top: 8%;
+left: 8%;
+width: 45%;
+height: 32%;
+background: linear-gradient(160deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 40%, transparent 70%);
+border-radius: 12px;
+filter: blur(3px);
+opacity: 0;
+transition: opacity 0.3s ease;
+pointer-events: none;
+z-index: 2;
 }
+
+/* REFLEJO ESPEJO debajo del logo hero - EFECTO HOVER */
 .hero-logo::after{
-content:''; position:absolute; bottom:-70%; left:50%; transform:translateX(-50%) scaleY(-1);
-width:85%; height:55%;
-background: linear-gradient(to top, rgba(212,175,55,0.35) 0%, rgba(212,175,55,0.12) 40%, transparent 80%);
-border-radius: 22px; filter: blur(8px); opacity:0.7; pointer-events:none; transition:opacity 0.35s ease;
-}
-.hero-logo:hover{
-transform: scale(1.07) translateY(-6px) rotateX(3deg);
-box-shadow: 0 0 65px rgba(212,175,55,0.95), 0 0 130px rgba(255,215,0,0.6), 0 20px 70px rgba(0,0,0,0.5), inset 0 0 35px rgba(212,175,55,0.35);
-animation: micro-tilt 0.4s ease-out;
-filter: drop-shadow(0 0 30px rgba(212,175,55,0.7));
-}
-.hero-logo:hover::before{ opacity:1; filter:blur(2.5px); }
-.hero-logo:hover::after{ opacity:0.9; filter:blur(5px); }
-
-/* Responsive logos */
-@media(max-width:768px){
-.navbar-logo{ height:55px; width:120px; border-width:2.5px; border-radius:16px; }
-.hero-logo{ height:7.5rem; width:15rem; border-radius:20px; }
-}
-@media(max-width:475px){
-.navbar-logo{ height:48px; width:100px; border-radius:14px; }
-.hero-logo{ height:6rem; width:11.5rem; border-radius:18px; }
+content:'';
+position: absolute;
+bottom: -75%;
+left: 50%;
+transform: translateX(-50%) scaleY(-1);
+width: 85%;
+height: 55%;
+background: linear-gradient(to top, rgba(245, 158, 11, 0.35) 0%, rgba(245, 158, 11, 0.12) 35%, transparent 75%);
+border-radius: 16px;
+filter: blur(7px);
+opacity: 0;
+pointer-events: none;
+transition: all 0.3s ease;
 }
 
-/* ========== TIPOGRAFÍA MEJORADA PREMIUM ========== */
-.workshop-title{
-font-family:'Space Grotesk', sans-serif;
-font-weight: 850;
-background: var(--gradient-gold);
-background-size: 350% 350%;
--webkit-background-clip: text; -webkit-text-fill-color: transparent;
-background-clip: text;
-animation: gradient-shift-premium 3.5s ease infinite;
-text-shadow: 0 0 30px rgba(212,175,55,0.6), 0 0 60px rgba(255,179,0,0.4);
-letter-spacing: -0.035em;
-position: relative;
-display: inline-block;
+.hero-logo:hover{ 
+transform: scale(1.06) translateY(-5px);
+box-shadow: 0 0 50px rgba(245, 158, 11, 0.9), 0 0 90px rgba(245, 158, 11, 0.45), 0 15px 60px rgba(0,0,0,0.35), var(--logo-glow);
+animation: micro-tilt 0.3s ease-out;
 }
-.workshop-title::after{
-content:''; position:absolute; bottom:-5px; left:0; width:100%; height:3.5px;
-background: var(--gradient-primary); border-radius:3px; opacity:0.8; filter:blur(1.5px);
+.hero-logo:hover::before{ opacity: 1; }
+.hero-logo:hover::after{ 
+opacity: 0.9; 
+animation: shimmer 2.2s ease-in-out infinite;
 }
-@keyframes gradient-shift-premium{ 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
 
-/* Language Switcher */
+/* Responsive logos rectangulares */
+@media(max-width: 768px){ 
+    .navbar-logo{height: 50px; width: 110px; border-width: 2px; border-radius: 14px;} 
+    .hero-logo{height: 4rem; width: 9rem; border-radius: 14px;}
+}
+@media(max-width: 475px){
+    .navbar-logo{height: 44px; width: 95px; border-radius: 12px;}
+    .hero-logo{height: 3.5rem; width: 8rem; border-radius: 12px;}
+}
+/* ========== FIN LOGO RECTANGULAR CON REFLEJO ========== */
+
+/* Language Switcher Styles con micro-efectos */
 .lang-switcher{
-background: rgba(212,175,55,0.18); border:2.5px solid rgba(212,175,55,0.5);
-color:#fff; font-weight:650; padding:0.55rem 1.1rem; border-radius:10px;
-cursor:pointer; transition:all 0.35s ease; font-size:0.9rem;
+background: rgba(245, 158, 11, 0.18); border: 2px solid rgba(245, 158, 11, 0.45);
+color: #fff; font-weight: 600; padding: 0.5rem 1rem; border-radius: 10px;
+cursor: pointer; transition: all 0.3s ease; font-size: 0.875rem;
 }
-.lang-switcher:hover{ background:rgba(212,175,55,0.3); border-color:#FFD700; transform:translateY(-3px); animation:micro-bounce 0.45s ease; }
-.lang-switcher:active{ transform:translateY(0) scale(0.98); }
+.lang-switcher:hover{ 
+background: rgba(245, 158, 11, 0.3); 
+border-color: #F59E0B; 
+transform: translateY(-2px);
+animation: micro-bounce 0.4s ease;
+}
+.lang-switcher:active{ transform: translateY(0) scale(0.98); }
 
-/* Cards */
-.glass-card .fa-solid, .glass-card .fa-brands{ transition: all 0.35s ease; }
-.glass-card:hover .fa-solid, .glass-card:hover .fa-brands{ transform: scale(1.2) rotate(10deg); color: #FFD700; filter: drop-shadow(0 0 10px rgba(255,179,0,0.6)); }
+/* Cards de servicios con micro-efectos adicionales */
+.glass-card .fa-solid, .glass-card .fa-brands{
+transition: transform 0.3s ease, color 0.3s ease;
+}
+.glass-card:hover .fa-solid, .glass-card:hover .fa-brands{
+transform: scale(1.15) rotate(8deg);
+color: #FBBF24;
+}
 
-/* Testimonios */
-.testimonial-card{ transition: all 0.45s cubic-bezier(0.165,0.84,0.44,1); }
-.testimonial-card:hover{ transform: translateY(-10px) scale(1.025); border-color: rgba(212,175,55,0.7); box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 50px rgba(212,175,55,0.25); }
+/* Testimonios con efecto hover mejorado */
+.testimonial-card{
+transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.testimonial-card:hover{
+transform: translateY(-8px) scale(1.02);
+border-color: rgba(245, 158, 11, 0.6);
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(245, 158, 11, 0.2);
+}
 
-/* Iconos marcas */
-.brand-icons i{ transition: all 0.35s ease; cursor:pointer; }
-.brand-icons i:hover{ transform: scale(1.25) translateY(-7px); filter: drop-shadow(0 0 15px rgba(212,175,55,0.75)); color: #FFD700; }
+/* Iconos de marcas con micro-efectos */
+.brand-icons i{
+transition: all 0.3s ease;
+cursor: pointer;
+}
+.brand-icons i:hover{
+transform: scale(1.2) translateY(-5px);
+filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.6));
+}
 
-/* Secciones */
-section:nth-child(even){ background: linear-gradient(180deg, #0A0A0A 0%, #0E0E0E 50%, #0A0A0A 100%); }
-.hero-logo-wrapper{ position:relative; display:inline-block; }
+/* Mejoras visuales generales de la paleta */
+section:nth-child(even){
+background: linear-gradient(180deg, #0A0A0A 0%, #0F0F0F 50%, #0A0A0A 100%);
+}
 
-/* Overlay secciones */
+/* Contenedor de reflejo para hero logo */
+.hero-logo-wrapper{
+position: relative;
+display: inline-flex;
+align-items: center;
+margin-left: 1.5rem;
+}
+
+/* Overlay de color sutil en secciones para cohesión */
 section::before{
-content:''; position:absolute; top:0; left:0; right:0; bottom:0;
-background: radial-gradient(ellipse at center top, rgba(212,175,55,0.04) 0%, transparent 65%);
-pointer-events:none; z-index:0;
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: radial-gradient(ellipse at center top, rgba(245, 158, 11, 0.04) 0%, transparent 60%);
+pointer-events: none;
+z-index: 0;
 }
 
-/* Micro-efectos globales */
-@keyframes micro-bounce{ 0%,100%{transform:scale(1);} 50%{transform:scale(1.04);} }
-@keyframes micro-tilt{ 0%{transform:perspective(500px) rotateX(0) rotateY(0);} 25%{transform:perspective(500px) rotateX(-3deg) rotateY(3deg);} 75%{transform:perspective(500px) rotateX(3deg) rotateY(-3deg);} 100%{transform:perspective(500px) rotateX(0) rotateY(0);} }
+/* Mejora de tipografía del taller */
+.main-title{
+font-weight: 900;
+letter-spacing: -0.03em;
+}
+.main-title .gradient-text{
+font-weight: 900;
+text-shadow: 0 0 25px rgba(245, 158, 11, 0.7), 0 0 50px rgba(251, 191, 36, 0.4);
+}
 </style>
 </head>
 <body class="antialiased relative">
 
-<!-- ========== BANNER INFORMATIVO ========== -->
+<!-- ========== BANNER INFORMATIVO - SIEMPRE VISIBLE ========== -->
 <div class="info-banner" id="infoBanner">
 <div class="info-banner-wrapper">
 <div class="info-banner-icon"><i class="fa-solid fa-lightbulb"></i></div>
 <div class="banner-scroll-container">
 <div class="banner-text">
-<div class="banner-item"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp: 02995570772</span><i class="fa-solid fa-message"></i></div>
-<span class="banner-divider">|</span>
 <div class="banner-item"><i class="fa-solid fa-screwdriver-wrench"></i><span>Limpieza de inyectores cada 6 meses = motor más eficiente</span><i class="fa-solid fa-car"></i></div>
 <span class="banner-divider">|</span>
 <div class="banner-item"><i class="fa-solid fa-gas-pump"></i><span>Usar nafta premium = más potencia y menos desgaste</span><i class="fa-solid fa-wind"></i></div>
 <span class="banner-divider">|</span>
 <div class="banner-item"><i class="fa-solid fa-oil-can"></i><span>Aceite de calidad cada 10.000 km = vida útil prolongada</span><i class="fa-solid fa-gears"></i></div>
 <span class="banner-divider">|</span>
+<div class="banner-whatsapp"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp: 02995570772</span></div>
+<span class="banner-divider">|</span>
 <div class="banner-item"><i class="fa-solid fa-hand-pointer"></i><span>Tres hábitos simples = menos consumo, menos fallas y más años de motor</span><i class="fa-solid fa-circle-check"></i></div>
 </div>
 </div>
 </div>
 </div>
+<!-- ========== FIN BANNER INFORMATIVO ========== -->
 
-<!-- Partículas -->
+<!-- Partículas decorativas de fondo-->
 <div class="particles" id="particles"></div>
 
-<!-- NAVBAR -->
+<!-- NAVBAR-->
 <nav class="fixed w-full z-50 glass border-b border-white/10 transition-all duration-300" id="navbar">
 <div class="container mx-auto px-4 h-16 md:h-20 flex items-center relative">
+<!-- LOGO RECTANGULAR -->
 <a href="#" class="flex items-center md:absolute md:left-4 md:translate-x-0">
 <img src="TALLERTR.png" alt="Taller Mecánico TR Logo" class="navbar-logo">
 </a>
-<a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto workshop-title tracking-tight uppercase text-center md:text-left drop-shadow-lg" data-es="Taller Mecánico TR" data-en="Taller Mecánico TR">Taller Mecánico TR</a>
+<!-- Título centrado -->
+<a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg main-title" data-es="Taller Mecánico TR" data-en="Taller Mecánico TR">Taller Mecánico TR</a>
 <div class="ml-auto flex items-center gap-2 md:gap-3">
+<!-- Language Switcher -->
 <button id="langToggle" class="lang-switcher flex items-center gap-2 order-2 md:order-3"><i class="fa-solid fa-language"></i><span id="langText">EN</span></button>
 <div id="status-badge-desktop" class="hidden md:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-green/40 transition-all order-4">
 <span id="status-dot-desktop" class="status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-green"></span>
@@ -445,23 +748,28 @@ pointer-events:none; z-index:0;
 <div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-white bg-gradient-to-r from-primary-green/20 to-green-700/20" data-es="🟢 Abierto - Atención Profesional" data-en="🟢 Open - Professional Service">🟢 Abierto - Atención Profesional</div>
 </nav>
 
-<!-- Botones flotantes -->
+<!-- Botones flotantes premium -->
 <div class="fixed bottom-24 md:bottom-8 right-4 z-50 animate-float flex flex-col gap-3">
-<a href="https://api.whatsapp.com/send?phone=542995570772" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] hover:bg-[#128C7E] text-white p-3.5 md:p-4 rounded-full shadow-lg transition-all hover:scale-110 flex items-center justify-center gap-2 group" title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinite;">
+<!-- WhatsApp directo -->
+<a href="https://api.whatsapp.com/send?phone=542995570772" target="_blank" rel="noopener noreferrer"
+class="bg-[#25D366] hover:bg-[#128C7E] text-white p-3.5 md:p-4 rounded-full shadow-lg transition-all hover:scale-110 flex items-center justify-center gap-2 group"
+title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinite;">
 <i class="fa-brands fa-whatsapp text-2xl md:text-3xl"></i><span class="hidden lg:inline text-xs font-bold whitespace-nowrap">Chat</span>
 </a>
+<!-- Pedir Turno -->
 <a href="#diagnostico" class="btn-primary px-5 py-3 md:px-7 md:py-3.5 rounded-2xl shadow-neon transition flex items-center gap-2.5 hover:shadow-glow text-sm font-semibold group">
 <i class="fa-solid fa-calendar-check text-lg"></i><span class="hidden xs:inline" data-es="Pedir Turno" data-en="Book Appointment">Pedir Turno</span><i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
 </a>
+<!-- Botón de Reseñas -->
 <a href="https://maps.app.goo.gl/GeWiYxvDSCN3ZDEo9" target="_blank" rel="noopener noreferrer" class="btn-review px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 0.5s;">
 <i class="fa-solid fa-star text-lg"></i><span class="hidden xs:inline" data-es="Deja tu Reseña" data-en="Leave Review">Deja tu Reseña</span>
 </a>
 </div>
 
-<!-- HERO SECTION -->
+<!-- HERO SECTION-->
 <header class="relative pt-20 pb-20 md:pt-28 md:pb-28 lg:pt-36 lg:pb-32 min-h-screen flex items-center overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-br from-primary-dark via-[#0D0D0D] to-[#0A0A0A]">
-<div class="absolute inset-0 opacity-25" style="background-image: radial-gradient(circle at 20% 35%, rgba(212, 175, 55, 0.18) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(255, 179, 0, 0.15) 0%, transparent 45%)"></div>
+<div class="absolute inset-0 bg-gradient-to-br from-primary-dark via-[#0F0F0F] to-[#0A0A0A]">
+<div class="absolute inset-0 opacity-25" style="background-image: radial-gradient(circle at 20% 35%, rgba(245, 158, 11, 0.2) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.18) 0%, transparent 45%)"></div>
 </div>
 <div id="parallax-container" class="absolute inset-0 overflow-hidden">
 <img id="parallax-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1974&auto=format&fit=crop" alt="Taller mecánico profesional" class="parallax-image w-full h-full object-cover opacity-30 parallax-bg">
@@ -474,18 +782,23 @@ pointer-events:none; z-index:0;
 <i class="fa-solid fa-microchip"></i><span data-es="Diagnóstico de Precisión" data-en="Precision Diagnosis">Diagnóstico de Precisión</span>
 </div>
 </div>
-<h1 class="font-display font-black text-4xl md:text-5xl lg:text-7xl leading-tight glow-text main-title fade-in-up flex items-center gap-6" style="animation-delay: 0.2s;">
+<h1 class="font-display font-black text-4xl md:text-5xl lg:text-7xl leading-tight glow-text main-title fade-in-up flex items-center gap-4" style="animation-delay: 0.2s;">
 <span data-es="DIAGNÓSTICO Y<br>MANTENIMIENTO INTEGRAL" data-en="DIAGNOSIS AND<br>INTEGRAL MAINTENANCE">DIAGNÓSTICO Y<br><span class="gradient-text">MANTENIMIENTO INTEGRAL</span></span>
 <div class="hero-logo-wrapper">
 <img src="TALLERTR.png" alt="Taller Mecánico TR Logo" class="hero-logo flex-shrink-0">
 </div>
 </h1>
-<p class="text-gray-300/90 text-base md:text-lg max-w-xl description-text fade-in-up leading-relaxed" style="animation-delay: 0.3s;" data-es="Tu auto tiene algo que decir. Nosotros lo interpretamos con tecnología avanzada. Cargá los síntomas en segundos y obtené un diagnóstico claro y confiable antes de llegar al taller. Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo en cada visita." data-en="Your car has something to say. We interpret it with advanced technology. Load symptoms in seconds and get a clear, reliable diagnosis before arriving. Arrive with peace of mind knowing what your vehicle needs and save time on every visit.">
-Tu auto tiene algo que decir.<br>
-Nosotros lo interpretamos con tecnología avanzada.<br>
-Cargá los síntomas en segundos y obtené un diagnóstico claro y confiable antes de llegar al taller.<br>
-Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo en cada visita.
+
+<p class="text-gray-300/90 text-base md:text-lg max-w-xl description-text fade-in-up leading-relaxed" style="animation-delay: 0.3s;" 
+   data-es="Tu auto tiene algo que decir. Nosotros lo interpretamos con tecnología avanzada. Cargá los síntomas en segundos y obtené un diagnóstico claro y confiable antes de llegar al taller. Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo en cada visita." 
+   data-en="Your car has something to say. We interpret it with advanced technology. Load symptoms in seconds and get a clear, reliable diagnosis before arriving. Arrive with peace of mind knowing what your vehicle needs and save time on every visit.">
+   Tu auto tiene algo que decir.<br>
+   Nosotros lo interpretamos con tecnología avanzada.<br>
+   Cargá los síntomas en segundos y obtené un diagnóstico claro y confiable antes de llegar al taller.<br>
+   Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo en cada visita.
 </p>
+
+<!-- Stats animados-->
 <div class="grid grid-cols-3 gap-3 md:gap-5 pt-2 md:pt-4 fade-in-up" style="animation-delay: 0.5s;">
 <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-green/30 transition">
 <span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter1" data-target="99">0</span>%</span><span class="text-xs text-gray-400 mt-1 block" data-es="Precisión" data-en="Accuracy">Precisión</span>
@@ -497,6 +810,7 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 <span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter3" data-target="8000">0</span>+</span><span class="text-xs text-gray-400 mt-1 block" data-es="Vehículos" data-en="Vehicles">Vehículos</span>
 </div>
 </div>
+<!-- CTAs-->
 <div class="flex flex-col sm:flex-row gap-3.5 pt-2 fade-in-up" style="animation-delay: 0.6s;">
 <a href="#diagnostico" class="btn-primary px-6 py-3.5 rounded-xl uppercase tracking-wide flex items-center justify-center gap-2.5 group text-sm font-semibold shadow-neon">
 <span data-es="Iniciar Diagnóstico" data-en="Start Diagnosis">Iniciar Diagnóstico</span><i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
@@ -512,9 +826,9 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 </div>
 </header>
 
-<!-- SECCIÓN: CENTRO DE ASESORAMIENTO -->
-<section id="asesoramiento" class="py-16 md:py-24 bg-[#0D0D0D] relative">
-<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(34,139,34,0.08),_transparent_60%)]"></div>
+<!-- SECCIÓN: CENTRO DE ASESORAMIENTO-->
+<section id="asesoramiento" class="py-16 md:py-24 bg-[#0F0F0F] relative">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(34,197,94,0.08),_transparent_60%)]"></div>
 <div class="container mx-auto px-4 relative z-10">
 <div class="text-center mb-14 md:mb-20 max-w-3xl mx-auto">
 <div class="inline-block bg-primary-green/15 border border-primary-green/30 text-primary-green px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
@@ -524,9 +838,10 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 <p class="text-gray-400/90 max-w-2xl mx-auto text-base md:text-lg leading-relaxed" data-es="Detecta fallas en etapas tempranas y evita reparaciones costosas. Aprende a identificar las señales clave de tu vehículo." data-en="Detect failures at early stages and avoid expensive repairs. Learn to identify the key signals of your vehicle.">Detecta fallas en etapas tempranas y evita reparaciones costosas. Aprende a identificar las señales clave de tu vehículo.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7">
+<!-- Card 1-->
 <div class="glass-card hover-lift">
 <div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
-<img src="https://placehold.co/600x400/32CD32/0A0A0A?text=FRENOS" alt="Sistema de frenos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<img src="https://placehold.co/600x400/22C55E/0A0A0A?text=FRENOS" alt="Sistema de frenos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
 <div class="absolute bottom-3 left-4"><span class="text-xs font-bold text-primary-green uppercase tracking-wider" data-es="Predictivo" data-en="Predictive">Predictivo</span></div>
 </div>
@@ -536,9 +851,10 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 <a href="#diagnostico" class="text-primary-green hover:text-green-300 font-semibold text-sm flex items-center gap-1.5 group"><span data-es="Analizar ahora" data-en="Analyze now">Analizar ahora</span><i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></a>
 </div>
 </div>
+<!-- Card 2-->
 <div class="glass-card hover-lift">
 <div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
-<img src="https://placehold.co/600x400/2D2D2D/32CD32?text=BATERIA" alt="Sistema eléctrico" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<img src="https://placehold.co/600x400/262626/22C55E?text=BATERIA" alt="Sistema eléctrico" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
 <div class="absolute bottom-3 left-4"><span class="text-xs font-bold text-primary-green uppercase tracking-wider" data-es="Preventivo" data-en="Preventive">Preventivo</span></div>
 </div>
@@ -548,9 +864,10 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 <a href="#diagnostico" class="text-primary-green hover:text-green-300 font-semibold text-sm flex items-center gap-1.5 group"><span data-es="Verificar sistema" data-en="Check system">Verificar sistema</span><i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></a>
 </div>
 </div>
+<!-- Card 3-->
 <div class="glass-card hover-lift">
 <div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
-<img src="https://placehold.co/600x400/228B22/0A0A0A?text=FLUIDOS" alt="Fluidos críticos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<img src="https://placehold.co/600x400/16A34A/0A0A0A?text=FLUIDOS" alt="Fluidos críticos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
 <div class="absolute bottom-3 left-4"><span class="text-xs font-bold text-primary-green uppercase tracking-wider" data-es="Mantenimiento" data-en="Maintenance">Mantenimiento</span></div>
 </div>
@@ -569,9 +886,9 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 </div>
 </section>
 
-<!-- SECCIÓN: SERVICIOS INTEGRALES -->
+<!-- SECCIÓN: SERVICIOS INTEGRALES-->
 <section class="py-16 md:py-24 bg-primary-dark relative">
-<div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(circle at 10% 20%, rgba(50, 205, 50, 0.1) 0%, transparent 25%), radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 25%)"></div>
+<div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(circle at 10% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 25%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 25%)"></div>
 <div class="container mx-auto px-4 relative z-10">
 <div class="text-center mb-14 md:mb-20">
 <div class="inline-block bg-primary-green/15 border border-primary-green/30 text-primary-green px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
@@ -615,8 +932,8 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 </div>
 </section>
 
-<!-- SECCIÓN: TESTIMONIOS -->
-<section class="py-16 md:py-24 bg-[#0D0D0D] border-t border-white/5">
+<!-- SECCIÓN: TESTIMONIOS-->
+<section class="py-16 md:py-24 bg-[#0F0F0F] border-t border-white/5">
 <div class="container mx-auto px-4">
 <div class="text-center mb-10 md:mb-14">
 <div class="inline-block bg-primary-green/15 border border-primary-green/30 text-primary-green px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
@@ -646,11 +963,12 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 </div>
 </section>
 
-<!-- SECCIÓN: FORMULARIO DE DIAGNÓSTICO -->
+<!-- SECCIÓN: FORMULARIO DE DIAGNÓSTICO-->
 <section id="diagnostico" class="py-16 md:py-24 bg-gradient-to-b from-primary-dark to-[#080808] relative overflow-hidden">
-<div class="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(50,205,50,0.08),transparent_55%)]"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(34,197,94,0.08),transparent_55%)]"></div>
 <div class="container mx-auto px-4 relative z-10">
 <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+<!-- Columna informativa-->
 <div class="lg:w-1/3 space-y-6">
 <h2 class="font-display font-bold text-4xl md:text-5xl text-white mb-2 glow-text tracking-tight">
 <span data-es="ACELERADOR DE<br>DIAGNÓSTICO" data-en="DIAGNOSIS<br>ACCELERATOR">ACELERADOR DE<br><span class="gradient-text">DIAGNÓSTICO</span></span>
@@ -666,6 +984,7 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 <div><p class="text-sm font-semibold text-white" data-es="Datos 100% seguros" data-en="100% secure data">Datos 100% seguros</p><p class="text-xs text-gray-500" data-es="Tu información está protegida" data-en="Your information is protected">Tu información está protegida</p></div>
 </div>
 </div>
+<!-- Formulario-->
 <div class="lg:w-2/3 glass-card rounded-3xl shadow-card p-6 md:p-8 w-full">
 <form id="triageForm" class="space-y-7">
 <div class="border-b border-white/10 pb-5">
@@ -757,7 +1076,7 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 </section>
 
 <!-- SECCIÓN: UBICACIÓN Y CONFIANZA -->
-<section class="py-14 md:py-20 bg-[#0D0D0D] border-t border-white/5">
+<section class="py-14 md:py-20 bg-[#0F0F0F] border-t border-white/5">
 <div class="container mx-auto px-4 text-center">
 <div class="flex flex-wrap justify-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 mb-12 md:mb-16 brand-icons">
 <i class="fa-brands fa-toyota text-4xl md:text-5xl hover:text-white transition-colors"></i>
@@ -779,7 +1098,7 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 <i class="fa-brands fa-whatsapp text-primary-green text-xl mt-0.5 flex-shrink-0"></i>
 <div><p class="font-medium">WhatsApp:</p><p dir="ltr">0299 557 0772</p></div>
 </div>
-<div class="flex items-start gap-3 text-gray-300/90 text-sm">
+<div class="flex items-start gap-3 text-gray-300/90 text-sm mb-2">
 <i class="fa-regular fa-clock text-primary-green text-xl mt-0.5 flex-shrink-0"></i>
 <div><p class="font-medium" data-es="Horarios de atención:" data-en="Business hours:">Horarios de atención:</p>
 <p class="font-bold text-primary-green">
@@ -808,14 +1127,11 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 <div class="container mx-auto px-4">
 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
 <div class="text-center md:text-left">
-<p class="mb-2 text-white font-display font-bold text-xl md:text-2xl glow-text tracking-tight">Taller Mecánico TR</p>
+<p class="mb-2 text-white font-display font-bold text-xl md:text-2xl glow-text tracking-tight main-title">Taller Mecánico TR</p>
 <p class="text-sm" data-es="Diagnóstico Automotriz Profesional" data-en="Professional Automotive Diagnosis">Diagnóstico Automotriz Profesional</p>
 <div class="mt-3 text-xs text-gray-400 space-y-1">
 <p><i class="fa-solid fa-location-dot text-primary-green mr-1"></i>8324, Cipolletti, Río Negro</p>
 <p><i class="fa-brands fa-whatsapp text-primary-green mr-1"></i>0299 557 0772</p>
-<p><i class="fa-brands fa-instagram text-primary-green mr-1"></i>
-<a href="https://www.instagram.com/villaamilemiliano?utm_source=qr&igsh=bHFzcW1sMnFyejl0" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">@villaamilemiliano</a>
-</p>
 <p><i class="fa-regular fa-clock text-primary-green mr-1"></i>Lun-Vie: 09:00-18:00 | Sáb: 09:00-13:00 | Dom: Cerrado</p>
 </div>
 </div>
@@ -834,7 +1150,7 @@ Llegá con la tranquilidad de saber qué necesita tu vehículo y ahorrá tiempo 
 </div>
 </footer>
 
-<!-- STICKY MOBILE CTA -->
+<!-- STICKY MOBILE CTA-->
 <div class="fixed bottom-0 left-0 w-full bg-gray-900/95 backdrop-blur-sm border-t border-white/10 p-4 md:hidden z-50 flex gap-3">
 <a href="#asesoramiento" class="flex-1 bg-white/5 text-white font-semibold py-3.5 rounded-xl text-center border border-white/10 hover:border-primary-green/40 transition text-sm flex items-center justify-center gap-2">
 <i class="fa-solid fa-book-open text-primary-green"></i><span data-es="Guías" data-en="Guides">Guías</span>
@@ -866,7 +1182,7 @@ langText.textContent= lang=== 'es' ? 'EN' : 'ES';
 }
 langToggle?.addEventListener('click',()=>{ const newLang= currentLang=== 'es' ? 'en' : 'es'; translatePage(newLang); });
 
-// Partículas decorativas
+// Partículas decorativas con micro-interacciones
 function createParticles(){
 const container= document.getElementById('particles');
 if(!container) return;
@@ -882,7 +1198,7 @@ container.appendChild(particle);
 }
 createParticles();
 
-// Estado de apertura
+// Estado de apertura - Horarios reales
 function checkStatus(){
 const dotDesktop= document.getElementById('status-dot-desktop');
 const textDesktop= document.getElementById('status-text-desktop');
@@ -892,9 +1208,11 @@ const day = now.getDay();
 const hour = now.getHours();
 const minutes = now.getMinutes();
 const currentTime = hour * 60 + minutes;
+
 let isOpen = false;
 if(day >= 1 && day <= 5){ isOpen = currentTime >= 540 && currentTime < 1080; } 
 else if(day === 6){ isOpen = currentTime >= 540 && currentTime < 780; }
+
 if(isOpen){
 dotDesktop.className='status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-green';
 textDesktop.textContent= currentLang=== 'es' ? 'Abierto' : 'Open';
@@ -941,21 +1259,21 @@ const statsSection = document.querySelector('.grid.grid-cols-3');
 if (statsSection) observer.observe(statsSection);
 }
 
-// Validación de inputs
+// Validación de inputs con micro-efectos
 const inputs= document.querySelectorAll('.input-modern');
 inputs.forEach(input=>{
 input.addEventListener('input', function(){
 if(this.value.trim().length>2){ 
 this.classList.add('input-valid'); 
 this.classList.remove('input-invalid');
-this.style.animation = 'micro-bounce 0.35s ease';
+this.style.animation = 'micro-bounce 0.3s ease';
 }
 else{ this.classList.remove('input-valid','input-invalid'); }
 });
 input.addEventListener('blur', function(){
 if(this.hasAttribute('required')&& this.value.trim().length<3){ 
 this.classList.add('input-invalid');
-this.style.animation = 'shake 0.55s ease-in-out';
+this.style.animation = 'shake 0.5s ease-in-out';
 }
 });
 });
@@ -1002,7 +1320,7 @@ document.querySelectorAll('.input-modern').forEach(el=>{ el.classList.remove('in
 }, 1200);
 });
 
-// Parallax
+// Parallax con micro-suavizado
 const parallaxImg= document.getElementById('parallax-img');
 if(parallaxImg){
 let ticking = false;
@@ -1020,7 +1338,7 @@ ticking = true;
 },{passive: true});
 }
 
-// Navbar scroll
+// Navbar scroll effect
 const navbar= document.getElementById('navbar');
 if(navbar){
 window.addEventListener('scroll',()=>{
@@ -1029,7 +1347,7 @@ else{ navbar.classList.remove('shadow-lg','bg-gray-900/95'); navbar.classList.ad
 },{passive: true});
 }
 
-// Micro-efecto navbar links
+// Micro-efecto: hover en enlaces del navbar
 document.querySelectorAll('nav a[href^="#"]').forEach(link => {
 link.addEventListener('mouseenter', function(){ this.style.animation = 'micro-bounce 0.3s ease'; });
 link.addEventListener('animationend', function(){ this.style.animation = ''; });
@@ -1041,7 +1359,7 @@ setInterval(checkStatus, 60000);
 startCounters();
 document.querySelectorAll('.fade-in-up').forEach((el, i)=>{ el.style.animationDelay=`${0.1+ i*0.12}s`; });
 
-// Smooth scroll
+// Smooth scroll con micro-efecto
 document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
 anchor.addEventListener('click', function(e){
 e.preventDefault();
@@ -1055,7 +1373,7 @@ window.scrollTo({ top: targetElement.offsetTop-80, behavior:'smooth' });
 });
 });
 
-// Partículas cursor
+// Micro-efecto: partículas siguen sutilmente el cursor
 let particleFollow = false;
 document.addEventListener('mousemove', (e) => {
 if(!particleFollow && Math.random() > 0.95){
