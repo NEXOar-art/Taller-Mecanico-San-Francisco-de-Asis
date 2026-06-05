@@ -28,16 +28,15 @@ display:['Space Grotesk','sans-serif'],
 },
 colors:{
 primary:{
-green:'#22C55E',
-lime:'#10B981',
-dark:'#0A0A0A',
-gray:'#1A1A1A',
-card:'#262626',
-metallic:'#E5E7EB',
-light:'#F1F5F9',
-gold:'#F59E0B',
-amber:'#FBBF24',
 bronze:'#B45309',
+copper:'#92400E',
+orange:'#EA580C',
+amber:'#F59E0B',
+light:'#FDBA74',
+dark:'#1C1917',
+gray:'#292524',
+card:'#44403C',
+metallic:'#D6D3D1',
 },
 accent:{
 blue:'#3B82F6',
@@ -46,12 +45,13 @@ silver:'#E5E7EB',
 },
 },
 boxShadow:{
-'neon':'0 0 25px rgba(34, 197, 94, 0.45)',
-'glow':'0 0 40px rgba(34, 197, 94, 0.25)',
+'neon':'0 0 25px rgba(234, 88, 12, 0.45)',
+'glow':'0 0 40px rgba(245, 158, 11, 0.25)',
 'card':'0 10px 40px-10px rgba(0, 0, 0, 0.5)',
 'soft':'0 4px 20px rgba(0, 0, 0, 0.15)',
 'gold-glow':'0 0 25px rgba(245, 158, 11, 0.45)',
-'logo-glow':'0 8px 30px rgba(245, 158, 11, 0.4), 0 0 60px rgba(245, 158, 11, 0.2)',
+'logo-glow':'0 8px 30px rgba(234, 88, 12, 0.4), 0 0 60px rgba(245, 158, 11, 0.2)',
+'auxilio-glow':'0 0 30px rgba(234, 88, 12, 0.6), 0 0 60px rgba(180, 83, 9, 0.4)',
 },
 screens:{
 'xs':'475px',
@@ -65,6 +65,7 @@ animation:{
 'micro-tilt':'micro-tilt 0.3s ease-out',
 'shimmer':'shimmer 2.5s infinite linear',
 'auxilio-pulse':'auxilio-pulse 2.5s ease-in-out infinite',
+'fire-flicker':'fire-flicker 3s ease-in-out infinite',
 },
 keyframes:{
 float:{
@@ -76,8 +77,12 @@ float:{
 '50%':{boxShadow:'0 0 0 12px rgba(251, 191, 36, 0), 0 0 35px rgba(245, 158, 11, 0.6)'},
 },
 'auxilio-pulse':{
-'0%, 100%':{boxShadow:'0 0 0 0 rgba(239, 68, 68, 0.5), 0 0 20px rgba(239, 68, 68, 0.3), 0 0 40px rgba(245, 158, 11, 0.2)'},
-'50%':{boxShadow:'0 0 0 15px rgba(239, 68, 68, 0), 0 0 40px rgba(239, 68, 68, 0.5), 0 0 60px rgba(245, 158, 11, 0.4)'},
+'0%, 100%':{boxShadow:'0 0 0 0 rgba(234, 88, 12, 0.6), 0 0 30px rgba(234, 88, 12, 0.4), 0 0 60px rgba(180, 83, 9, 0.3)'},
+'50%':{boxShadow:'0 0 0 15px rgba(234, 88, 12, 0), 0 0 45px rgba(234, 88, 12, 0.6), 0 0 80px rgba(180, 83, 9, 0.5)'},
+},
+'fire-flicker':{
+'0%, 100%':{opacity:'1', transform:'scale(1)'},
+'50%':{opacity:'0.85', transform:'scale(1.05)'},
 },
 'micro-bounce':{
 '0%, 100%':{transform:'scale(1)'},
@@ -100,13 +105,13 @@ shimmer:{
 </script>
 <style>
 :root{
---gradient-primary: linear-gradient(135deg,#F59E0B 0%,#FBBF24 100%);
---gradient-dark: linear-gradient(180deg,#0A0A0A 0%,#171717 100%);
---gradient-metallic: linear-gradient(135deg,#F3F4F6 0%,#9CA3AF 50%,#F3F4F6 100%);
---gradient-green-glow: linear-gradient(135deg, rgba(34,197,94,0.3) 0%, rgba(16,185,129,0.1) 100%);
---gradient-gold: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #F59E0B 100%);
---gradient-accent: linear-gradient(135deg, #3B82F6 0%, #06B6D4 50%, #22C55E 100%);
---gradient-auxilio: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);
+--gradient-primary: linear-gradient(135deg,#F59E0B 0%,#EA580C 50%,#B45309 100%);
+--gradient-dark: linear-gradient(180deg,#0C0A09 0%,#1C1917 100%);
+--gradient-metallic: linear-gradient(135deg,#D6D3D1 0%,#A8A29E 50%,#D6D3D1 100%);
+--gradient-bronze: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #EA580C 100%);
+--gradient-copper: linear-gradient(135deg, #92400E 0%, #B45309 50%, #F59E0B 100%);
+--gradient-fire: linear-gradient(135deg, #EA580C 0%, #F59E0B 50%, #FDBA74 100%);
+--gradient-accent: linear-gradient(135deg, #EA580C 0%, #F59E0B 50%, #B45309 100%);
 }
 *{
 -webkit-tap-highlight-color: transparent;
@@ -114,7 +119,7 @@ box-sizing: border-box;
 }
 body{
 background: var(--gradient-dark);
-color:#E2E8F0;
+color:#E7E5E4;
 font-feature-settings:"cv02","cv03","cv04","cv11";
 overflow-x: hidden;
 position: relative;
@@ -126,11 +131,11 @@ position: fixed;
 top: 0;
 left: 0;
 width: 100%;
-background: linear-gradient(90deg, #1a1a1a 0%, #262626 50%, #1a1a1a 100%);
+background: linear-gradient(90deg, #1C1917 0%, #292524 50%, #1C1917 100%);
 border-bottom: 2px solid #F59E0B;
 z-index: 1000;
 overflow: hidden;
-box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+box-shadow: 0 4px 20px rgba(234, 88, 12, 0.3);
 }
 
 .info-banner-wrapper{
@@ -183,7 +188,7 @@ color: #F59E0B;
 
 .banner-item i{
 margin: 0 8px;
-color: #FBBF24;
+color: #FDBA74;
 transition: transform 0.3s ease;
 }
 
@@ -201,7 +206,7 @@ opacity: 0.6;
 display: inline-flex;
 align-items: center;
 margin: 0 40px;
-color: #22C55E;
+color: #EA580C;
 font-size: 0.95rem;
 font-weight: 700;
 text-shadow: 0 2px 4px rgba(0,0,0,0.5);
@@ -209,7 +214,7 @@ transition: transform 0.3s ease;
 }
 .banner-whatsapp:hover{
 transform: scale(1.05);
-color: #10B981;
+color: #F59E0B;
 }
 .banner-whatsapp i{
 margin-right: 6px;
@@ -263,7 +268,7 @@ filter: brightness(0.5) contrast(1.3) saturate(0.8);
 }
 
 .glass{
-background: rgba(23, 23, 23, 0.8);
+background: rgba(28, 25, 23, 0.8);
 backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);
 border: 1px solid rgba(245, 158, 11, 0.15);
@@ -271,29 +276,29 @@ box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 transition: all 0.3s ease;
 }
 .glass:hover{
-border-color: rgba(245, 158, 11, 0.3);
+border-color: rgba(234, 88, 12, 0.3);
 box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 .glass-card{
-background: linear-gradient(145deg, rgba(38, 38, 38, 0.95), rgba(23, 23, 23, 0.98));
+background: linear-gradient(145deg, rgba(68, 64, 60, 0.95), rgba(28, 25, 23, 0.98));
 backdrop-filter: blur(16px);
 border: 1px solid rgba(255, 255, 255, 0.08);
 border-radius: 20px;
 transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .glass-card:hover{
-border-color: rgba(245, 158, 11, 0.4);
+border-color: rgba(234, 88, 12, 0.4);
 transform: translateY(-6px);
-box-shadow: var(--shadow-card), 0 0 30px rgba(245, 158, 11, 0.15);
+box-shadow: var(--shadow-card), 0 0 30px rgba(234, 88, 12, 0.15);
 }
 
 .glow-text{
-text-shadow: 0 0 20px rgba(245, 158, 11, 0.6), 0 0 40px rgba(251, 191, 36, 0.3);
+text-shadow: 0 0 20px rgba(234, 88, 12, 0.6), 0 0 40px rgba(245, 158, 11, 0.3);
 letter-spacing:-0.02em;
 transition: text-shadow 0.3s ease;
 }
 .glow-text:hover{
-text-shadow: 0 0 30px rgba(245, 158, 11, 0.8), 0 0 60px rgba(251, 191, 36, 0.5);
+text-shadow: 0 0 30px rgba(234, 88, 12, 0.8), 0 0 60px rgba(245, 158, 11, 0.5);
 }
 .gradient-text{
 background: var(--gradient-primary);
@@ -316,8 +321,8 @@ background-clip: text;
 }
 .pulse-glow{ animation: pulse-gold 3s ease-in-out infinite; }
 @keyframes pulse-gold{
-0%, 100%{opacity: 1; box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);}
-50%{opacity: 0.85; box-shadow: 0 0 35px rgba(245, 158, 11, 0.7);}
+0%, 100%{opacity: 1; box-shadow: 0 0 20px rgba(234, 88, 12, 0.4);}
+50%{opacity: 0.85; box-shadow: 0 0 35px rgba(234, 88, 12, 0.7);}
 }
 
 .fade-in-up{
@@ -343,24 +348,24 @@ animation: micro-bounce 0.6s ease-in-out;
 }
 
 .input-modern{
-background: rgba(23, 23, 23, 0.85);
+background: rgba(28, 25, 23, 0.85);
 border: 1px solid rgba(255, 255, 255, 0.12);
 border-radius: 14px;
 transition: all 0.3s ease;
 color:#fff;
 }
 .input-modern:focus{
-border-color:#F59E0B;
-box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25), 0 0 20px rgba(245, 158, 11, 0.15);
+border-color:#EA580C;
+box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.25), 0 0 20px rgba(234, 88, 12, 0.15);
 outline: none;
-background: rgba(23, 23, 23, 0.98);
+background: rgba(28, 25, 23, 0.98);
 animation: micro-bounce 0.4s ease;
 }
-.input-modern::placeholder{ color: rgba(226, 232, 240, 0.5); transition: color 0.3s ease; }
-.input-modern:focus::placeholder{ color: rgba(226, 232, 240, 0.3); }
+.input-modern::placeholder{ color: rgba(231, 229, 228, 0.5); transition: color 0.3s ease; }
+.input-modern:focus::placeholder{ color: rgba(231, 229, 228, 0.3); }
 .input-valid{
-border-color:#22C55E!important;
-background-image: url("image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2322c55e'%3e%3cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3e%3c/svg%3e");
+border-color:#EA580C!important;
+background-image: url("image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23ea580c'%3e%3cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3e%3c/svg%3e");
 background-repeat: no-repeat;
 background-position: right 1rem center;
 background-size: 1.3em;
@@ -370,7 +375,7 @@ background-size: 1.3em;
 
 .btn-primary{
 background: var(--gradient-primary);
-color:#0A0A0A;
+color:#0C0A09;
 font-weight: 700;
 letter-spacing: 0.02em;
 position: relative;
@@ -384,7 +389,7 @@ opacity: 0; transition: opacity 0.3s ease;
 }
 .btn-primary:hover{ 
 transform: translateY(-3px); 
-box-shadow: 0 15px 40px rgba(245, 158, 11, 0.45), 0 0 30px rgba(245, 158, 11, 0.3); 
+box-shadow: 0 15px 40px rgba(234, 88, 12, 0.45), 0 0 30px rgba(234, 88, 12, 0.3); 
 animation: micro-bounce 0.5s ease;
 }
 .btn-primary:hover::after{ opacity: 1; }
@@ -398,16 +403,16 @@ font-weight: 600;
 transition: all 0.3s ease;
 }
 .btn-outline:hover{ 
-border-color:#F59E0B; 
-background: rgba(245, 158, 11, 0.1); 
+border-color:#EA580C; 
+background: rgba(234, 88, 12, 0.1); 
 transform: translateY(-3px); 
 animation: micro-bounce 0.5s ease;
 }
 .btn-outline:active{ transform: translateY(-1px) scale(0.98); }
 
 .btn-review{
-background: linear-gradient(135deg,#FBBF24 0%,#F59E0B 100%);
-color:#0A0A0A;
+background: linear-gradient(135deg,#FDBA74 0%,#F59E0B 100%);
+color:#0C0A09;
 font-weight: 700;
 letter-spacing: 0.02em;
 position: relative;
@@ -421,23 +426,23 @@ opacity: 0; transition: opacity 0.3s ease;
 }
 .btn-review:hover{ 
 transform: translateY(-3px); 
-box-shadow: 0 15px 40px rgba(251, 191, 36, 0.45), 0 0 30px rgba(245, 158, 11, 0.3);
+box-shadow: 0 15px 40px rgba(253, 186, 116, 0.45), 0 0 30px rgba(234, 88, 12, 0.3);
 animation: micro-bounce 0.5s ease;
 }
 .btn-review:hover::after{ opacity: 1; }
 .btn-review:active{ transform: translateY(-1px) scale(0.98); }
 
 ::-webkit-scrollbar{ width: 8px; height: 8px; }
-::-webkit-scrollbar-track{ background: linear-gradient(180deg, #1a1a1a, #0a0a0a); border-radius: 4px; }
+::-webkit-scrollbar-track{ background: linear-gradient(180deg, #1C1917, #0C0A09); border-radius: 4px; }
 ::-webkit-scrollbar-thumb{ 
-background: linear-gradient(180deg,#F59E0B,#FBBF24,#F59E0B); 
+background: linear-gradient(180deg,#EA580C,#F59E0B,#B45309); 
 border-radius: 4px; 
-border: 2px solid #1a1a1a; 
+border: 2px solid #1C1917; 
 background-clip: content-box;
 transition: background 0.3s ease;
 }
 ::-webkit-scrollbar-thumb:hover{ 
-background: linear-gradient(180deg,#FBBF24,#F59E0B,#FBBF24); 
+background: linear-gradient(180deg,#F59E0B,#EA580C,#FDBA74); 
 }
 
 @media(max-width: 640px){ .text-5xl{font-size: 2.25rem; line-height: 1.15;} .text-7xl{font-size: 2.75rem; line-height: 1.1;} h1{font-size: 2.3rem;} .container{padding-left: 1rem; padding-right: 1rem;} }
@@ -446,13 +451,13 @@ background: linear-gradient(180deg,#FBBF24,#F59E0B,#FBBF24);
 .status-dot{ position: relative; }
 .status-dot::after{ content:''; position: absolute; top:-2px; left:-2px; right:-2px; bottom:-2px; border-radius: 50%; background: inherit; filter: blur(4px); opacity: 0.7; animation: pulse 2s infinite; }
 
-.divider{ height: 1px; background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.4), rgba(34, 205, 94, 0.3), transparent); margin: 2rem 0; }
+.divider{ height: 1px; background: linear-gradient(90deg, transparent, rgba(234, 88, 12, 0.4), rgba(245, 158, 11, 0.3), transparent); margin: 2rem 0; }
 
 .particles{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden; z-index: 0; }
 .particle{ 
 position: absolute; 
 width: 3px; height: 3px; 
-background: rgba(245, 158, 11, 0.6); 
+background: rgba(234, 88, 12, 0.6); 
 border-radius: 50%; 
 animation: float-particle 15s infinite linear; 
 opacity: 0.7;
@@ -461,7 +466,7 @@ transition: transform 0.3s ease, opacity 0.3s ease;
 .particle:hover{
 transform: scale(2.5);
 opacity: 1;
-box-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+box-shadow: 0 0 10px rgba(234, 88, 12, 0.8);
 }
 @keyframes float-particle{ 
 0%{transform: translateY(100vh) translateX(0);} 
@@ -470,20 +475,20 @@ box-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
 100%{transform: translateY(-20px) translateX(50px); opacity: 0;} 
 }
 
-.label-below{ display: block; margin-top: 0.5rem; margin-left: 0.25rem; font-size: 0.75rem; font-weight: 500; color: #F59E0B; transition: color 0.3s ease, transform 0.3s ease; }
+.label-below{ display: block; margin-top: 0.5rem; margin-left: 0.25rem; font-size: 0.75rem; font-weight: 500; color: #EA580C; transition: color 0.3s ease, transform 0.3s ease; }
 .label-below span.required{ color: #EF4444; margin-left: 2px; }
-.input-modern:focus + .label-below{ color: #FBBF24; transform: translateX(4px); }
+.input-modern:focus + .label-below{ color: #F59E0B; transform: translateX(4px); }
 
 .navbar-logo{
 height: 62px;
 width: 140px;
 border-radius: 16px;
-border: 2.5px solid rgba(245, 158, 11, 0.9);
-box-shadow: 0 0 25px rgba(245, 158, 11, 0.5), inset 0 0 12px rgba(245, 158, 11, 0.15);
+border: 2.5px solid rgba(234, 88, 12, 0.9);
+box-shadow: 0 0 25px rgba(234, 88, 12, 0.5), inset 0 0 12px rgba(234, 88, 12, 0.15);
 transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 position: relative;
 overflow: hidden;
-background: rgba(10, 10, 10, 0.4);
+background: rgba(12, 10, 9, 0.4);
 padding: 8px;
 display: flex;
 align-items: center;
@@ -520,7 +525,7 @@ left: 50%;
 transform: translateX(-50%) scaleY(-1);
 width: 85%;
 height: 55%;
-background: linear-gradient(to top, rgba(245, 158, 11, 0.3) 0%, rgba(245, 158, 11, 0.1) 40%, transparent 80%);
+background: linear-gradient(to top, rgba(234, 88, 12, 0.3) 0%, rgba(234, 88, 12, 0.1) 40%, transparent 80%);
 border-radius: 16px;
 filter: blur(5px);
 opacity: 0;
@@ -529,8 +534,8 @@ transition: all 0.3s ease;
 }
 .navbar-logo:hover{ 
 transform: scale(1.08) translateY(-3px);
-box-shadow: 0 0 40px rgba(245, 158, 11, 0.85), 0 10px 50px rgba(245, 158, 11, 0.4), var(--logo-glow);
-border-color: #FBBF24;
+box-shadow: 0 0 40px rgba(234, 88, 12, 0.85), 0 10px 50px rgba(234, 88, 12, 0.4), var(--logo-glow);
+border-color: #F59E0B;
 }
 .navbar-logo:hover::before{ opacity: 1; }
 .navbar-logo:hover::after{ opacity: 0.85; }
@@ -540,12 +545,12 @@ height: 7rem;
 width: 16rem;
 max-width: 100%;
 border-radius: 20px;
-border: 3.5px solid rgba(245, 158, 11, 0.95);
-box-shadow: 0 0 40px rgba(245, 158, 11, 0.65), 0 0 80px rgba(245, 158, 11, 0.35), inset 0 0 20px rgba(245, 158, 11, 0.2);
+border: 3.5px solid rgba(234, 88, 12, 0.95);
+box-shadow: 0 0 40px rgba(234, 88, 12, 0.65), 0 0 80px rgba(234, 88, 12, 0.35), inset 0 0 20px rgba(234, 88, 12, 0.2);
 transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 position: relative;
 overflow: hidden;
-background: rgba(10, 10, 10, 0.3);
+background: rgba(12, 10, 9, 0.3);
 padding: 14px;
 display: flex;
 align-items: center;
@@ -582,7 +587,7 @@ left: 50%;
 transform: translateX(-50%) scaleY(-1);
 width: 80%;
 height: 50%;
-background: linear-gradient(to top, rgba(245, 158, 11, 0.35) 0%, rgba(245, 158, 11, 0.12) 35%, transparent 75%);
+background: linear-gradient(to top, rgba(234, 88, 12, 0.35) 0%, rgba(234, 88, 12, 0.12) 35%, transparent 75%);
 border-radius: 16px;
 filter: blur(7px);
 opacity: 0;
@@ -591,7 +596,7 @@ transition: all 0.3s ease;
 }
 .hero-logo:hover{ 
 transform: scale(1.06) translateY(-5px);
-box-shadow: 0 0 50px rgba(245, 158, 11, 0.9), 0 0 90px rgba(245, 158, 11, 0.45), 0 15px 60px rgba(0,0,0,0.35), var(--logo-glow);
+box-shadow: 0 0 50px rgba(234, 88, 12, 0.9), 0 0 90px rgba(234, 88, 12, 0.45), 0 15px 60px rgba(0,0,0,0.35), var(--logo-glow);
 }
 .hero-logo:hover::before{ opacity: 1; }
 .hero-logo:hover::after{ opacity: 0.9; }
@@ -621,13 +626,13 @@ box-shadow: 0 0 50px rgba(245, 158, 11, 0.9), 0 0 90px rgba(245, 158, 11, 0.45),
 }
 
 .lang-switcher{
-background: rgba(245, 158, 11, 0.18); border: 2px solid rgba(245, 158, 11, 0.45);
+background: rgba(234, 88, 12, 0.18); border: 2px solid rgba(234, 88, 12, 0.45);
 color: #fff; font-weight: 600; padding: 0.5rem 1rem; border-radius: 10px;
 cursor: pointer; transition: all 0.3s ease; font-size: 0.875rem;
 }
 .lang-switcher:hover{ 
-background: rgba(245, 158, 11, 0.3); 
-border-color: #F59E0B; 
+background: rgba(234, 88, 12, 0.3); 
+border-color: #EA580C; 
 transform: translateY(-2px);
 }
 .lang-switcher:active{ transform: translateY(0) scale(0.98); }
@@ -637,7 +642,7 @@ transition: transform 0.3s ease, color 0.3s ease;
 }
 .glass-card:hover .fa-solid, .glass-card:hover .fa-brands{
 transform: scale(1.15) rotate(8deg);
-color: #FBBF24;
+color: #F59E0B;
 }
 
 .testimonial-card{
@@ -645,8 +650,8 @@ transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .testimonial-card:hover{
 transform: translateY(-8px) scale(1.02);
-border-color: rgba(245, 158, 11, 0.6);
-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(245, 158, 11, 0.2);
+border-color: rgba(234, 88, 12, 0.6);
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(234, 88, 12, 0.2);
 }
 
 .brand-icons i{
@@ -655,11 +660,11 @@ cursor: pointer;
 }
 .brand-icons i:hover{
 transform: scale(1.2) translateY(-5px);
-filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.6));
+filter: drop-shadow(0 0 12px rgba(234, 88, 12, 0.6));
 }
 
 section:nth-child(even){
-background: linear-gradient(180deg, #0A0A0A 0%, #0F0F0F 50%, #0A0A0A 100%);
+background: linear-gradient(180deg, #0C0A09 0%, #1C1917 50%, #0C0A09 100%);
 }
 
 .hero-logo-wrapper{
@@ -676,7 +681,7 @@ top: 0;
 left: 0;
 right: 0;
 bottom: 0;
-background: radial-gradient(ellipse at center top, rgba(245, 158, 11, 0.04) 0%, transparent 60%);
+background: radial-gradient(ellipse at center top, rgba(234, 88, 12, 0.04) 0%, transparent 60%);
 pointer-events: none;
 z-index: 0;
 }
@@ -687,13 +692,13 @@ letter-spacing: -0.03em;
 }
 .main-title .gradient-text{
 font-weight: 900;
-text-shadow: 0 0 25px rgba(245, 158, 11, 0.7), 0 0 50px rgba(251, 191, 36, 0.4);
+text-shadow: 0 0 25px rgba(234, 88, 12, 0.7), 0 0 50px rgba(245, 158, 11, 0.4);
 }
 
 .location-card{
-background: linear-gradient(160deg, rgba(38,38,38,0.95) 0%, rgba(26,26,26,0.98) 50%, rgba(18,18,18,0.95) 100%);
+background: linear-gradient(160deg, rgba(68,64,60,0.95) 0%, rgba(41,37,36,0.98) 50%, rgba(28,25,23,0.95) 100%);
 backdrop-filter: blur(20px);
-border: 1px solid rgba(245, 158, 11, 0.2);
+border: 1px solid rgba(234, 88, 12, 0.2);
 border-radius: 24px;
 transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 overflow: hidden;
@@ -706,20 +711,20 @@ top: 0;
 left: 0;
 right: 0;
 height: 3px;
-background: linear-gradient(90deg, transparent, #F59E0B, #FBBF24, #F59E0B, transparent);
+background: linear-gradient(90deg, transparent, #EA580C, #F59E0B, #EA580C, transparent);
 opacity: 0.8;
 }
 .location-card:hover{
-border-color: rgba(245, 158, 11, 0.45);
+border-color: rgba(234, 88, 12, 0.45);
 transform: translateY(-4px);
-box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(245, 158, 11, 0.15);
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(234, 88, 12, 0.15);
 }
 .location-icon-circle{
 width: 56px;
 height: 56px;
 border-radius: 50%;
-background: linear-gradient(135deg, rgba(245,158,11,0.15) 0%, rgba(245,158,11,0.05) 100%);
-border: 1.5px solid rgba(245,158,11,0.3);
+background: linear-gradient(135deg, rgba(234,88,12,0.15) 0%, rgba(234,88,12,0.05) 100%);
+border: 1.5px solid rgba(234,88,12,0.3);
 display: flex;
 align-items: center;
 justify-content: center;
@@ -727,10 +732,10 @@ margin: 0 auto 1rem auto;
 transition: all 0.3s ease;
 }
 .location-card:hover .location-icon-circle{
-background: linear-gradient(135deg, rgba(245,158,11,0.25) 0%, rgba(245,158,11,0.1) 100%);
-border-color: rgba(245,158,11,0.5);
+background: linear-gradient(135deg, rgba(234,88,12,0.25) 0%, rgba(234,88,12,0.1) 100%);
+border-color: rgba(234,88,12,0.5);
 transform: scale(1.05);
-box-shadow: 0 0 20px rgba(245,158,11,0.2);
+box-shadow: 0 0 20px rgba(234,88,12,0.2);
 }
 .location-info-item{
 display: flex;
@@ -746,7 +751,7 @@ border-bottom: none;
 padding-bottom: 0;
 }
 .location-info-item:hover{
-background: rgba(245,158,11,0.05);
+background: rgba(234,88,12,0.05);
 border-radius: 12px;
 }
 .location-info-icon{
@@ -768,20 +773,20 @@ font-size: 0.7rem;
 font-weight: 600;
 text-transform: uppercase;
 letter-spacing: 0.08em;
-color: rgba(245,158,11,0.7);
+color: rgba(234,88,12,0.7);
 margin-bottom: 0.15rem;
 }
 .location-info-value{
 font-size: 0.9rem;
 font-weight: 500;
-color: #E2E8F0;
+color: #E7E5E4;
 }
 
 .footer-btn{
 display: inline-flex;
 align-items: center;
 gap: 5px;
-color: #22C55E;
+color: #EA580C;
 transition: all 0.3s ease;
 cursor: pointer;
 text-decoration: none;
@@ -798,123 +803,126 @@ transition: transform 0.3s ease;
 }
 
 /* ============================================================ */
-/* ===== BOTÓN AUXILIO MECÁNICO 24HS ===== */
+/* ===== BOTÓN AUXILIO MECÁNICO 24HS - POSICIÓN CENTRAL ===== */
 /* ============================================================ */
 
 .btn-auxilio-float{
 position: fixed;
-bottom: 10rem;
-right: 1rem;
+bottom: 9rem;
+left: 50%;
+transform: translateX(-50%);
 z-index: 60;
-width: 68px;
-height: 68px;
+width: 75px;
+height: 75px;
 border-radius: 50%;
-background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);
-border: 2.5px solid rgba(255, 255, 255, 0.25);
+background: linear-gradient(135deg, #EA580C 0%, #B45309 100%);
+border: 3px solid rgba(253, 186, 116, 0.4);
 display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
 transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 animation: auxilio-pulse 2.5s ease-in-out infinite;
-box-shadow: 0 0 25px rgba(239, 68, 68, 0.5), 0 0 50px rgba(245, 158, 11, 0.3);
+box-shadow: 0 0 30px rgba(234, 88, 12, 0.6), 0 0 60px rgba(180, 83, 9, 0.4), var(--auxilio-glow);
 }
 .btn-auxilio-float::before{
 content: '';
 position: absolute;
-top: -4px; left: -4px; right: -4px; bottom: -4px;
+top: -6px; left: -6px; right: -6px; bottom: -6px;
 border-radius: 50%;
-background: linear-gradient(135deg, rgba(239,68,68,0.4) 0%, rgba(245,158,11,0.3) 100%);
-filter: blur(8px);
-opacity: 0.6;
+background: linear-gradient(135deg, rgba(234,88,12,0.5) 0%, rgba(180,83,9,0.4) 100%);
+filter: blur(10px);
+opacity: 0.7;
 animation: auxilio-pulse 2.5s ease-in-out infinite;
 z-index: -1;
 }
 .btn-auxilio-float:hover{
-transform: scale(1.15) translateY(-4px);
-box-shadow: 0 0 40px rgba(239, 68, 68, 0.7), 0 0 70px rgba(245, 158, 11, 0.5);
-border-color: rgba(255, 255, 255, 0.5);
+transform: translateX(-50%) scale(1.15) translateY(-6px) rotate(5deg);
+box-shadow: 0 0 50px rgba(234, 88, 12, 0.8), 0 0 90px rgba(253, 186, 116, 0.6), 0 0 120px rgba(180, 83, 9, 0.5);
+border-color: rgba(253, 186, 116, 0.8);
+background: linear-gradient(135deg, #F59E0B 0%, #EA580C 50%, #B45309 100%);
+animation: fire-flicker 0.8s ease-in-out, micro-bounce 0.4s ease-in-out;
 }
 .btn-auxilio-float:active{
-transform: scale(1.05);
+transform: translateX(-50%) scale(1.05);
 }
 .btn-auxilio-float i{
-font-size: 1.6rem;
+font-size: 1.8rem;
 color: #fff;
-text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-transition: transform 0.3s ease;
+text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+transition: all 0.3s ease;
+filter: drop-shadow(0 0 8px rgba(253, 186, 116, 0.6));
 }
 .btn-auxilio-float:hover i{
-transform: scale(1.1) rotate(-10deg);
+transform: scale(1.2) rotate(-15deg);
+filter: drop-shadow(0 0 15px rgba(253, 186, 116, 0.9));
 }
 .btn-auxilio-float .auxilio-badge{
 position: absolute;
-top: -6px;
-right: -6px;
-background: #FBBF24;
-color: #0A0A0A;
-font-size: 0.55rem;
+top: -8px;
+right: -8px;
+background: linear-gradient(135deg, #FDBA74 0%, #F59E0B 100%);
+color: #0C0A09;
+font-size: 0.6rem;
 font-weight: 800;
-padding: 2px 6px;
-border-radius: 10px;
-border: 1.5px solid rgba(255,255,255,0.3);
+padding: 3px 8px;
+border-radius: 12px;
+border: 2px solid rgba(255,255,255,0.4);
 text-transform: uppercase;
 letter-spacing: 0.05em;
-box-shadow: 0 2px 8px rgba(245, 158, 11, 0.5);
+box-shadow: 0 3px 12px rgba(234, 88, 12, 0.6);
 animation: micro-bounce 2s ease-in-out infinite;
 }
 .btn-auxilio-float .auxilio-tooltip{
 position: absolute;
-right: calc(100% + 12px);
-top: 50%;
-transform: translateY(-50%);
-background: rgba(10, 10, 10, 0.95);
-border: 1px solid rgba(245, 158, 11, 0.4);
-color: #fff;
-font-size: 0.75rem;
-font-weight: 600;
-padding: 6px 12px;
-border-radius: 10px;
+bottom: calc(100% + 12px);
+left: 50%;
+transform: translateX(-50%);
+background: rgba(12, 10, 9, 0.95);
+border: 2px solid rgba(234, 88, 12, 0.5);
+color: #FDBA74;
+font-size: 0.8rem;
+font-weight: 700;
+padding: 8px 16px;
+border-radius: 12px;
 white-space: nowrap;
 opacity: 0;
 pointer-events: none;
 transition: all 0.3s ease;
-box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+box-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 20px rgba(234, 88, 12, 0.3);
 }
 .btn-auxilio-float .auxilio-tooltip::after{
 content: '';
 position: absolute;
-top: 50%;
-right: -6px;
-transform: translateY(-50%);
-border-left: 6px solid rgba(245, 158, 11, 0.4);
-border-top: 6px solid transparent;
-border-bottom: 6px solid transparent;
+top: 100%;
+left: 50%;
+transform: translateX(-50%);
+border-top: 8px solid rgba(234, 88, 12, 0.5);
+border-left: 8px solid transparent;
+border-right: 8px solid transparent;
 }
 .btn-auxilio-float:hover .auxilio-tooltip{
 opacity: 1;
-transform: translateY(-50%) translateX(-4px);
+transform: translateX(-50%) translateY(-4px);
 }
 
 @media(max-width: 768px){
 .btn-auxilio-float{
-bottom: 7.5rem;
-right: 0.75rem;
-width: 58px;
-height: 58px;
+bottom: 7rem;
+width: 65px;
+height: 65px;
 }
-.btn-auxilio-float i{ font-size: 1.3rem; }
-.btn-auxilio-float .auxilio-badge{ font-size: 0.5rem; padding: 1.5px 5px; }
+.btn-auxilio-float i{ font-size: 1.5rem; }
+.btn-auxilio-float .auxilio-badge{ font-size: 0.5rem; padding: 2px 6px; }
 .btn-auxilio-float .auxilio-tooltip{ display: none; }
 }
 @media(max-width: 475px){
 .btn-auxilio-float{
-bottom: 6.5rem;
-right: 0.5rem;
-width: 52px;
-height: 52px;
+bottom: 6rem;
+width: 58px;
+height: 58px;
 }
-.btn-auxilio-float i{ font-size: 1.15rem; }
+.btn-auxilio-float i{ font-size: 1.3rem; }
 }
 
 /* MODAL AUXILIO */
@@ -938,8 +946,8 @@ opacity: 1;
 pointer-events: all;
 }
 .auxilio-modal{
-background: linear-gradient(145deg, rgba(38, 38, 38, 0.98), rgba(23, 23, 23, 0.99));
-border: 1px solid rgba(239, 68, 68, 0.3);
+background: linear-gradient(145deg, rgba(68, 64, 60, 0.98), rgba(28, 25, 23, 0.99));
+border: 2px solid rgba(234, 88, 12, 0.4);
 border-radius: 24px;
 max-width: 480px;
 width: 100%;
@@ -949,7 +957,7 @@ padding: 2rem;
 position: relative;
 transform: scale(0.9) translateY(20px);
 transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 0 40px rgba(239, 68, 68, 0.15);
+box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 0 40px rgba(234, 88, 12, 0.2);
 }
 .auxilio-modal-overlay.active .auxilio-modal{
 transform: scale(1) translateY(0);
@@ -958,8 +966,8 @@ transform: scale(1) translateY(0);
 content: '';
 position: absolute;
 top: 0; left: 0; right: 0;
-height: 3px;
-background: linear-gradient(90deg, #EF4444, #F59E0B, #EF4444);
+height: 4px;
+background: linear-gradient(90deg, #EA580C, #F59E0B, #B45309);
 border-radius: 24px 24px 0 0;
 }
 .auxilio-modal-close{
@@ -969,9 +977,9 @@ right: 1rem;
 width: 36px;
 height: 36px;
 border-radius: 50%;
-background: rgba(255,255,255,0.08);
-border: 1px solid rgba(255,255,255,0.15);
-color: #fff;
+background: rgba(234, 88, 12, 0.15);
+border: 2px solid rgba(234, 88, 12, 0.3);
+color: #F59E0B;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -981,9 +989,10 @@ font-size: 1rem;
 z-index: 10;
 }
 .auxilio-modal-close:hover{
-background: rgba(239, 68, 68, 0.3);
-border-color: rgba(239, 68, 68, 0.5);
+background: rgba(234, 88, 12, 0.3);
+border-color: rgba(234, 88, 12, 0.6);
 transform: rotate(90deg);
+color: #FDBA74;
 }
 .auxilio-modal-header{
 text-align: center;
@@ -995,8 +1004,8 @@ border-bottom: 1px solid rgba(255,255,255,0.08);
 width: 60px;
 height: 60px;
 border-radius: 50%;
-background: linear-gradient(135deg, rgba(239,68,68,0.2) 0%, rgba(245,158,11,0.15) 100%);
-border: 2px solid rgba(239, 68, 68, 0.4);
+background: linear-gradient(135deg, rgba(234,88,12,0.25) 0%, rgba(180,83,9,0.2) 100%);
+border: 2px solid rgba(234, 88, 12, 0.5);
 display: flex;
 align-items: center;
 justify-content: center;
@@ -1005,7 +1014,8 @@ animation: auxilio-pulse 2.5s ease-in-out infinite;
 }
 .auxilio-modal-icon i{
 font-size: 1.5rem;
-color: #EF4444;
+color: #EA580C;
+filter: drop-shadow(0 0 8px rgba(234, 88, 12, 0.5));
 }
 .auxilio-modal-title{
 font-family: 'Space Grotesk', sans-serif;
@@ -1013,28 +1023,32 @@ font-weight: 700;
 font-size: 1.3rem;
 color: #fff;
 margin-bottom: 0.25rem;
+background: linear-gradient(135deg, #FDBA74 0%, #F59E0B 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
 }
 .auxilio-modal-subtitle{
 font-size: 0.8rem;
-color: rgba(226, 232, 240, 0.6);
+color: rgba(231, 229, 228, 0.6);
 }
 .auxilio-modal .input-modern{
-background: rgba(10, 10, 10, 0.6);
+background: rgba(12, 10, 9, 0.6);
 border-color: rgba(255,255,255,0.1);
 }
 .auxilio-modal .input-modern:focus{
-border-color: #EF4444;
-box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2), 0 0 15px rgba(239, 68, 68, 0.1);
+border-color: #EA580C;
+box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2), 0 0 15px rgba(234, 88, 12, 0.1);
 }
 .auxilio-modal .label-below{
-color: #F59E0B;
+color: #EA580C;
 }
 .auxilio-modal .label-below:focus-within,
 .auxilio-modal .input-modern:focus + .label-below{
-color: #EF4444;
+color: #F59E0B;
 }
 .btn-auxilio-submit{
-background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);
+background: linear-gradient(135deg, #EA580C 0%, #B45309 100%);
 color: #fff;
 font-weight: 700;
 letter-spacing: 0.02em;
@@ -1044,7 +1058,7 @@ transition: all 0.35s ease;
 width: 100%;
 padding: 1rem;
 border-radius: 16px;
-border: none;
+border: 2px solid rgba(253, 186, 116, 0.3);
 cursor: pointer;
 text-transform: uppercase;
 font-size: 0.9rem;
@@ -1053,9 +1067,22 @@ align-items: center;
 justify-content: center;
 gap: 0.5rem;
 }
+.btn-auxilio-submit::before{
+content: '';
+position: absolute;
+top: 0; left: -100%; right: 0; bottom: 0;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+transition: left 0.5s ease;
+}
+.btn-auxilio-submit:hover::before{
+left: 100%;
+}
 .btn-auxilio-submit:hover{
 transform: translateY(-3px);
-box-shadow: 0 12px 35px rgba(239, 68, 68, 0.4), 0 0 25px rgba(245, 158, 11, 0.3);
+box-shadow: 0 15px 40px rgba(234, 88, 12, 0.5), 0 0 30px rgba(253, 186, 116, 0.4);
+border-color: rgba(253, 186, 116, 0.6);
+background: linear-gradient(135deg, #F59E0B 0%, #EA580C 50%, #B45309 100%);
+animation: micro-bounce 0.4s ease-in-out;
 }
 .btn-auxilio-submit:active{
 transform: translateY(-1px) scale(0.98);
@@ -1373,24 +1400,24 @@ img{
 <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg main-title" data-es="Taller Mecánico TR" data-en="Taller Mecánico TR">Taller Mecánico TR</a>
 <div class="ml-auto flex items-center gap-2 md:gap-3">
 <button id="langToggle" class="lang-switcher flex items-center gap-2 order-2 md:order-3"><i class="fa-solid fa-language"></i><span id="langText">EN</span></button>
-<div id="status-badge-desktop" class="hidden md:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-green/40 transition-all order-4">
-<span id="status-dot-desktop" class="status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-green"></span>
-<span id="status-text-desktop" class="text-primary-green font-semibold" data-es="Abierto 24hs" data-en="Open 24h">Abierto 24hs</span>
+<div id="status-badge-desktop" class="hidden md:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-bronze/40 transition-all order-4">
+<span id="status-dot-desktop" class="status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-orange"></span>
+<span id="status-text-desktop" class="text-primary-orange font-semibold" data-es="Abierto 24hs" data-en="Open 24h">Abierto 24hs</span>
 </div>
 <div class="hidden md:flex items-center gap-3 lg:gap-5 order-5">
-<a href="#asesoramiento" class="text-gray-300 hover:text-primary-green transition text-sm lg:text-base font-medium relative group" data-es="Asesoramiento" data-en="Consultation">Asesoramiento<span class="absolute bottom-1 left-0 w-0 h-0.5 bg-primary-green transition-all group-hover:w-full"></span></a>
+<a href="#asesoramiento" class="text-gray-300 hover:text-primary-orange transition text-sm lg:text-base font-medium relative group" data-es="Asesoramiento" data-en="Consultation">Asesoramiento<span class="absolute bottom-1 left-0 w-0 h-0.5 bg-primary-orange transition-all group-hover:w-full"></span></a>
 <a href="#diagnostico" class="btn-primary px-4 lg:px-6 py-2 lg:py-2.5 rounded-xl font-bold transition shadow-neon uppercase text-xs lg:text-sm tracking-wide" data-es="Pre-Diagnóstico" data-en="Pre-Diagnosis">Pre-Diagnóstico</a>
 </div>
 </div>
 </div>
-<div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-white bg-gradient-to-r from-primary-green/20 to-green-700/20" data-es="🟢 Abierto 24hs - Atención Profesional" data-en="🟢 Open 24h - Professional Service">🟢 Abierto 24hs - Atención Profesional</div>
+<div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-white bg-gradient-to-r from-primary-orange/20 to-primary-bronze/20" data-es="🟢 Abierto 24hs - Atención Profesional" data-en="🟢 Open 24h - Professional Service">🟢 Abierto 24hs - Atención Profesional</div>
 </nav>
 
-<!-- BOTÓN FLOTANTE AUXILIO MECÁNICO 24HS -->
+<!-- BOTÓN FLOTANTE AUXILIO MECÁNICO 24HS - POSICIÓN CENTRAL -->
 <button class="btn-auxilio-float" id="btnAuxilio" title="Auxilio Mecánico 24hs">
 <i class="fa-solid fa-truck-medical"></i>
 <span class="auxilio-badge">24HS</span>
-<span class="auxilio-tooltip">🚨 Auxilio Mecánico 24hs</span>
+<span class="auxilio-tooltip"> Auxilio Mecánico 24hs</span>
 </button>
 
 <!-- MODAL AUXILIO MECÁNICO -->
@@ -1454,8 +1481,8 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 
 <header class="relative pt-20 pb-20 md:pt-28 md:pb-28 lg:pt-36 lg:pb-32 min-h-screen flex items-center overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-br from-primary-dark via-[#0F0F0F] to-[#0A0A0A]">
-<div class="absolute inset-0 opacity-25" style="background-image: radial-gradient(circle at 20% 35%, rgba(245, 158, 11, 0.2) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.18) 0%, transparent 45%)"></div>
+<div class="absolute inset-0 bg-gradient-to-br from-primary-dark via-[#1C1917] to-[#0C0A09]">
+<div class="absolute inset-0 opacity-25" style="background-image: radial-gradient(circle at 20% 35%, rgba(234, 88, 12, 0.2) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.18) 0%, transparent 45%)"></div>
 </div>
 <div id="parallax-container" class="absolute inset-0 overflow-hidden">
 <img id="parallax-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1974&auto=format&fit=crop" alt="Taller mecánico profesional" class="parallax-image w-full h-full object-cover opacity-30 parallax-bg">
@@ -1464,7 +1491,7 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 <div class="container mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 <div class="space-y-6 md:space-y-8 max-w-2xl">
 <div class="fade-in-up" style="animation-delay: 0.1s;">
-<div class="inline-flex items-center gap-2 bg-primary-green/15 border border-primary-green/30 text-primary-green px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
+<div class="inline-flex items-center gap-2 bg-primary-orange/15 border border-primary-orange/30 text-primary-orange px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
 <i class="fa-solid fa-microchip"></i><span data-es="Diagnóstico de Precisión" data-en="Precision Diagnosis">Diagnóstico de Precisión</span>
 </div>
 </div>
@@ -1485,13 +1512,13 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </p>
 
 <div class="grid grid-cols-3 gap-3 md:gap-5 pt-2 md:pt-4 fade-in-up" style="animation-delay: 0.5s;">
-<div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-green/30 transition">
+<div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-orange/30 transition">
 <span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter1" data-target="99">0</span>%</span><span class="text-xs text-gray-400 mt-1 block" data-es="Precisión" data-en="Accuracy">Precisión</span>
 </div>
-<div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-green/30 transition">
+<div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-orange/30 transition">
 <span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter2" data-target="50">0</span>min</span><span class="text-xs text-gray-400 mt-1 block" data-es="Ahorro" data-en="Savings">Ahorro</span>
 </div>
-<div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-green/30 transition">
+<div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-orange/30 transition">
 <span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter3" data-target="8000">0</span>+</span><span class="text-xs text-gray-400 mt-1 block" data-es="Vehículos" data-en="Vehicles">Vehículos</span>
 </div>
 </div>
@@ -1500,21 +1527,21 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 <span data-es="Iniciar Diagnóstico" data-en="Start Diagnosis">Iniciar Diagnóstico</span><i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
 </a>
 <a href="#asesoramiento" class="btn-outline px-6 py-3.5 rounded-xl uppercase tracking-wide flex items-center justify-center gap-2 text-sm font-semibold">
-<i class="fa-solid fa-book-open text-primary-green"></i><span data-es="Guías Técnicas" data-en="Technical Guides">Guías Técnicas</span>
+<i class="fa-solid fa-book-open text-primary-orange"></i><span data-es="Guías Técnicas" data-en="Technical Guides">Guías Técnicas</span>
 </a>
 </div>
 </div>
 <div class="hidden lg:block relative fade-in-up" style="animation-delay: 0.4s;">
-<div class="relative"><div class="absolute inset-4 bg-gradient-to-r from-primary-green/20 to-primary-green/20 rounded-3xl blur-2xl opacity-60 animate-pulse-slow"></div></div>
+<div class="relative"><div class="absolute inset-4 bg-gradient-to-r from-primary-orange/20 to-primary-orange/20 rounded-3xl blur-2xl opacity-60 animate-pulse-slow"></div></div>
 </div>
 </div>
 </header>
 
-<section id="asesoramiento" class="py-16 md:py-24 bg-[#0F0F0F] relative">
-<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(34,197,94,0.08),_transparent_60%)]"></div>
+<section id="asesoramiento" class="py-16 md:py-24 bg-[#1C1917] relative">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(234,88,12,0.08),_transparent_60%)]"></div>
 <div class="container mx-auto px-4 relative z-10">
 <div class="text-center mb-14 md:mb-20 max-w-3xl mx-auto">
-<div class="inline-block bg-primary-green/15 border border-primary-green/30 text-primary-green px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
+<div class="inline-block bg-primary-orange/15 border border-primary-orange/30 text-primary-orange px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
 <i class="fa-solid fa-lightbulb mr-1.5"></i><span data-es="Conocimiento Técnico" data-en="Technical Knowledge">Conocimiento Técnico</span>
 </div>
 <h2 class="font-display font-bold text-4xl md:text-5xl gradient-text uppercase mb-5 glow-text tracking-tight" data-es="Centro de Asesoramiento" data-en="Consultation Center">Centro de Asesoramiento</h2>
@@ -1523,54 +1550,54 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7">
 <div class="glass-card hover-lift">
 <div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
-<img src="https://placehold.co/600x400/22C55E/0A0A0A?text=FRENOS" alt="Sistema de frenos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<img src="https://placehold.co/600x400/EA580C/0C0A09?text=FRENOS" alt="Sistema de frenos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
-<div class="absolute bottom-3 left-4"><span class="text-xs font-bold text-primary-green uppercase tracking-wider" data-es="Predictivo" data-en="Predictive">Predictivo</span></div>
+<div class="absolute bottom-3 left-4"><span class="text-xs font-bold text-primary-orange uppercase tracking-wider" data-es="Predictivo" data-en="Predictive">Predictivo</span></div>
 </div>
 <div class="p-5 md:p-6">
 <h3 class="font-bold text-lg md:text-xl text-white mb-2.5" data-es="Señales en Frenos" data-en="Brake Signals">Señales en Frenos</h3>
 <p class="text-gray-400/90 text-sm mb-4 leading-relaxed" data-es="Chillidos, vibración en pedal o recorrido excesivo: indicadores de desgaste en pastillas o aire en el circuito." data-en="Squealing, pedal vibration or excessive travel: indicators of pad wear or air in the circuit.">Chillidos, vibración en pedal o recorrido excesivo: indicadores de desgaste en pastillas o aire en el circuito.</p>
-<a href="#diagnostico" class="text-primary-green hover:text-green-300 font-semibold text-sm flex items-center gap-1.5 group"><span data-es="Analizar ahora" data-en="Analyze now">Analizar ahora</span><i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></a>
+<a href="#diagnostico" class="text-primary-orange hover:text-amber-300 font-semibold text-sm flex items-center gap-1.5 group"><span data-es="Analizar ahora" data-en="Analyze now">Analizar ahora</span><i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></a>
 </div>
 </div>
 <div class="glass-card hover-lift">
 <div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
-<img src="https://placehold.co/600x400/262626/22C55E?text=BATERIA" alt="Sistema eléctrico" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<img src="https://placehold.co/600x400/292524/EA580C?text=BATERIA" alt="Sistema eléctrico" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
-<div class="absolute bottom-3 left-4"><span class="text-xs font-bold text-primary-green uppercase tracking-wider" data-es="Preventivo" data-en="Preventive">Preventivo</span></div>
+<div class="absolute bottom-3 left-4"><span class="text-xs font-bold text-primary-orange uppercase tracking-wider" data-es="Preventivo" data-en="Preventive">Preventivo</span></div>
 </div>
 <div class="p-5 md:p-6">
 <h3 class="font-bold text-lg md:text-xl text-white mb-2.5" data-es="Batería y Alternador" data-en="Battery and Alternator">Batería y Alternador</h3>
 <p class="text-gray-400/90 text-sm mb-4 leading-relaxed" data-es="Arranque lento, luces tenues o parpadeantes: verifica voltaje y estado de carga antes de una falla total." data-en="Slow start, dim or flickering lights: check voltage and charge status before total failure.">Arranque lento, luces tenues o parpadeantes: verifica voltaje y estado de carga antes de una falla total.</p>
-<a href="#diagnostico" class="text-primary-green hover:text-green-300 font-semibold text-sm flex items-center gap-1.5 group"><span data-es="Verificar sistema" data-en="Check system">Verificar sistema</span><i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></a>
+<a href="#diagnostico" class="text-primary-orange hover:text-amber-300 font-semibold text-sm flex items-center gap-1.5 group"><span data-es="Verificar sistema" data-en="Check system">Verificar sistema</span><i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></a>
 </div>
 </div>
 <div class="glass-card hover-lift">
 <div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
-<img src="https://placehold.co/600x400/16A34A/0A0A0A?text=FLUIDOS" alt="Fluidos críticos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<img src="https://placehold.co/600x400/B45309/0C0A09?text=FLUIDOS" alt="Fluidos críticos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
-<div class="absolute bottom-3 left-4"><span class="text-xs font-bold text-primary-green uppercase tracking-wider" data-es="Mantenimiento" data-en="Maintenance">Mantenimiento</span></div>
+<div class="absolute bottom-3 left-4"><span class="text-xs font-bold text-primary-orange uppercase tracking-wider" data-es="Mantenimiento" data-en="Maintenance">Mantenimiento</span></div>
 </div>
 <div class="p-5 md:p-6">
 <h3 class="font-bold text-lg md:text-xl text-white mb-2.5" data-es="Fluidos Críticos" data-en="Critical Fluids">Fluidos Críticos</h3>
 <p class="text-gray-400/90 text-sm mb-4 leading-relaxed" data-es="Aceite, refrigerante y líquido de frenos: niveles bajos o cambios de color indican urgencia de revisión." data-en="Oil, coolant and brake fluid: low levels or color changes indicate urgency for review.">Aceite, refrigerante y líquido de frenos: niveles bajos o cambios de color indican urgencia de revisión.</p>
-<a href="#diagnostico" class="text-primary-green hover:text-green-300 font-semibold text-sm flex items-center gap-1.5 group"><span data-es="Revisar niveles" data-en="Check levels">Revisar niveles</span><i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></a>
+<a href="#diagnostico" class="text-primary-orange hover:text-amber-300 font-semibold text-sm flex items-center gap-1.5 group"><span data-es="Revisar niveles" data-en="Check levels">Revisar niveles</span><i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></a>
 </div>
 </div>
 </div>
 <div class="text-center mt-10 md:mt-14">
-<a href="#diagnostico" class="inline-flex items-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-primary-green/40 text-white font-bold py-3.5 px-7 md:px-9 rounded-2xl transition-all uppercase tracking-wide text-sm shadow-soft hover:shadow-neon">
-<i class="fa-solid fa-hand-pointer text-primary-green"></i><span data-es="Iniciar Pre-Diagnóstico Ahora" data-en="Start Pre-Diagnosis Now">Iniciar Pre-Diagnóstico Ahora</span>
+<a href="#diagnostico" class="inline-flex items-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-primary-orange/40 text-white font-bold py-3.5 px-7 md:px-9 rounded-2xl transition-all uppercase tracking-wide text-sm shadow-soft hover:shadow-neon">
+<i class="fa-solid fa-hand-pointer text-primary-orange"></i><span data-es="Iniciar Pre-Diagnóstico Ahora" data-en="Start Pre-Diagnosis Now">Iniciar Pre-Diagnóstico Ahora</span>
 </a>
 </div>
 </div>
 </section>
 
 <section class="py-16 md:py-24 bg-primary-dark relative">
-<div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(circle at 10% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 25%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 25%)"></div>
+<div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(circle at 10% 20%, rgba(234, 88, 12, 0.1) 0%, transparent 25%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 25%)"></div>
 <div class="container mx-auto px-4 relative z-10">
 <div class="text-center mb-14 md:mb-20">
-<div class="inline-block bg-primary-green/15 border border-primary-green/30 text-primary-green px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
+<div class="inline-block bg-primary-orange/15 border border-primary-orange/30 text-primary-orange px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
 <i class="fa-solid fa-screwdriver-wrench mr-1.5"></i><span data-es="Soluciones Profesionales" data-en="Professional Solutions">Soluciones Profesionales</span>
 </div>
 <h2 class="font-display font-bold text-4xl md:text-5xl text-white uppercase mb-4 glow-text tracking-tight"><span data-es="Servicios" data-en="Services">Servicios</span><span class="gradient-text" data-es="Integrales" data-en="Integral">Integrales</span></h2>
@@ -1578,32 +1605,32 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
 <div class="glass-card p-6 md:p-7 hover-lift group">
-<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-green/20 to-primary-green/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-laptop-code text-2xl md:text-3xl text-primary-green"></i></div>
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-orange/20 to-primary-orange/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-laptop-code text-2xl md:text-3xl text-primary-orange"></i></div>
 <h3 class="font-bold text-xl text-white mb-2.5" data-es="Diagnóstico Computarizado" data-en="Computerized Diagnosis">Diagnóstico Computarizado</h3>
 <p class="text-gray-400/90 text-sm leading-relaxed" data-es="Escaneo avanzado de ECU, sensores y sistemas electrónicos con equipos de última generación." data-en="Advanced scanning of ECU, sensors and electronic systems with state-of-the-art equipment.">Escaneo avanzado de ECU, sensores y sistemas electrónicos con equipos de última generación.</p>
 </div>
 <div class="glass-card p-6 md:p-7 hover-lift group">
-<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-green/20 to-primary-green/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-oil-can text-2xl md:text-3xl text-primary-green"></i></div>
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-orange/20 to-primary-orange/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-oil-can text-2xl md:text-3xl text-primary-orange"></i></div>
 <h3 class="font-bold text-xl text-white mb-2.5" data-es="Mecánica Ligera" data-en="Light Mechanics">Mecánica Ligera</h3>
 <p class="text-gray-400/90 text-sm leading-relaxed" data-es="Cambios de aceite, filtros, bujías y services programados con repuestos de calidad certificada." data-en="Oil changes, filters, spark plugs and scheduled services with certified quality spare parts.">Cambios de aceite, filtros, bujías y services programados con repuestos de calidad certificada.</p>
 </div>
 <div class="glass-card p-6 md:p-7 hover-lift group">
-<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-green/20 to-primary-green/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-circle-stop text-2xl md:text-3xl text-primary-green"></i></div>
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-orange/20 to-primary-orange/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-circle-stop text-2xl md:text-3xl text-primary-orange"></i></div>
 <h3 class="font-bold text-xl text-white mb-2.5" data-es="Sistema de Frenos" data-en="Brake System">Sistema de Frenos</h3>
 <p class="text-gray-400/90 text-sm leading-relaxed" data-es="Revisión integral de ABS, pastillas, discos y líquido de frenos para máxima seguridad." data-en="Comprehensive review of ABS, pads, discs and brake fluid for maximum safety.">Revisión integral de ABS, pastillas, discos y líquido de frenos para máxima seguridad.</p>
 </div>
 <div class="glass-card p-6 md:p-7 hover-lift group">
-<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-green/20 to-primary-green/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-car-burst text-2xl md:text-3xl text-primary-green"></i></div>
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-orange/20 to-primary-orange/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-car-burst text-2xl md:text-3xl text-primary-orange"></i></div>
 <h3 class="font-bold text-xl text-white mb-2.5" data-es="Suspensión y Dirección" data-en="Suspension and Steering">Suspensión y Dirección</h3>
 <p class="text-gray-400/90 text-sm leading-relaxed" data-es="Amortiguadores, rótulas, alineación y balanceo para confort y estabilidad en ruta." data-en="Shock absorbers, ball joints, alignment and balancing for comfort and stability on the road.">Amortiguadores, rótulas, alineación y balanceo para confort y estabilidad en ruta.</p>
 </div>
 <div class="glass-card p-6 md:p-7 hover-lift group">
-<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-green/20 to-primary-green/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-snowflake text-2xl md:text-3xl text-primary-green"></i></div>
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-orange/20 to-primary-orange/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-snowflake text-2xl md:text-3xl text-primary-orange"></i></div>
 <h3 class="font-bold text-xl text-white mb-2.5" data-es="Climatización" data-en="Air Conditioning">Climatización</h3>
 <p class="text-gray-400/90 text-sm leading-relaxed" data-es="Carga de gas, limpieza de conductos y reparación de compresores para confort térmico." data-en="Gas charging, duct cleaning and compressor repair for thermal comfort.">Carga de gas, limpieza de conductos y reparación de compresores para confort térmico.</p>
 </div>
 <div class="glass-card p-6 md:p-7 hover-lift group">
-<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-green/20 to-primary-green/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-bolt text-2xl md:text-3xl text-primary-green"></i></div>
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-orange/20 to-primary-orange/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fa-solid fa-bolt text-2xl md:text-3xl text-primary-orange"></i></div>
 <h3 class="font-bold text-xl text-white mb-2.5" data-es="Electricidad Automotriz" data-en="Automotive Electricity">Electricidad Automotriz</h3>
 <p class="text-gray-400/90 text-sm leading-relaxed" data-es="Diagnóstico de fallas eléctricas, baterías, alternadores y sistemas de iluminación." data-en="Diagnosis of electrical failures, batteries, alternators and lighting systems.">Diagnóstico de fallas eléctricas, baterías, alternadores y sistemas de iluminación.</p>
 </div>
@@ -1611,38 +1638,38 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 </section>
 
-<section class="py-16 md:py-24 bg-[#0F0F0F] border-t border-white/5">
+<section class="py-16 md:py-24 bg-[#1C1917] border-t border-white/5">
 <div class="container mx-auto px-4">
 <div class="text-center mb-10 md:mb-14">
-<div class="inline-block bg-primary-green/15 border border-primary-green/30 text-primary-green px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
+<div class="inline-block bg-primary-orange/15 border border-primary-orange/30 text-primary-orange px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
 <i class="fa-solid fa-comments mr-1.5"></i><span data-es="Experiencias Reales" data-en="Real Experiences">Experiencias Reales</span>
 </div>
 <h2 class="font-display font-bold text-4xl md:text-5xl text-white uppercase glow-text tracking-tight" data-es="La Voz de Nuestros Clientes" data-en="The Voice of Our Customers">La Voz de Nuestros Clientes</h2>
 <p class="text-gray-400/90 max-w-2xl mx-auto mt-4 text-base md:text-lg leading-relaxed" data-es="Confianza construida sobre resultados verificables y atención profesional." data-en="Trust built on verifiable results and professional service.">Confianza construida sobre resultados verificables y atención profesional.</p>
 </div>
 <div class="testimonial-carousel flex gap-5 md:gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide mx-2 px-2">
-<div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-green hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
+<div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-orange hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
 <div class="flex justify-between items-start mb-4"><div class="flex text-yellow-400 text-lg"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i></div>
 <p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm" data-es="Diagnóstico preciso en minutos. La tecnología que usan es impresionante y me explicaron todo con claridad." data-en="Accurate diagnosis in minutes. The technology they use is impressive and they explained everything clearly.">"Diagnóstico preciso en minutos. La tecnología que usan es impresionante y me explicaron todo con claridad."</p>
-<div class="flex items-center pt-3 border-t border-white/10"><div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-green to-green-700 flex items-center justify-center text-white font-bold mr-3.5 flex-shrink-0">MP</div><div><p class="font-bold text-white text-sm">Martín P.</p><p class="text-xs text-gray-500">Chevrolet Tracker 2023</p></div></div>
+<div class="flex items-center pt-3 border-t border-white/10"><div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-orange to-orange-700 flex items-center justify-center text-white font-bold mr-3.5 flex-shrink-0">MP</div><div><p class="font-bold text-white text-sm">Martín P.</p><p class="text-xs text-gray-500">Chevrolet Tracker 2023</p></div></div>
 </div>
-<div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-green hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
+<div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-orange hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
 <div class="flex justify-between items-start mb-4"><div class="flex text-yellow-400 text-lg"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div><i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i></div>
 <p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm" data-es="Proceso transparente y rápido. El pre-diagnóstico online me ahorró tiempo y dinero. Totalmente recomendado." data-en="Transparent and fast process. The online pre-diagnosis saved me time and money. Totally recommended.">"Proceso transparente y rápido. El pre-diagnóstico online me ahorró tiempo y dinero. Totalmente recomendado."</p>
-<div class="flex items-center pt-3 border-t border-white/10"><div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-green to-green-700 flex items-center justify-center text-white font-bold mr-3.5 flex-shrink-0">AR</div><div><p class="font-bold text-white text-sm">Alejandra R.</p><p class="text-xs text-gray-500">Renault Fluence</p></div></div>
+<div class="flex items-center pt-3 border-t border-white/10"><div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-orange to-orange-700 flex items-center justify-center text-white font-bold mr-3.5 flex-shrink-0">AR</div><div><p class="font-bold text-white text-sm">Alejandra R.</p><p class="text-xs text-gray-500">Renault Fluence</p></div></div>
 </div>
-<div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-green hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
+<div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-orange hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
 <div class="flex justify-between items-start mb-4"><div class="flex text-yellow-400 text-lg"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i></div>
 <p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm" data-es="Excelente para gestionar la flota de mi empresa. Reportes detallados y atención personalizada." data-en="Excellent for managing my company's fleet. Detailed reports and personalized service.">"Excelente para gestionar la flota de mi empresa. Reportes detallados y atención personalizada."</p>
-<div class="flex items-center pt-3 border-t border-white/10"><div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-green to-green-700 flex items-center justify-center text-white font-bold mr-3.5 flex-shrink-0">EC</div><div><p class="font-bold text-white text-sm">Esteban C.</p><p class="text-xs text-gray-500" data-es="Flota Utilitarios" data-en="Utility Fleet">Flota Utilitarios</p></div></div>
+<div class="flex items-center pt-3 border-t border-white/10"><div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-orange to-orange-700 flex items-center justify-center text-white font-bold mr-3.5 flex-shrink-0">EC</div><div><p class="font-bold text-white text-sm">Esteban C.</p><p class="text-xs text-gray-500" data-es="Flota Utilitarios" data-en="Utility Fleet">Flota Utilitarios</p></div></div>
 </div>
 </div>
-<p class="text-center text-gray-500 mt-5 text-sm flex items-center justify-center gap-1.5"><i class="fa-solid fa-arrow-right text-primary-green"></i><span data-es="Desliza para más opiniones" data-en="Swipe for more opinions">Desliza para más opiniones</span></p>
+<p class="text-center text-gray-500 mt-5 text-sm flex items-center justify-center gap-1.5"><i class="fa-solid fa-arrow-right text-primary-orange"></i><span data-es="Desliza para más opiniones" data-en="Swipe for more opinions">Desliza para más opiniones</span></p>
 </div>
 </section>
 
-<section id="diagnostico" class="py-16 md:py-24 bg-gradient-to-b from-primary-dark to-[#080808] relative overflow-hidden">
-<div class="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(34,197,94,0.08),transparent_55%)]"></div>
+<section id="diagnostico" class="py-16 md:py-24 bg-gradient-to-b from-primary-dark to-[#080605] relative overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(234,88,12,0.08),transparent_55%)]"></div>
 <div class="container mx-auto px-4 relative z-10">
 <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 <div class="lg:w-1/3 space-y-6">
@@ -1651,19 +1678,19 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </h2>
 <p class="text-gray-400/90 mb-6 text-base leading-relaxed" data-es="Completa el formulario y nuestros técnicos prepararán el análisis previo antes de tu llegada. Optimizamos tu tiempo y recursos." data-en="Complete the form and our technicians will prepare the preliminary analysis before your arrival. We optimize your time and resources.">Completa el formulario y nuestros técnicos prepararán el análisis previo antes de tu llegada. Optimizamos tu tiempo y recursos.</p>
 <div class="space-y-5 pt-2">
-<div class="flex items-start gap-4"><div class="bg-gradient-to-br from-primary-green/20 to-primary-green/20 p-3.5 rounded-xl text-primary-green flex-shrink-0"><i class="fa-solid fa-stopwatch text-xl"></i></div><div><h4 class="font-bold text-white text-base mb-1" data-es="Ahorro de Tiempo" data-en="Time Saving">Ahorro de Tiempo</h4><p class="text-gray-400/90 text-sm" data-es="Evita esperas innecesarias. Tu caso ya estará en análisis al llegar." data-en="Avoid unnecessary waits. Your case will already be under analysis upon arrival.">Evita esperas innecesarias. Tu caso ya estará en análisis al llegar.</p></div></div>
-<div class="flex items-start gap-4"><div class="bg-gradient-to-br from-primary-green/20 to-primary-green/20 p-3.5 rounded-xl text-primary-green flex-shrink-0"><i class="fa-solid fa-file-waveform text-xl"></i></div><div><h4 class="font-bold text-white text-base mb-1" data-es="Análisis Previo" data-en="Preliminary Analysis">Análisis Previo</h4><p class="text-gray-400/90 text-sm" data-es="Preparamos herramientas y repuestos específicos para tu caso." data-en="We prepare specific tools and spare parts for your case.">Preparamos herramientas y repuestos específicos para tu caso.</p></div></div>
-<div class="flex items-start gap-4"><div class="bg-gradient-to-br from-primary-green/20 to-primary-green/20 p-3.5 rounded-xl text-primary-green flex-shrink-0"><i class="fa-solid fa-shield-halved text-xl"></i></div><div><h4 class="font-bold text-white text-base mb-1" data-es="Transparencia Total" data-en="Total Transparency">Transparencia Total</h4><p class="text-gray-400/90 text-sm" data-es="Recibirás un informe detallado con opciones de reparación y costos." data-en="You will receive a detailed report with repair options and costs.">Recibirás un informe detallado con opciones de reparación y costos.</p></div></div>
+<div class="flex items-start gap-4"><div class="bg-gradient-to-br from-primary-orange/20 to-primary-orange/20 p-3.5 rounded-xl text-primary-orange flex-shrink-0"><i class="fa-solid fa-stopwatch text-xl"></i></div><div><h4 class="font-bold text-white text-base mb-1" data-es="Ahorro de Tiempo" data-en="Time Saving">Ahorro de Tiempo</h4><p class="text-gray-400/90 text-sm" data-es="Evita esperas innecesarias. Tu caso ya estará en análisis al llegar." data-en="Avoid unnecessary waits. Your case will already be under analysis upon arrival.">Evita esperas innecesarias. Tu caso ya estará en análisis al llegar.</p></div></div>
+<div class="flex items-start gap-4"><div class="bg-gradient-to-br from-primary-orange/20 to-primary-orange/20 p-3.5 rounded-xl text-primary-orange flex-shrink-0"><i class="fa-solid fa-file-waveform text-xl"></i></div><div><h4 class="font-bold text-white text-base mb-1" data-es="Análisis Previo" data-en="Preliminary Analysis">Análisis Previo</h4><p class="text-gray-400/90 text-sm" data-es="Preparamos herramientas y repuestos específicos para tu caso." data-en="We prepare specific tools and spare parts for your case.">Preparamos herramientas y repuestos específicos para tu caso.</p></div></div>
+<div class="flex items-start gap-4"><div class="bg-gradient-to-br from-primary-orange/20 to-primary-orange/20 p-3.5 rounded-xl text-primary-orange flex-shrink-0"><i class="fa-solid fa-shield-halved text-xl"></i></div><div><h4 class="font-bold text-white text-base mb-1" data-es="Transparencia Total" data-en="Total Transparency">Transparencia Total</h4><p class="text-gray-400/90 text-sm" data-es="Recibirás un informe detallado con opciones de reparación y costos." data-en="You will receive a detailed report with repair options and costs.">Recibirás un informe detallado con opciones de reparación y costos.</p></div></div>
 </div>
 <div class="glass-card p-4 rounded-xl mt-4 flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-check text-green-400"></i></div>
+<div class="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-check text-orange-400"></i></div>
 <div><p class="text-sm font-semibold text-white" data-es="Datos 100% seguros" data-en="100% secure data">Datos 100% seguros</p><p class="text-xs text-gray-500" data-es="Tu información está protegida" data-en="Your information is protected">Tu información está protegida</p></div>
 </div>
 </div>
 <div class="lg:w-2/3 glass-card rounded-3xl shadow-card p-6 md:p-8 w-full">
 <form id="triageForm" class="space-y-7">
 <div class="border-b border-white/10 pb-5">
-<h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3"><span class="bg-gradient-to-r from-primary-green to-green-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">1</span><span data-es="Datos del Vehículo" data-en="Vehicle Data">Datos del Vehículo</span></h3>
+<h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3"><span class="bg-gradient-to-r from-primary-orange to-orange-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">1</span><span data-es="Datos del Vehículo" data-en="Vehicle Data">Datos del Vehículo</span></h3>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 <div>
 <select id="inputVehicleType" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm appearance-none" required>
@@ -1695,7 +1722,7 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 </div>
 <div class="border-b border-white/10 pb-5">
-<h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3"><span class="bg-gradient-to-r from-primary-green to-green-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">2</span><span data-es="Descripción de Fallas" data-en="Failure Description">Descripción de Fallas</span></h3>
+<h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3"><span class="bg-gradient-to-r from-primary-orange to-orange-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">2</span><span data-es="Descripción de Fallas" data-en="Failure Description">Descripción de Fallas</span></h3>
 <div class="mb-4">
 <textarea id="inputSymptoms" rows="3" placeholder="Describe ruidos, olores, vibraciones, luces de alerta..." class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm resize-none" required></textarea>
 <label for="inputSymptoms" class="label-below"><span data-es="Síntomas" data-en="Symptoms">Síntomas</span><span class="required">*</span></label>
@@ -1733,25 +1760,25 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 </div>
 <div>
-<h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3"><span class="bg-gradient-to-r from-primary-green to-green-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">3</span><span data-es="Datos de Contacto" data-en="Contact Information">Datos de Contacto</span></h3>
+<h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3"><span class="bg-gradient-to-r from-primary-orange to-orange-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">3</span><span data-es="Datos de Contacto" data-en="Contact Information">Datos de Contacto</span></h3>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div><input type="text" id="inputName" placeholder="Tu nombre completo" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required><label for="inputName" class="label-below"><span data-es="Nombre" data-en="Name">Nombre</span><span class="required">*</span></label></div>
 <div><input type="tel" id="inputPhone" placeholder="WhatsApp para contacto" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm"><label for="inputPhone" class="label-below"><span data-es="WhatsApp" data-en="WhatsApp">WhatsApp</span></label></div>
 </div>
-<p class="text-xs text-gray-500 mt-3 flex items-center gap-1.5"><i class="fa-solid fa-lock text-primary-green"></i><span data-es="Tus datos se usarán únicamente para coordinar tu turno" data-en="Your data will only be used to coordinate your appointment">Tus datos se usarán únicamente para coordinar tu turno</span></p>
+<p class="text-xs text-gray-500 mt-3 flex items-center gap-1.5"><i class="fa-solid fa-lock text-primary-orange"></i><span data-es="Tus datos se usarán únicamente para coordinar tu turno" data-en="Your data will only be used to coordinate your appointment">Tus datos se usarán únicamente para coordinar tu turno</span></p>
 </div>
 <button type="submit" class="btn-primary w-full font-bold uppercase text-base py-4.5 rounded-2xl hover:shadow-neon transition flex items-center justify-center gap-3 mt-2">
 <i class="fa-brands fa-whatsapp text-2xl"></i><span data-es="Enviar Solicitud a Taller Mecánico TR" data-en="Send Request to Taller Mecánico TR">Enviar Solicitud a Taller Mecánico TR</span>
 </button>
-<p class="text-center text-xs text-gray-500 pt-2"><span data-es="Al enviar, aceptas nuestros" data-en="By sending, you accept our">Al enviar, aceptas nuestros</span><a href="#" class="text-primary-green hover:underline" data-es="términos de servicio" data-en="terms of service">términos de servicio</a></p>
+<p class="text-center text-xs text-gray-500 pt-2"><span data-es="Al enviar, aceptas nuestros" data-en="By sending, you accept our">Al enviar, aceptas nuestros</span><a href="#" class="text-primary-orange hover:underline" data-es="términos de servicio" data-en="terms of service">términos de servicio</a></p>
 </form>
 </div>
 </div>
 </div>
 </section>
 
-<section class="py-14 md:py-20 bg-[#0F0F0F] border-t border-white/5 relative">
-<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center_bottom,_rgba(245,158,11,0.06),_transparent_70%)]"></div>
+<section class="py-14 md:py-20 bg-[#1C1917] border-t border-white/5 relative">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center_bottom,_rgba(234,88,12,0.06),_transparent_70%)]"></div>
 <div class="container mx-auto px-4 relative z-10 text-center">
 <div class="flex flex-wrap justify-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 mb-12 md:mb-16 brand-icons">
 <i class="fa-brands fa-toyota text-4xl md:text-5xl hover:text-white transition-colors"></i>
@@ -1764,14 +1791,14 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 
 <div class="location-card p-8 md:p-12 max-w-2xl mx-auto text-center">
 <div class="location-icon-circle">
-<i class="fa-solid fa-location-dot text-2xl text-[#F59E0B]"></i>
+<i class="fa-solid fa-location-dot text-2xl text-[#EA580C]"></i>
 </div>
 <h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-2 glow-text">¿Dónde estamos?</h3>
 <p class="text-gray-400/90 mb-8 text-sm md:text-base">Visítanos para validación final y reparaciones especializadas.</p>
 
 <div class="space-y-1 mb-8">
 <div class="location-info-item">
-<div class="location-info-icon bg-primary-green/10 text-primary-green">
+<div class="location-info-icon bg-primary-orange/10 text-primary-orange">
 <i class="fa-solid fa-location-dot"></i>
 </div>
 <div class="location-info-text">
@@ -1780,7 +1807,7 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 </div>
 <div class="location-info-item">
-<div class="location-info-icon bg-green-500/10 text-green-400">
+<div class="location-info-icon bg-orange-500/10 text-orange-400">
 <i class="fa-brands fa-whatsapp"></i>
 </div>
 <div class="location-info-text">
@@ -1789,12 +1816,12 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 </div>
 <div class="location-info-item">
-<div class="location-info-icon bg-[#F59E0B]/10 text-[#F59E0B]">
+<div class="location-info-icon bg-[#EA580C]/10 text-[#EA580C]">
 <i class="fa-regular fa-clock"></i>
 </div>
 <div class="location-info-text">
 <p class="location-info-label">Horarios de Atención</p>
-<p class="location-info-value font-semibold text-primary-green">
+<p class="location-info-value font-semibold text-primary-orange">
 Lunes a Domingo las 24hs
 </p>
 </div>
@@ -1812,8 +1839,8 @@ Lunes a Domingo las 24hs
 </a>
 </div>
 
-<div class="inline-flex items-center gap-2.5 bg-white/5 border border-white/10 hover:border-[#F59E0B]/30 px-5 py-2.5 rounded-full transition-all">
-<i class="fa-solid fa-certificate text-[#F59E0B] text-lg"></i>
+<div class="inline-flex items-center gap-2.5 bg-white/5 border border-white/10 hover:border-[#EA580C]/30 px-5 py-2.5 rounded-full transition-all">
+<i class="fa-solid fa-certificate text-[#EA580C] text-lg"></i>
 <span class="text-sm font-medium text-gray-300">Garantía en todos nuestros servicios</span>
 </div>
 </div>
@@ -1841,19 +1868,19 @@ Lunes a Domingo las 24hs
 </a>
 </p>
 <p>
-<i class="fa-regular fa-clock text-primary-green mr-1"></i>
+<i class="fa-regular fa-clock text-primary-orange mr-1"></i>
 <span>Lunes a Domingo las 24hs</span>
 </p>
 </div>
 </div>
 <div class="flex items-center gap-4">
-<a href="https://maps.app.goo.gl/dHh615LvSqSRr3dNA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-green hover:text-yellow-400 transition text-sm font-semibold group">
+<a href="https://maps.app.goo.gl/dHh615LvSqSRr3dNA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-orange hover:text-yellow-400 transition text-sm font-semibold group">
 <i class="fa-solid fa-star group-hover:scale-110 transition-transform"></i><span data-es="Deja tu Reseña" data-en="Leave Review">Deja tu Reseña</span>
 </a>
 </div>
 </div>
 <div class="border-t border-white/10 mt-6 pt-4 text-center">
-<a href="https://nexoar-art.github.io/NEXO-art/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary-green transition font-medium group">
+<a href="https://nexoar-art.github.io/NEXO-art/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary-orange transition font-medium group">
 <i class="fa-solid fa-pen-nib group-hover:scale-110 transition-transform"></i>Diseño: NEXO-Art
 </a>
 <p class="text-gray-600 mt-2 text-xs" data-es="Sitio web desarrollado con tecnología moderna" data-en="Website developed with modern technology">Sitio web desarrollado con tecnología moderna</p>
@@ -1862,8 +1889,8 @@ Lunes a Domingo las 24hs
 </footer>
 
 <div class="fixed bottom-0 left-0 w-full bg-gray-900/95 backdrop-blur-sm border-t border-white/10 p-4 md:hidden z-50 flex gap-3">
-<a href="#asesoramiento" class="flex-1 bg-white/5 text-white font-semibold py-3.5 rounded-xl text-center border border-white/10 hover:border-primary-green/40 transition text-sm flex items-center justify-center gap-2">
-<i class="fa-solid fa-book-open text-primary-green"></i><span data-es="Guías" data-en="Guides">Guías</span>
+<a href="#asesoramiento" class="flex-1 bg-white/5 text-white font-semibold py-3.5 rounded-xl text-center border border-white/10 hover:border-primary-orange/40 transition text-sm flex items-center justify-center gap-2">
+<i class="fa-solid fa-book-open text-primary-orange"></i><span data-es="Guías" data-en="Guides">Guías</span>
 </a>
 <a href="#diagnostico" class="flex-[2] btn-primary font-bold py-3.5 rounded-xl text-center uppercase shadow-neon text-sm flex items-center justify-center gap-2">
 <i class="fa-solid fa-microchip"></i><span data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</span>
@@ -1910,11 +1937,11 @@ const dotDesktop= document.getElementById('status-dot-desktop');
 const textDesktop= document.getElementById('status-text-desktop');
 const barMobile= document.getElementById('status-bar-mobile');
 // Siempre abierto 24hs
-dotDesktop.className='status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-green';
+dotDesktop.className='status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-orange';
 textDesktop.textContent= currentLang=== 'es' ? 'Abierto 24hs' : 'Open 24h';
-textDesktop.className='text-primary-green font-semibold';
+textDesktop.className='text-primary-orange font-semibold';
 barMobile.textContent= currentLang=== 'es' ? '🟢 Abierto 24hs - Atención Profesional' : '🟢 Open 24h - Professional Service';
-barMobile.className='md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-white bg-gradient-to-r from-primary-green/20 to-green-700/20';
+barMobile.className='md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-white bg-gradient-to-r from-primary-orange/20 to-primary-bronze/20';
 }
 
 function animateCounter(id, start, target, duration) {
@@ -1985,10 +2012,10 @@ const whatsappUrl=`https://api.whatsapp.com/send?phone=542664464091&text=${encod
 setTimeout(()=>{
 window.open(whatsappUrl,'_blank','noopener,noreferrer');
 btn.innerHTML='<i class="fa-solid fa-circle-check"></i> '+(currentLang=== 'es' ? '¡Solicitud Enviada! ✅' : 'Request Sent! ✅');
-btn.classList.add('bg-green-600');
+btn.classList.add('bg-orange-600');
 setTimeout(()=>{
 btn.innerHTML= originalBtnContent;
-btn.classList.remove('opacity-80','cursor-not-allowed','bg-green-600');
+btn.classList.remove('opacity-80','cursor-not-allowed','bg-orange-600');
 btn.disabled= false;
 e.target.reset();
 document.querySelectorAll('.input-modern').forEach(el=>{ el.classList.remove('input-valid','input-invalid'); });
