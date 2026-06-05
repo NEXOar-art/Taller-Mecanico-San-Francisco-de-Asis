@@ -66,11 +66,7 @@ animation:{
 'shimmer':'shimmer 2.5s infinite linear',
 'auxilio-pulse':'auxilio-pulse 2.5s ease-in-out infinite',
 'fire-flicker':'fire-flicker 3s ease-in-out infinite',
-'btn-shimmer':'btn-shimmer 3s infinite linear',
-'btn-ripple':'btn-ripple 0.6s ease-out',
-'btn-glow-pulse':'btn-glow-pulse 2.5s ease-in-out infinite',
-'star-twinkle':'star-twinkle 2s ease-in-out infinite',
-'float-bounce':'float-bounce 3s ease-in-out infinite',
+'flicker':'flicker 3s infinite',
 },
 keyframes:{
 float:{
@@ -89,25 +85,15 @@ float:{
 '0%, 100%':{opacity:'1', transform:'scale(1)'},
 '50%':{opacity:'0.85', transform:'scale(1.05)'},
 },
-'btn-shimmer':{
-'0%':{backgroundPosition:'-200% center'},
-'100%':{backgroundPosition:'200% center'}
-},
-'btn-ripple':{
-'0%':{transform:'scale(0)', opacity:'0.6'},
-'100%':{transform:'scale(4)', opacity:'0'}
-},
-'btn-glow-pulse':{
-'0%, 100%':{boxShadow:'0 0 20px rgba(37, 211, 102, 0.4), 0 0 40px rgba(37, 211, 102, 0.2)'},
-'50%':{boxShadow:'0 0 30px rgba(37, 211, 102, 0.7), 0 0 60px rgba(37, 211, 102, 0.4), 0 0 80px rgba(37, 211, 102, 0.2)'}
-},
-'star-twinkle':{
-'0%, 100%':{opacity:'1', transform:'scale(1) rotate(0deg)'},
-'50%':{opacity:'0.7', transform:'scale(1.2) rotate(15deg)'}
-},
-'float-bounce':{
-'0%, 100%':{transform:'translateY(0)'},
-'50%':{transform:'translateY(-6px)'}
+'flicker':{
+'0%, 100%':{opacity:'1', transform:'scale(1)'},
+'5%':{opacity:'0.3', transform:'scale(0.95)'},
+'10%':{opacity:'1', transform:'scale(1)'},
+'15%':{opacity:'0.6', transform:'scale(0.98)'},
+'20%':{opacity:'1', transform:'scale(1)'},
+'50%':{opacity:'1', transform:'scale(1)'},
+'55%':{opacity:'0.4', transform:'scale(0.96)'},
+'60%':{opacity:'1', transform:'scale(1)'},
 },
 'micro-bounce':{
 '0%, 100%':{transform:'scale(1)'},
@@ -174,30 +160,13 @@ position: relative;
 flex-shrink: 0;
 margin-left: 20px;
 margin-right: 15px;
+animation: flicker 3s infinite;
 }
 
 .info-banner-icon i{
 color: #F59E0B;
 font-size: 1.5rem;
-animation: bulbFlicker 4s ease-in-out infinite;
-}
-
-@keyframes bulbFlicker {
-0%, 100% { 
-opacity: 1; 
-text-shadow: 0 0 10px #F59E0B, 0 0 20px #F59E0B, 0 0 30px #EA580C;
-transform: scale(1);
-}
-3% { opacity: 0.2; text-shadow: none; transform: scale(0.92); }
-5% { opacity: 1; text-shadow: 0 0 15px #F59E0B, 0 0 30px #F59E0B; transform: scale(1); }
-7% { opacity: 0.4; text-shadow: 0 0 5px #F59E0B; transform: scale(0.97); }
-9% { opacity: 1; text-shadow: 0 0 10px #F59E0B, 0 0 20px #F59E0B, 0 0 30px #EA580C; transform: scale(1); }
-35% { opacity: 0.95; }
-37% { opacity: 0.3; text-shadow: none; transform: scale(0.94); }
-39% { opacity: 1; text-shadow: 0 0 20px #F59E0B, 0 0 40px #EA580C; transform: scale(1.02); }
-65% { opacity: 0.9; }
-67% { opacity: 0.5; text-shadow: 0 0 5px #F59E0B; transform: scale(0.98); }
-69% { opacity: 1; text-shadow: 0 0 15px #F59E0B, 0 0 30px #F59E0B, 0 0 45px #EA580C; transform: scale(1.05); }
+filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.6));
 }
 
 .banner-scroll-container{
@@ -541,11 +510,9 @@ flex-shrink: 0;
 .navbar-logo img{
 width: 100%;
 height: 100%;
-object-fit: contain;
+object-fit: cover;
 border-radius: 10px;
 display: block;
-max-width: 100%;
-max-height: 100%;
 }
 .navbar-logo::before{
 content:'';
@@ -596,7 +563,7 @@ transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 position: relative;
 overflow: hidden;
 background: rgba(12, 10, 9, 0.3);
-padding: 12px;
+padding: 10px;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -605,11 +572,9 @@ flex-shrink: 0;
 .hero-logo img{
 width: 100%;
 height: 100%;
-object-fit: contain;
+object-fit: cover;
 border-radius: 14px;
 display: block;
-max-width: 100%;
-max-height: 100%;
 }
 .hero-logo::before{
 content:'';
@@ -648,333 +613,211 @@ box-shadow: 0 0 50px rgba(234, 88, 12, 0.9), 0 0 90px rgba(234, 88, 12, 0.45), 0
 .hero-logo:hover::before{ opacity: 1; }
 .hero-logo:hover::after{ opacity: 0.9; }
 
-/* ============================================================ */
-/* ===== DESTELLO DE FUEGO - DEGRADACIÓN SEGUNDO A SEGUNDO ===== */
-/* ============================================================ */
-
-.fire-flash-overlay{
-position: absolute;
-top: -20%;
-left: -20%;
-width: 140%;
-height: 140%;
-pointer-events: none;
-opacity: 0;
-z-index: 5;
-border-radius: 20px;
-background: radial-gradient(ellipse at center, 
-    rgba(253, 186, 116, 0.9) 0%, 
-    rgba(245, 158, 11, 0.7) 20%, 
-    rgba(234, 88, 12, 0.5) 40%, 
-    rgba(180, 83, 9, 0.3) 60%, 
-    transparent 80%);
-filter: blur(8px);
-transition: opacity 1s ease-out;
-mix-blend-mode: screen;
+@media(max-width: 768px){ 
+    .navbar-logo{height: 50px; width: 115px; border-width: 2px; border-radius: 14px; padding: 5px;}
+    .navbar-logo img{ border-radius: 9px; }
+    .hero-logo{height: 5.5rem; width: 13rem; border-radius: 16px; padding: 8px; border-width: 3px;}
+    .hero-logo img{ border-radius: 12px; }
+}
+@media(max-width: 640px){
+    .navbar-logo{height: 46px; width: 105px; border-radius: 13px; padding: 4px;}
+    .navbar-logo img{ border-radius: 8px; }
+    .hero-logo{height: 4.5rem; width: 11rem; border-radius: 14px; padding: 7px; border-width: 2.5px;}
+    .hero-logo img{ border-radius: 10px; }
+}
+@media(max-width: 475px){
+    .navbar-logo{height: 40px; width: 90px; border-radius: 12px; padding: 4px; border-width: 2px;}
+    .navbar-logo img{ border-radius: 7px; }
+    .hero-logo{height: 4rem; width: 9.5rem; border-radius: 12px; padding: 6px; border-width: 2px;}
+    .hero-logo img{ border-radius: 8px; }
+    .hero-logo-wrapper{ margin-left: 1rem; }
+}
+@media(max-width: 380px){
+    .navbar-logo{height: 36px; width: 80px; padding: 3px;}
+    .hero-logo{height: 3.5rem; width: 8.5rem; padding: 5px;}
 }
 
-.fire-flash-overlay.active{
-opacity: 1;
-animation: fireFlashInitial 1s ease-out forwards;
+.lang-switcher{
+background: rgba(234, 88, 12, 0.18); border: 2px solid rgba(234, 88, 12, 0.45);
+color: #fff; font-weight: 600; padding: 0.5rem 1rem; border-radius: 10px;
+cursor: pointer; transition: all 0.3s ease; font-size: 0.875rem;
+}
+.lang-switcher:hover{ 
+background: rgba(234, 88, 12, 0.3); 
+border-color: #EA580C; 
+transform: translateY(-2px);
+}
+.lang-switcher:active{ transform: translateY(0) scale(0.98); }
+
+.glass-card .fa-solid, .glass-card .fa-brands{
+transition: transform 0.3s ease, color 0.3s ease;
+}
+.glass-card:hover .fa-solid, .glass-card:hover .fa-brands{
+transform: scale(1.15) rotate(8deg);
+color: #F59E0B;
 }
 
-.fire-flash-overlay .flash-ray{
-position: absolute;
-top: 50%;
-left: 50%;
-width: 100%;
-height: 4px;
-background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(253, 186, 116, 0.9) 30%, 
-    rgba(245, 158, 11, 1) 50%, 
-    rgba(253, 186, 116, 0.9) 70%, 
-    transparent 100%);
-transform-origin: center;
-filter: blur(2px);
-opacity: 0;
+.testimonial-card{
+transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.testimonial-card:hover{
+transform: translateY(-8px) scale(1.02);
+border-color: rgba(234, 88, 12, 0.6);
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(234, 88, 12, 0.2);
 }
 
-.fire-flash-overlay.active .flash-ray{
-animation: rayBurst 1.2s ease-out forwards;
+.brand-icons i{
+transition: all 0.3s ease;
+cursor: pointer;
+}
+.brand-icons i:hover{
+transform: scale(1.2) translateY(-5px);
+filter: drop-shadow(0 0 12px rgba(234, 88, 12, 0.6));
 }
 
-.fire-flash-overlay .flash-ray:nth-child(1){ transform: translate(-50%, -50%) rotate(0deg); animation-delay: 0s; }
-.fire-flash-overlay .flash-ray:nth-child(2){ transform: translate(-50%, -50%) rotate(45deg); animation-delay: 0.1s; }
-.fire-flash-overlay .flash-ray:nth-child(3){ transform: translate(-50%, -50%) rotate(90deg); animation-delay: 0.15s; }
-.fire-flash-overlay .flash-ray:nth-child(4){ transform: translate(-50%, -50%) rotate(135deg); animation-delay: 0.2s; }
-.fire-flash-overlay .flash-ray:nth-child(5){ transform: translate(-50%, -50%) rotate(22deg); animation-delay: 0.05s; }
-.fire-flash-overlay .flash-ray:nth-child(6){ transform: translate(-50%, -50%) rotate(67deg); animation-delay: 0.12s; }
-.fire-flash-overlay .flash-ray:nth-child(7){ transform: translate(-50%, -50%) rotate(112deg); animation-delay: 0.18s; }
-.fire-flash-overlay .flash-ray:nth-child(8){ transform: translate(-50%, -50%) rotate(157deg); animation-delay: 0.22s; }
-
-@keyframes fireFlashInitial{
-0%{ 
-    opacity: 0; 
-    transform: scale(0.5);
-}
-20%{ 
-    opacity: 1; 
-    transform: scale(1.3);
-}
-100%{ 
-    opacity: 0.85; 
-    transform: scale(1);
-}
+section:nth-child(even){
+background: linear-gradient(180deg, #0C0A09 0%, #1C1917 50%, #0C0A09 100%);
 }
 
-@keyframes rayBurst{
-0%{ 
-    opacity: 0; 
-    width: 0%;
-    height: 2px;
-}
-30%{ 
-    opacity: 1; 
-    width: 120%;
-    height: 6px;
-}
-100%{ 
-    opacity: 0; 
-    width: 140%;
-    height: 2px;
-}
+.hero-logo-wrapper{
+position: relative;
+display: inline-flex;
+align-items: center;
+margin-left: 1.5rem;
 }
 
-.hero-logo.fire-flash-active{
-animation: logoFirePulse 1s ease-out;
-border-color: rgba(253, 186, 116, 1) !important;
-box-shadow: 0 0 60px rgba(234, 88, 12, 1), 
-            0 0 120px rgba(234, 88, 12, 0.7), 
-            0 0 180px rgba(245, 158, 11, 0.5), 
-            0 0 240px rgba(180, 83, 9, 0.3),
-            inset 0 0 40px rgba(234, 88, 12, 0.5) !important;
-}
-
-@keyframes logoFirePulse{
-0%{ transform: scale(1); }
-15%{ transform: scale(1.08); }
-40%{ transform: scale(1.03); }
-100%{ transform: scale(1); }
-}
-
-.fire-flash-particles{
+section::before{
+content: '';
 position: absolute;
 top: 0;
 left: 0;
-width: 100%;
-height: 100%;
+right: 0;
+bottom: 0;
+background: radial-gradient(ellipse at center top, rgba(234, 88, 12, 0.04) 0%, transparent 60%);
 pointer-events: none;
-overflow: visible;
-z-index: 6;
+z-index: 0;
 }
 
-.fire-flash-particle{
+.main-title{
+font-weight: 900;
+letter-spacing: -0.03em;
+}
+.main-title .gradient-text{
+font-weight: 900;
+text-shadow: 0 0 25px rgba(234, 88, 12, 0.7), 0 0 50px rgba(245, 158, 11, 0.4);
+}
+
+.location-card{
+background: linear-gradient(160deg, rgba(68,64,60,0.95) 0%, rgba(41,37,36,0.98) 50%, rgba(28,25,23,0.95) 100%);
+backdrop-filter: blur(20px);
+border: 1px solid rgba(234, 88, 12, 0.2);
+border-radius: 24px;
+transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+overflow: hidden;
+position: relative;
+}
+.location-card::before{
+content:'';
 position: absolute;
-width: 5px;
-height: 5px;
+top: 0;
+left: 0;
+right: 0;
+height: 3px;
+background: linear-gradient(90deg, transparent, #EA580C, #F59E0B, #EA580C, transparent);
+opacity: 0.8;
+}
+.location-card:hover{
+border-color: rgba(234, 88, 12, 0.45);
+transform: translateY(-4px);
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(234, 88, 12, 0.15);
+}
+.location-icon-circle{
+width: 56px;
+height: 56px;
 border-radius: 50%;
-background: radial-gradient(circle, #FEF3C7 0%, #FDBA74 30%, #F59E0B 60%, #EA580C 100%);
-box-shadow: 0 0 8px rgba(245, 158, 11, 0.9), 0 0 15px rgba(234, 88, 12, 0.6);
-opacity: 0;
+background: linear-gradient(135deg, rgba(234,88,12,0.15) 0%, rgba(234,88,12,0.05) 100%);
+border: 1.5px solid rgba(234,88,12,0.3);
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 1rem auto;
+transition: all 0.3s ease;
+}
+.location-card:hover .location-icon-circle{
+background: linear-gradient(135deg, rgba(234,88,12,0.25) 0%, rgba(234,88,12,0.1) 100%);
+border-color: rgba(234,88,12,0.5);
+transform: scale(1.05);
+box-shadow: 0 0 20px rgba(234,88,12,0.2);
+}
+.location-info-item{
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+padding: 0.75rem 0;
+border-bottom: 1px solid rgba(255,255,255,0.05);
+transition: background 0.3s ease;
+}
+.location-info-item:last-child{
+border-bottom: none;
+padding-bottom: 0;
+}
+.location-info-item:hover{
+background: rgba(234,88,12,0.05);
+border-radius: 12px;
+}
+.location-info-icon{
+flex-shrink: 0;
+width: 40px;
+height: 40px;
+border-radius: 12px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.1rem;
+transition: all 0.3s ease;
+}
+.location-info-text{
+text-align: center;
+}
+.location-info-label{
+font-size: 0.7rem;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+color: rgba(234,88,12,0.7);
+margin-bottom: 0.15rem;
+}
+.location-info-value{
+font-size: 0.9rem;
+font-weight: 500;
+color: #E7E5E4;
 }
 
-.fire-flash-particle.burst{
-animation: particleBurst 1.5s ease-out forwards;
+.footer-btn{
+display: inline-flex;
+align-items: center;
+gap: 5px;
+color: #EA580C;
+transition: all 0.3s ease;
+cursor: pointer;
+text-decoration: none;
 }
-
-@keyframes particleBurst{
-0%{
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
+.footer-btn:hover{
+color: #F59E0B;
+transform: scale(1.05);
 }
-100%{
-    transform: translate(var(--dx), var(--dy)) scale(0);
-    opacity: 0;
+.footer-btn:hover .footer-btn-icon{
+transform: scale(1.15);
 }
+.footer-btn-icon{
+transition: transform 0.3s ease;
 }
 
 /* ============================================================ */
-/* ===== FIN DESTELLO DE FUEGO ===== */
+/* ===== BOTÓN AUXILIO MECÁNICO 24HS - POSICIÓN CENTRAL ===== */
 /* ============================================================ */
 
-/* ============================================================ */
-/* ===== MICROEFECTOS BOTONES FLOTANTES ===== */
-/* ============================================================ */
-
-.float-btn-wrapper{
-position: relative;
-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.float-btn-wrapper:hover{
-transform: translateY(-4px) scale(1.05);
-}
-
-.float-btn-wrapper:active{
-transform: translateY(-2px) scale(0.98);
-}
-
-/* WhatsApp Button - Pulse + Shimmer */
-.float-btn-whatsapp{
-position: relative;
-overflow: hidden;
-animation: btn-glow-pulse 2.5s ease-in-out infinite, float-bounce 3s ease-in-out infinite !important;
-}
-
-.float-btn-whatsapp::before{
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255,255,255,0.3) 50%, 
-    transparent 100%);
-transition: left 0.6s ease;
-z-index: 2;
-}
-
-.float-btn-whatsapp:hover::before{
-left: 100%;
-}
-
-.float-btn-whatsapp::after{
-content: '';
-position: absolute;
-top: 50%;
-left: 50%;
-width: 10px;
-height: 10px;
-border-radius: 50%;
-background: rgba(255,255,255,0.5);
-transform: translate(-50%, -50%) scale(0);
-pointer-events: none;
-z-index: 3;
-}
-
-.float-btn-whatsapp.ripple::after{
-animation: btn-ripple 0.6s ease-out;
-}
-
-.float-btn-whatsapp:hover{
-box-shadow: 0 0 30px rgba(37, 211, 102, 0.7), 
-            0 0 60px rgba(37, 211, 102, 0.4),
-            0 10px 40px rgba(0,0,0,0.3);
-}
-
-.float-btn-whatsapp:hover i{
-animation: star-twinkle 0.8s ease-in-out;
-}
-
-/* Turno Button - Gradient shimmer + lift */
-.float-btn-turno{
-position: relative;
-overflow: hidden;
-background-size: 200% 200%;
-animation: gradient-shift 3s ease infinite;
-}
-
-.float-btn-turno::before{
-content: '';
-position: absolute;
-top: -50%;
-left: -50%;
-width: 200%;
-height: 200%;
-background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    rgba(255,255,255,0.3) 60deg,
-    transparent 120deg
-);
-animation: rotateConic 4s linear infinite;
-opacity: 0;
-transition: opacity 0.3s ease;
-z-index: 1;
-}
-
-.float-btn-turno:hover::before{
-opacity: 1;
-}
-
-.float-btn-turno::after{
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255,255,255,0.4) 50%, 
-    transparent 100%);
-transition: left 0.5s ease;
-z-index: 2;
-}
-
-.float-btn-turno:hover::after{
-left: 100%;
-}
-
-@keyframes rotateConic{
-from{ transform: rotate(0deg); }
-to{ transform: rotate(360deg); }
-}
-
-.float-btn-turno:hover{
-box-shadow: 0 0 40px rgba(234, 88, 12, 0.8), 
-            0 0 80px rgba(245, 158, 11, 0.5),
-            0 15px 50px rgba(0,0,0,0.4);
-transform: translateY(-5px) scale(1.08);
-}
-
-.float-btn-turno:hover i{
-animation: micro-bounce 0.6s ease-in-out;
-color: #FEF3C7;
-}
-
-/* Reseña Button - Star twinkle + glow */
-.float-btn-resena{
-position: relative;
-overflow: hidden;
-}
-
-.float-btn-resena::before{
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255,255,255,0.5) 50%, 
-    transparent 100%);
-transition: left 0.5s ease;
-z-index: 2;
-}
-
-.float-btn-resena:hover::before{
-left: 100%;
-}
-
-.float-btn-resena:hover{
-box-shadow: 0 0 30px rgba(253, 186, 116, 0.7), 
-            0 0 60px rgba(245, 158, 11, 0.4),
-            0 10px 40px rgba(0,0,0,0.3);
-transform: translateY(-4px) scale(1.08) rotate(-2deg);
-}
-
-.float-btn-resena:hover i{
-animation: star-twinkle 1s ease-in-out infinite;
-color: #FEF3C7;
-filter: drop-shadow(0 0 8px rgba(253, 186, 116, 0.9));
-}
-
-/* Auxilio Button - Enhanced pulse */
 .btn-auxilio-float{
 position: fixed;
 bottom: 9rem;
@@ -993,9 +836,7 @@ cursor: pointer;
 transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 animation: auxilio-pulse 2.5s ease-in-out infinite;
 box-shadow: 0 0 30px rgba(234, 88, 12, 0.6), 0 0 60px rgba(180, 83, 9, 0.4), var(--auxilio-glow);
-overflow: hidden;
 }
-
 .btn-auxilio-float::before{
 content: '';
 position: absolute;
@@ -1007,26 +848,6 @@ opacity: 0.7;
 animation: auxilio-pulse 2.5s ease-in-out infinite;
 z-index: -1;
 }
-
-.btn-auxilio-float .auxilio-shimmer{
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255,255,255,0.3) 50%, 
-    transparent 100%);
-transition: left 0.6s ease;
-z-index: 2;
-pointer-events: none;
-}
-
-.btn-auxilio-float:hover .auxilio-shimmer{
-left: 100%;
-}
-
 .btn-auxilio-float:hover{
 transform: translateX(-50%) scale(1.15) translateY(-6px) rotate(5deg);
 box-shadow: 0 0 50px rgba(234, 88, 12, 0.8), 0 0 90px rgba(253, 186, 116, 0.6), 0 0 120px rgba(180, 83, 9, 0.5);
@@ -1043,8 +864,6 @@ color: #fff;
 text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 transition: all 0.3s ease;
 filter: drop-shadow(0 0 8px rgba(253, 186, 116, 0.6));
-position: relative;
-z-index: 3;
 }
 .btn-auxilio-float:hover i{
 transform: scale(1.2) rotate(-15deg);
@@ -1065,7 +884,6 @@ text-transform: uppercase;
 letter-spacing: 0.05em;
 box-shadow: 0 3px 12px rgba(234, 88, 12, 0.6);
 animation: micro-bounce 2s ease-in-out infinite;
-z-index: 4;
 }
 .btn-auxilio-float .auxilio-tooltip{
 position: absolute;
@@ -1084,7 +902,6 @@ opacity: 0;
 pointer-events: none;
 transition: all 0.3s ease;
 box-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 20px rgba(234, 88, 12, 0.3);
-z-index: 4;
 }
 .btn-auxilio-float .auxilio-tooltip::after{
 content: '';
@@ -1326,7 +1143,7 @@ transform: translateY(-1px) scale(0.98);
         justify-content: center;
         position: relative;
     }
-    #navbar a.md\:absolute{
+    #navbar a.md\\:absolute{
         position: absolute !important;
         left: 0.75rem !important;
         top: 50% !important;
@@ -1338,7 +1155,7 @@ transform: translateY(-1px) scale(0.98);
     }
 }
 @media(max-width: 475px){
-    #navbar a.md\:absolute{
+    #navbar a.md\\:absolute{
         left: 0.5rem !important;
     }
     #navbar .ml-auto{
@@ -1367,14 +1184,14 @@ transform: translateY(-1px) scale(0.98);
 
 /* TARJETAS DE SERVICIOS - 1 columna en móvil, 2 en tablet */
 @media(max-width: 768px){
-    section .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3{
+    section .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3{
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
         padding: 0 0.5rem;
     }
 }
 @media(min-width: 640px) and (max-width: 1024px){
-    section .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3{
+    section .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3{
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 1rem !important;
     }
@@ -1395,11 +1212,11 @@ transform: translateY(-1px) scale(0.98);
 
 /* BOTONES CTA - Stack vertical en móvil pequeño */
 @media(max-width: 475px){
-    .flex.flex-col.sm\:flex-row.gap-3\.5{
+    .flex.flex-col.sm\\:flex-row.gap-3\\.5{
         flex-direction: column !important;
         gap: 0.75rem !important;
     }
-    .flex.flex-col.sm\:flex-row.gap-3\.5 a{
+    .flex.flex-col.sm\\:flex-row.gap-3\\.5 a{
         width: 100%;
         justify-content: center;
     }
@@ -1407,19 +1224,19 @@ transform: translateY(-1px) scale(0.98);
 
 /* FORMULARIO - 1 columna en móvil */
 @media(max-width: 768px){
-    #diagnostico .grid.grid-cols-1.md\:grid-cols-3{
+    #diagnostico .grid.grid-cols-1.md\\:grid-cols-3{
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
     }
-    #diagnostico .grid.grid-cols-1.md\:grid-cols-2{
+    #diagnostico .grid.grid-cols-1.md\\:grid-cols-2{
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
     }
-    #diagnostico .lg\:w-1\/3,
-    #diagnostico .lg\:w-2\/3{
+    #diagnostico .lg\\:w-1\\/3,
+    #diagnostico .lg\\:w-2\\/3{
         width: 100% !important;
     }
-    #diagnostico .flex.flex-col.lg\:flex-row{
+    #diagnostico .flex.flex-col.lg\\:flex-row{
         flex-direction: column !important;
         gap: 2rem !important;
     }
@@ -1444,11 +1261,11 @@ transform: translateY(-1px) scale(0.98);
         padding: 1.5rem 1rem !important;
         margin: 0 0.5rem;
     }
-    .location-card .flex.flex-col.sm\:flex-row{
+    .location-card .flex.flex-col.sm\\:flex-row{
         flex-direction: column !important;
         gap: 0.75rem !important;
     }
-    .location-card .flex.flex-col.sm\:flex-row a{
+    .location-card .flex.flex-col.sm\\:flex-row a{
         width: 100% !important;
         justify-content: center;
     }
@@ -1462,12 +1279,12 @@ transform: translateY(-1px) scale(0.98);
 
 /* FOOTER - Apilado en móvil */
 @media(max-width: 768px){
-    footer .flex.flex-col.md\:flex-row{
+    footer .flex.flex-col.md\\:flex-row{
         flex-direction: column !important;
         text-align: center;
         gap: 1.5rem !important;
     }
-    footer .text-center.md\:text-left{
+    footer .text-center.md\\:text-left{
         text-align: center !important;
     }
     footer .flex.items-center.gap-4{
@@ -1481,12 +1298,12 @@ transform: translateY(-1px) scale(0.98);
 
 /* BOTONES FLOTANTES - Ajuste en móvil pequeño */
 @media(max-width: 475px){
-    .fixed.bottom-24.md\:bottom-8.right-4{
+    .fixed.bottom-24.md\\:bottom-8.right-4{
         bottom: 4.5rem !important;
         right: 0.5rem !important;
         gap: 0.5rem !important;
     }
-    .fixed.bottom-24.md\:bottom-8.right-4 a{
+    .fixed.bottom-24.md\\:bottom-8.right-4 a{
         padding: 0.6rem !important;
     }
 }
@@ -1592,7 +1409,7 @@ img{
 <a href="#" class="flex items-center md:absolute md:left-4 md:translate-x-0">
 <img src="SANFRANCISCO.png" alt="Taller Mecánico San Francisco de Asís Logo" class="navbar-logo">
 </a>
-<a href="#" class="absolute left-[58%] top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-base sm:text-lg md:text-xl lg:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg main-title whitespace-nowrap" data-es="Taller Mecánico San Francisco de Asís" data-en="Taller Mecánico San Francisco de Asís">Taller Mecánico San Francisco de Asís</a>
+<a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg main-title" data-es="TALLER MECANICO SAN FRANCISCO DE ASIS" data-en="TALLER MECANICO SAN FRANCISCO DE ASIS">TALLER MECANICO SAN FRANCISCO DE ASIS</a>
 <div class="ml-auto flex items-center gap-2 md:gap-3">
 <button id="langToggle" class="lang-switcher flex items-center gap-2 order-2 md:order-3"><i class="fa-solid fa-language"></i><span id="langText">EN</span></button>
 <div id="status-badge-desktop" class="hidden md:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-bronze/40 transition-all order-4">
@@ -1610,7 +1427,6 @@ img{
 
 <!-- BOTÓN FLOTANTE AUXILIO MECÁNICO 24HS - POSICIÓN CENTRAL -->
 <button class="btn-auxilio-float" id="btnAuxilio" title="Auxilio Mecánico 24hs">
-<span class="auxilio-shimmer"></span>
 <i class="fa-solid fa-truck-medical"></i>
 <span class="auxilio-badge">24HS</span>
 <span class="auxilio-tooltip"> Auxilio Mecánico 24hs</span>
@@ -1662,24 +1478,18 @@ img{
 </div>
 </div>
 
-<div class="fixed bottom-24 md:bottom-8 right-4 z-50 flex flex-col gap-3">
-<div class="float-btn-wrapper">
+<div class="fixed bottom-24 md:bottom-8 right-4 z-50 animate-float flex flex-col gap-3">
 <a href="https://api.whatsapp.com/send?phone=542664464091" target="_blank" rel="noopener noreferrer"
-class="float-btn-whatsapp bg-[#25D366] hover:bg-[#128C7E] text-white p-3.5 md:p-4 rounded-full shadow-lg transition-all flex items-center justify-center gap-2 group"
-title="Chat directo por WhatsApp">
+class="bg-[#25D366] hover:bg-[#128C7E] text-white p-3.5 md:p-4 rounded-full shadow-lg transition-all hover:scale-110 flex items-center justify-center gap-2 group"
+title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinite;">
 <i class="fa-brands fa-whatsapp text-2xl md:text-3xl"></i><span class="hidden lg:inline text-xs font-bold whitespace-nowrap">Chat</span>
 </a>
-</div>
-<div class="float-btn-wrapper">
-<a href="#diagnostico" class="float-btn-turno btn-primary px-5 py-3 md:px-7 md:py-3.5 rounded-2xl shadow-neon transition flex items-center gap-2.5 hover:shadow-glow text-sm font-semibold group">
+<a href="#diagnostico" class="btn-primary px-5 py-3 md:px-7 md:py-3.5 rounded-2xl shadow-neon transition flex items-center gap-2.5 hover:shadow-glow text-sm font-semibold group">
 <i class="fa-solid fa-calendar-check text-lg"></i><span class="hidden xs:inline" data-es="Pedir Turno" data-en="Book Appointment">Pedir Turno</span><i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
 </a>
-</div>
-<div class="float-btn-wrapper">
-<a href="https://maps.app.goo.gl/dHh615LvSqSRr3dNA" target="_blank" rel="noopener noreferrer" class="float-btn-resena btn-review px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group">
+<a href="https://maps.app.goo.gl/dHh615LvSqSRr3dNA" target="_blank" rel="noopener noreferrer" class="btn-review px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 0.5s;">
 <i class="fa-solid fa-star text-lg"></i><span class="hidden xs:inline" data-es="Deja tu Reseña" data-en="Leave Review">Deja tu Reseña</span>
 </a>
-</div>
 </div>
 
 <header class="relative pt-20 pb-20 md:pt-28 md:pb-28 lg:pt-36 lg:pb-32 min-h-screen flex items-center overflow-hidden">
@@ -1698,21 +1508,9 @@ title="Chat directo por WhatsApp">
 </div>
 </div>
 <h1 class="font-display font-black text-4xl md:text-5xl lg:text-7xl leading-tight glow-text main-title fade-in-up flex items-center gap-4" style="animation-delay: 0.2s;">
-<span data-es="DIAGNÓSTICO Y<br>MANTENIMIENTO INTEGRAL NAFTA Y DIESEL" data-en="DIAGNOSIS AND<br>INTEGRAL MAINTENANCE GASOLINE AND DIESEL">DIAGNÓSTICO Y<br><span class="gradient-text">MANTENIMIENTO INTEGRAL NAFTA Y DIESEL</span></span>
+<span data-es="DIAGNÓSTICO Y<br>MANTENIMIENTO INTEGRAL NAFTA Y DIESEL" data-en="DIAGNOSIS AND<br>INTEGRAL MAINTENANCE DIESEL AND GASOLINE">DIAGNÓSTICO Y<br><span class="gradient-text">MANTENIMIENTO INTEGRAL NAFTA Y DIESEL</span></span>
 <div class="hero-logo-wrapper">
-<img src="SANFRANCISCO.png" alt="Taller Mecánico San Francisco de Asís Logo" class="hero-logo flex-shrink-0" id="heroLogoImg">
-<!-- DESTELLO DE FUEGO - Se activa a los 5 segundos y se degrada -->
-<div class="fire-flash-overlay" id="fireFlashOverlay">
-<div class="flash-ray"></div>
-<div class="flash-ray"></div>
-<div class="flash-ray"></div>
-<div class="flash-ray"></div>
-<div class="flash-ray"></div>
-<div class="flash-ray"></div>
-<div class="flash-ray"></div>
-<div class="flash-ray"></div>
-</div>
-<div class="fire-flash-particles" id="fireFlashParticles"></div>
+<img src="SANFRANCISCO.png" alt="Taller Mecánico San Francisco de Asís Logo" class="hero-logo flex-shrink-0">
 </div>
 </h1>
 
@@ -1982,7 +1780,7 @@ title="Chat directo por WhatsApp">
 <p class="text-xs text-gray-500 mt-3 flex items-center gap-1.5"><i class="fa-solid fa-lock text-primary-orange"></i><span data-es="Tus datos se usarán únicamente para coordinar tu turno" data-en="Your data will only be used to coordinate your appointment">Tus datos se usarán únicamente para coordinar tu turno</span></p>
 </div>
 <button type="submit" class="btn-primary w-full font-bold uppercase text-base py-4.5 rounded-2xl hover:shadow-neon transition flex items-center justify-center gap-3 mt-2">
-<i class="fa-brands fa-whatsapp text-2xl"></i><span data-es="Enviar Solicitud a Taller Mecánico San Francisco de Asís" data-en="Send Request to Taller Mecánico San Francisco de Asís">Enviar Solicitud a Taller Mecánico San Francisco de Asís</span>
+<i class="fa-brands fa-whatsapp text-2xl"></i><span data-es="Enviar Solicitud a Taller Mecánico TR" data-en="Send Request to Taller Mecánico TR">Enviar Solicitud a Taller Mecánico TR</span>
 </button>
 <p class="text-center text-xs text-gray-500 pt-2"><span data-es="Al enviar, aceptas nuestros" data-en="By sending, you accept our">Al enviar, aceptas nuestros</span><a href="#" class="text-primary-orange hover:underline" data-es="términos de servicio" data-en="terms of service">términos de servicio</a></p>
 </form>
@@ -2150,6 +1948,7 @@ function checkStatus(){
 const dotDesktop= document.getElementById('status-dot-desktop');
 const textDesktop= document.getElementById('status-text-desktop');
 const barMobile= document.getElementById('status-bar-mobile');
+// Siempre abierto 24hs
 dotDesktop.className='status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-orange';
 textDesktop.textContent= currentLang=== 'es' ? 'Abierto 24hs' : 'Open 24h';
 textDesktop.className='text-primary-orange font-semibold';
@@ -2272,7 +2071,7 @@ auxilioForm?.addEventListener('submit', (e) => {
     const unitType = document.getElementById('auxilioUnitType').value || 'No especificado';
     const problem = document.getElementById('auxilioProblem').value || 'No especificado';
 
-    const message = `🚨 *¡AUXILIO MECÁNICO 24HS!* 🚨\n\n👤 *Nombre:* ${name}\n🚘 *Tipo de Unidad:* ${unitType}\n📍 *Ubicación del inconveniente:* ${location}\n⚠️ *Problema:* ${problem}\n\n📞 *Solicito auxilio mecánico urgente.`;
+    const message = `🚨 *¡AUXILIO MECÁNICO 24HS!* 🚨\n\n👤 *Nombre:* ${name}\n🚘 *Tipo de Unidad:* ${unitType}\n📍 *Ubicación del inconveniente:* ${location}\n⚠️ *Problema:* ${problem}\n\n📞 *Solicito auxilio mecánico urgente.*`;
     const whatsappUrl = `https://api.whatsapp.com/send?phone=542664464091&text=${encodeURIComponent(message)}`;
 
     setTimeout(() => {
@@ -2285,123 +2084,6 @@ auxilioForm?.addEventListener('submit', (e) => {
             closeAuxilioModal();
         }, 2000);
     }, 800);
-});
-
-// ===== DESTELLO DE FUEGO - ACTIVACIÓN A LOS 5 SEGUNDOS CON DEGRADACIÓN =====
-const fireFlashOverlay = document.getElementById('fireFlashOverlay');
-const heroLogoImg = document.getElementById('heroLogoImg');
-const fireFlashParticles = document.getElementById('fireFlashParticles');
-
-function createFireFlashParticles(){
-    if(!fireFlashParticles) return;
-    fireFlashParticles.innerHTML = '';
-    const particleCount = 20;
-    for(let i = 0; i < particleCount; i++){
-        const particle = document.createElement('div');
-        particle.className = 'fire-flash-particle';
-        particle.style.left = '50%';
-        particle.style.top = '50%';
-        const angle = (Math.PI * 2 * i) / particleCount;
-        const distance = 80 + Math.random() * 100;
-        const dx = Math.cos(angle) * distance;
-        const dy = Math.sin(angle) * distance;
-        particle.style.setProperty('--dx', dx + 'px');
-        particle.style.setProperty('--dy', dy + 'px');
-        particle.style.animationDelay = (Math.random() * 0.3) + 's';
-        fireFlashParticles.appendChild(particle);
-        setTimeout(() => {
-            particle.classList.add('burst');
-        }, 50);
-    }
-}
-
-function degradeFireFlash(){
-    if(!fireFlashOverlay || !fireFlashOverlay.classList.contains('active')) return;
-    
-    // Degradación segundo a segundo durante 5 segundos
-    let opacity = 0.85;
-    const degradationSteps = 5;
-    const stepDuration = 1000; // 1 segundo por paso
-    
-    for(let i = 1; i <= degradationSteps; i++){
-        setTimeout(() => {
-            opacity = 0.85 * (1 - i/degradationSteps);
-            if(fireFlashOverlay){
-                fireFlashOverlay.style.opacity = opacity;
-                fireFlashOverlay.style.filter = `blur(${8 + i*3}px) brightness(${1 - i*0.15})`;
-                fireFlashOverlay.style.transform = `scale(${1 + i*0.1})`;
-            }
-            if(heroLogoImg){
-                const glowIntensity = 1 - i/degradationSteps;
-                heroLogoImg.style.boxShadow = `
-                    0 0 ${60 * glowIntensity}px rgba(234, 88, 12, ${glowIntensity}), 
-                    0 0 ${120 * glowIntensity}px rgba(234, 88, 12, ${glowIntensity * 0.7}), 
-                    0 0 ${180 * glowIntensity}px rgba(245, 158, 11, ${glowIntensity * 0.5}), 
-                    0 0 ${240 * glowIntensity}px rgba(180, 83, 9, ${glowIntensity * 0.3}),
-                    inset 0 0 ${40 * glowIntensity}px rgba(234, 88, 12, ${glowIntensity * 0.5})
-                `;
-            }
-        }, i * stepDuration);
-    }
-    
-    // Al final de los 5 segundos, limpiar completamente
-    setTimeout(() => {
-        if(fireFlashOverlay){
-            fireFlashOverlay.classList.remove('active');
-            fireFlashOverlay.style.opacity = '0';
-            fireFlashOverlay.style.filter = '';
-            fireFlashOverlay.style.transform = '';
-        }
-        if(heroLogoImg){
-            heroLogoImg.classList.remove('fire-flash-active');
-            heroLogoImg.style.boxShadow = '';
-        }
-        if(fireFlashParticles){
-            fireFlashParticles.innerHTML = '';
-        }
-    }, degradationSteps * stepDuration + 500);
-}
-
-setTimeout(() => {
-    if(fireFlashOverlay && heroLogoImg){
-        // Activar destello inicial
-        fireFlashOverlay.classList.add('active');
-        heroLogoImg.classList.add('fire-flash-active');
-        createFireFlashParticles();
-        
-        // Iniciar degradación después del destello inicial (1 segundo)
-        setTimeout(() => {
-            degradeFireFlash();
-        }, 1000);
-    }
-}, 5000);
-
-// ===== MICROEFECTOS PARA BOTONES FLOTANTES =====
-// Efecto ripple en botones flotantes al hacer click
-document.querySelectorAll('.float-btn-whatsapp, .float-btn-turno, .float-btn-resena, .btn-auxilio-float').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        if(this.classList.contains('float-btn-whatsapp')){
-            this.classList.add('ripple');
-            setTimeout(() => this.classList.remove('ripple'), 600);
-        }
-    });
-    
-    // Efecto de inclinación 3D sutil al mover el mouse
-    btn.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        this.style.transform = `perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.05)`;
-    });
-    
-    btn.addEventListener('mouseleave', function() {
-        this.style.transform = '';
-    });
 });
 
 const parallaxImg= document.getElementById('parallax-img');
