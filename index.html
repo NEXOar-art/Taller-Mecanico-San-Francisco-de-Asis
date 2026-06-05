@@ -52,6 +52,7 @@ boxShadow:{
 'gold-glow':'0 0 25px rgba(245, 158, 11, 0.45)',
 'logo-glow':'0 8px 30px rgba(234, 88, 12, 0.4), 0 0 60px rgba(245, 158, 11, 0.2)',
 'auxilio-glow':'0 0 30px rgba(234, 88, 12, 0.6), 0 0 60px rgba(180, 83, 9, 0.4)',
+'tiger-fire':'0 0 50px rgba(234, 88, 12, 0.9), 0 0 100px rgba(245, 158, 11, 0.6), 0 0 150px rgba(180, 83, 9, 0.4)',
 },
 screens:{
 'xs':'475px',
@@ -66,6 +67,7 @@ animation:{
 'shimmer':'shimmer 2.5s infinite linear',
 'auxilio-pulse':'auxilio-pulse 2.5s ease-in-out infinite',
 'fire-flicker':'fire-flicker 3s ease-in-out infinite',
+'tiger-fire-pulse':'tiger-fire-pulse 3s ease-in-out infinite',
 },
 keyframes:{
 float:{
@@ -83,6 +85,16 @@ float:{
 'fire-flicker':{
 '0%, 100%':{opacity:'1', transform:'scale(1)'},
 '50%':{opacity:'0.85', transform:'scale(1.05)'},
+},
+'tiger-fire-pulse':{
+'0%, 100%':{
+filter:'drop-shadow(0 0 30px rgba(234, 88, 12, 0.8)) drop-shadow(0 0 60px rgba(245, 158, 11, 0.5)) brightness(1)',
+transform:'translate(-50%, -50%) scale(1)'
+},
+'50%':{
+filter:'drop-shadow(0 0 50px rgba(234, 88, 12, 1)) drop-shadow(0 0 90px rgba(245, 158, 11, 0.7)) drop-shadow(0 0 120px rgba(180, 83, 9, 0.4)) brightness(1.3)',
+transform:'translate(-50%, -50%) scale(1.04)'
+}
 },
 'micro-bounce':{
 '0%, 100%':{transform:'scale(1)'},
@@ -112,6 +124,7 @@ shimmer:{
 --gradient-copper: linear-gradient(135deg, #92400E 0%, #B45309 50%, #F59E0B 100%);
 --gradient-fire: linear-gradient(135deg, #EA580C 0%, #F59E0B 50%, #FDBA74 100%);
 --gradient-accent: linear-gradient(135deg, #EA580C 0%, #F59E0B 50%, #B45309 100%);
+--gradient-tiger-fire: linear-gradient(180deg, #FDBA74 0%, #F59E0B 20%, #EA580C 50%, #B45309 80%, #92400E 100%);
 }
 *{
 -webkit-tap-highlight-color: transparent;
@@ -149,12 +162,30 @@ position: relative;
 flex-shrink: 0;
 margin-left: 20px;
 margin-right: 15px;
-animation: pulse-gold 2s infinite;
 }
 
 .info-banner-icon i{
 color: #F59E0B;
 font-size: 1.5rem;
+animation: bulbFlicker 4s ease-in-out infinite;
+}
+
+@keyframes bulbFlicker {
+0%, 100% { 
+opacity: 1; 
+text-shadow: 0 0 10px #F59E0B, 0 0 20px #F59E0B, 0 0 30px #EA580C;
+transform: scale(1);
+}
+3% { opacity: 0.2; text-shadow: none; transform: scale(0.92); }
+5% { opacity: 1; text-shadow: 0 0 15px #F59E0B, 0 0 30px #F59E0B; transform: scale(1); }
+7% { opacity: 0.4; text-shadow: 0 0 5px #F59E0B; transform: scale(0.97); }
+9% { opacity: 1; text-shadow: 0 0 10px #F59E0B, 0 0 20px #F59E0B, 0 0 30px #EA580C; transform: scale(1); }
+35% { opacity: 0.95; }
+37% { opacity: 0.3; text-shadow: none; transform: scale(0.94); }
+39% { opacity: 1; text-shadow: 0 0 20px #F59E0B, 0 0 40px #EA580C; transform: scale(1.02); }
+65% { opacity: 0.9; }
+67% { opacity: 0.5; text-shadow: 0 0 5px #F59E0B; transform: scale(0.98); }
+69% { opacity: 1; text-shadow: 0 0 15px #F59E0B, 0 0 30px #F59E0B, 0 0 45px #EA580C; transform: scale(1.05); }
 }
 
 .banner-scroll-container{
@@ -489,7 +520,7 @@ transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 position: relative;
 overflow: hidden;
 background: rgba(12, 10, 9, 0.4);
-padding: 8px;
+padding: 6px;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -501,6 +532,8 @@ height: 100%;
 object-fit: contain;
 border-radius: 10px;
 display: block;
+max-width: 100%;
+max-height: 100%;
 }
 .navbar-logo::before{
 content:'';
@@ -551,7 +584,7 @@ transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 position: relative;
 overflow: hidden;
 background: rgba(12, 10, 9, 0.3);
-padding: 14px;
+padding: 12px;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -563,6 +596,8 @@ height: 100%;
 object-fit: contain;
 border-radius: 14px;
 display: block;
+max-width: 100%;
+max-height: 100%;
 }
 .hero-logo::before{
 content:'';
@@ -601,28 +636,159 @@ box-shadow: 0 0 50px rgba(234, 88, 12, 0.9), 0 0 90px rgba(234, 88, 12, 0.45), 0
 .hero-logo:hover::before{ opacity: 1; }
 .hero-logo:hover::after{ opacity: 0.9; }
 
+/* ============================================================ */
+/* ===== EFECTO FUEGO TIGRE - OVERLAY PROFESIONAL ===== */
+/* ============================================================ */
+
+.tiger-fire-overlay{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%) scale(0.7);
+width: 140%;
+height: 140%;
+pointer-events: none;
+opacity: 0;
+transition: all 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+z-index: 4;
+filter: drop-shadow(0 0 20px rgba(234, 88, 12, 0.6)) drop-shadow(0 0 40px rgba(245, 158, 11, 0.3));
+}
+
+.tiger-fire-overlay.active{
+opacity: 1;
+transform: translate(-50%, -50%) scale(1);
+animation: tigerFirePulse 3s ease-in-out infinite;
+}
+
+.tiger-fire-overlay .tiger-svg{
+width: 100%;
+height: 100%;
+}
+
+.tiger-fire-overlay .flame-layer-1{
+animation: flameWave1 2.5s ease-in-out infinite alternate;
+transform-origin: center bottom;
+}
+
+.tiger-fire-overlay .flame-layer-2{
+animation: flameWave2 3s ease-in-out infinite alternate;
+transform-origin: center bottom;
+}
+
+.tiger-fire-overlay .flame-wisps{
+animation: wispFloat 4s ease-in-out infinite;
+}
+
+@keyframes tigerFirePulse{
+0%, 100%{
+filter: drop-shadow(0 0 30px rgba(234, 88, 12, 0.8)) drop-shadow(0 0 60px rgba(245, 158, 11, 0.5)) brightness(1);
+transform: translate(-50%, -50%) scale(1);
+}
+50%{
+filter: drop-shadow(0 0 50px rgba(234, 88, 12, 1)) drop-shadow(0 0 90px rgba(245, 158, 11, 0.7)) drop-shadow(0 0 120px rgba(180, 83, 9, 0.4)) brightness(1.25);
+transform: translate(-50%, -50%) scale(1.03);
+}
+}
+
+@keyframes flameWave1{
+0%{ transform: scaleY(1) scaleX(1); opacity: 0.85; }
+50%{ transform: scaleY(1.08) scaleX(0.97); opacity: 1; }
+100%{ transform: scaleY(0.95) scaleX(1.03); opacity: 0.9; }
+}
+
+@keyframes flameWave2{
+0%{ transform: scaleY(0.95) scaleX(1.02); opacity: 0.7; }
+50%{ transform: scaleY(1.05) scaleX(0.98); opacity: 0.9; }
+100%{ transform: scaleY(1) scaleX(1); opacity: 0.75; }
+}
+
+@keyframes wispFloat{
+0%, 100%{ transform: translateY(0) rotate(0deg); opacity: 0.6; }
+25%{ transform: translateY(-5px) rotate(2deg); opacity: 0.8; }
+50%{ transform: translateY(-8px) rotate(-1deg); opacity: 0.5; }
+75%{ transform: translateY(-3px) rotate(1deg); opacity: 0.7; }
+}
+
+.hero-logo.tiger-active{
+border-color: rgba(253, 186, 116, 0.95) !important;
+box-shadow: 0 0 60px rgba(234, 88, 12, 0.9), 0 0 120px rgba(234, 88, 12, 0.5), 0 0 180px rgba(245, 158, 11, 0.3), inset 0 0 30px rgba(234, 88, 12, 0.3) !important;
+animation: tigerLogoGlow 3s ease-in-out infinite;
+}
+
+@keyframes tigerLogoGlow{
+0%, 100%{
+box-shadow: 0 0 60px rgba(234, 88, 12, 0.9), 0 0 120px rgba(234, 88, 12, 0.5), 0 0 180px rgba(245, 158, 11, 0.3), inset 0 0 30px rgba(234, 88, 12, 0.3);
+}
+50%{
+box-shadow: 0 0 80px rgba(234, 88, 12, 1), 0 0 150px rgba(234, 88, 12, 0.7), 0 0 220px rgba(245, 158, 11, 0.5), 0 0 280px rgba(180, 83, 9, 0.3), inset 0 0 40px rgba(234, 88, 12, 0.4);
+}
+}
+
+.fire-particles-container{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+overflow: visible;
+z-index: 5;
+}
+
+.fire-particle{
+position: absolute;
+width: 4px;
+height: 4px;
+border-radius: 50%;
+background: radial-gradient(circle, #FDBA74 0%, #F59E0B 40%, #EA580C 100%);
+animation: fireParticleRise 2s ease-out infinite;
+opacity: 0;
+box-shadow: 0 0 6px rgba(245, 158, 11, 0.8);
+}
+
+@keyframes fireParticleRise{
+0%{
+transform: translateY(0) translateX(0) scale(1);
+opacity: 0;
+}
+10%{
+opacity: 1;
+}
+50%{
+opacity: 0.8;
+}
+100%{
+transform: translateY(-60px) translateX(var(--drift-x, 10px)) scale(0.3);
+opacity: 0;
+}
+}
+
+/* ============================================================ */
+/* ===== FIN EFECTO FUEGO TIGRE ===== */
+/* ============================================================ */
+
 @media(max-width: 768px){ 
-    .navbar-logo{height: 50px; width: 115px; border-width: 2px; border-radius: 14px; padding: 7px;}
+    .navbar-logo{height: 50px; width: 115px; border-width: 2px; border-radius: 14px; padding: 5px;}
     .navbar-logo img{ border-radius: 9px; }
-    .hero-logo{height: 5.5rem; width: 13rem; border-radius: 16px; padding: 12px; border-width: 3px;}
+    .hero-logo{height: 5.5rem; width: 13rem; border-radius: 16px; padding: 10px; border-width: 3px;}
     .hero-logo img{ border-radius: 12px; }
 }
 @media(max-width: 640px){
-    .navbar-logo{height: 46px; width: 105px; border-radius: 13px; padding: 6px;}
+    .navbar-logo{height: 46px; width: 105px; border-radius: 13px; padding: 4px;}
     .navbar-logo img{ border-radius: 8px; }
-    .hero-logo{height: 4.5rem; width: 11rem; border-radius: 14px; padding: 10px; border-width: 2.5px;}
+    .hero-logo{height: 4.5rem; width: 11rem; border-radius: 14px; padding: 8px; border-width: 2.5px;}
     .hero-logo img{ border-radius: 10px; }
 }
 @media(max-width: 475px){
-    .navbar-logo{height: 40px; width: 90px; border-radius: 12px; padding: 5px; border-width: 2px;}
+    .navbar-logo{height: 40px; width: 90px; border-radius: 12px; padding: 4px; border-width: 2px;}
     .navbar-logo img{ border-radius: 7px; }
-    .hero-logo{height: 4rem; width: 9.5rem; border-radius: 12px; padding: 8px; border-width: 2px;}
+    .hero-logo{height: 4rem; width: 9.5rem; border-radius: 12px; padding: 7px; border-width: 2px;}
     .hero-logo img{ border-radius: 8px; }
     .hero-logo-wrapper{ margin-left: 1rem; }
 }
 @media(max-width: 380px){
-    .navbar-logo{height: 36px; width: 80px; padding: 4px;}
-    .hero-logo{height: 3.5rem; width: 8.5rem; padding: 7px;}
+    .navbar-logo{height: 36px; width: 80px; padding: 3px;}
+    .hero-logo{height: 3.5rem; width: 8.5rem; padding: 6px;}
 }
 
 .lang-switcher{
@@ -1131,7 +1297,7 @@ transform: translateY(-1px) scale(0.98);
         justify-content: center;
         position: relative;
     }
-    #navbar a.md\\:absolute{
+    #navbar a.md\:absolute{
         position: absolute !important;
         left: 0.75rem !important;
         top: 50% !important;
@@ -1143,7 +1309,7 @@ transform: translateY(-1px) scale(0.98);
     }
 }
 @media(max-width: 475px){
-    #navbar a.md\\:absolute{
+    #navbar a.md\:absolute{
         left: 0.5rem !important;
     }
     #navbar .ml-auto{
@@ -1172,14 +1338,14 @@ transform: translateY(-1px) scale(0.98);
 
 /* TARJETAS DE SERVICIOS - 1 columna en móvil, 2 en tablet */
 @media(max-width: 768px){
-    section .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3{
+    section .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3{
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
         padding: 0 0.5rem;
     }
 }
 @media(min-width: 640px) and (max-width: 1024px){
-    section .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3{
+    section .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3{
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 1rem !important;
     }
@@ -1200,11 +1366,11 @@ transform: translateY(-1px) scale(0.98);
 
 /* BOTONES CTA - Stack vertical en móvil pequeño */
 @media(max-width: 475px){
-    .flex.flex-col.sm\\:flex-row.gap-3\\.5{
+    .flex.flex-col.sm\:flex-row.gap-3\.5{
         flex-direction: column !important;
         gap: 0.75rem !important;
     }
-    .flex.flex-col.sm\\:flex-row.gap-3\\.5 a{
+    .flex.flex-col.sm\:flex-row.gap-3\.5 a{
         width: 100%;
         justify-content: center;
     }
@@ -1212,19 +1378,19 @@ transform: translateY(-1px) scale(0.98);
 
 /* FORMULARIO - 1 columna en móvil */
 @media(max-width: 768px){
-    #diagnostico .grid.grid-cols-1.md\\:grid-cols-3{
+    #diagnostico .grid.grid-cols-1.md\:grid-cols-3{
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
     }
-    #diagnostico .grid.grid-cols-1.md\\:grid-cols-2{
+    #diagnostico .grid.grid-cols-1.md\:grid-cols-2{
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
     }
-    #diagnostico .lg\\:w-1\\/3,
-    #diagnostico .lg\\:w-2\\/3{
+    #diagnostico .lg\:w-1\/3,
+    #diagnostico .lg\:w-2\/3{
         width: 100% !important;
     }
-    #diagnostico .flex.flex-col.lg\\:flex-row{
+    #diagnostico .flex.flex-col.lg\:flex-row{
         flex-direction: column !important;
         gap: 2rem !important;
     }
@@ -1249,11 +1415,11 @@ transform: translateY(-1px) scale(0.98);
         padding: 1.5rem 1rem !important;
         margin: 0 0.5rem;
     }
-    .location-card .flex.flex-col.sm\\:flex-row{
+    .location-card .flex.flex-col.sm\:flex-row{
         flex-direction: column !important;
         gap: 0.75rem !important;
     }
-    .location-card .flex.flex-col.sm\\:flex-row a{
+    .location-card .flex.flex-col.sm\:flex-row a{
         width: 100% !important;
         justify-content: center;
     }
@@ -1267,12 +1433,12 @@ transform: translateY(-1px) scale(0.98);
 
 /* FOOTER - Apilado en móvil */
 @media(max-width: 768px){
-    footer .flex.flex-col.md\\:flex-row{
+    footer .flex.flex-col.md\:flex-row{
         flex-direction: column !important;
         text-align: center;
         gap: 1.5rem !important;
     }
-    footer .text-center.md\\:text-left{
+    footer .text-center.md\:text-left{
         text-align: center !important;
     }
     footer .flex.items-center.gap-4{
@@ -1286,12 +1452,12 @@ transform: translateY(-1px) scale(0.98);
 
 /* BOTONES FLOTANTES - Ajuste en móvil pequeño */
 @media(max-width: 475px){
-    .fixed.bottom-24.md\\:bottom-8.right-4{
+    .fixed.bottom-24.md\:bottom-8.right-4{
         bottom: 4.5rem !important;
         right: 0.5rem !important;
         gap: 0.5rem !important;
     }
-    .fixed.bottom-24.md\\:bottom-8.right-4 a{
+    .fixed.bottom-24.md\:bottom-8.right-4 a{
         padding: 0.6rem !important;
     }
 }
@@ -1397,7 +1563,7 @@ img{
 <a href="#" class="flex items-center md:absolute md:left-4 md:translate-x-0">
 <img src="SANFRANCISCO.png" alt="Taller Mecánico San Francisco de Asís Logo" class="navbar-logo">
 </a>
-<a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg main-title" data-es="Taller Mecánico TR" data-en="Taller Mecánico TR">Taller Mecánico TR</a>
+<a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg main-title" data-es="Taller Mecánico San Francisco de Asís" data-en="Taller Mecánico San Francisco de Asís">Taller Mecánico San Francisco de Asís</a>
 <div class="ml-auto flex items-center gap-2 md:gap-3">
 <button id="langToggle" class="lang-switcher flex items-center gap-2 order-2 md:order-3"><i class="fa-solid fa-language"></i><span id="langText">EN</span></button>
 <div id="status-badge-desktop" class="hidden md:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-bronze/40 transition-all order-4">
@@ -1496,9 +1662,180 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 </div>
 <h1 class="font-display font-black text-4xl md:text-5xl lg:text-7xl leading-tight glow-text main-title fade-in-up flex items-center gap-4" style="animation-delay: 0.2s;">
-<span data-es="DIAGNÓSTICO Y<br>MANTENIMIENTO INTEGRAL" data-en="DIAGNOSIS AND<br>INTEGRAL MAINTENANCE">DIAGNÓSTICO Y<br><span class="gradient-text">MANTENIMIENTO INTEGRAL</span></span>
+<span data-es="DIAGNÓSTICO Y<br>MANTENIMIENTO INTEGRAL NAFTA Y DIESEL" data-en="DIAGNOSIS AND<br>INTEGRAL MAINTENANCE GASOLINE AND DIESEL">DIAGNÓSTICO Y<br><span class="gradient-text">MANTENIMIENTO INTEGRAL NAFTA Y DIESEL</span></span>
 <div class="hero-logo-wrapper">
-<img src="SANFRANCISCO.png" alt="Taller Mecánico San Francisco de Asís Logo" class="hero-logo flex-shrink-0">
+<img src="SANFRANCISCO.png" alt="Taller Mecánico San Francisco de Asís Logo" class="hero-logo flex-shrink-0" id="heroLogoImg">
+<!-- EFECTO FUEGO TIGRE OVERLAY -->
+<div class="tiger-fire-overlay" id="tigerFireOverlay">
+<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" class="tiger-svg">
+<defs>
+<linearGradient id="tigerFireGrad1" x1="0%" y1="100%" x2="0%" y2="0%">
+<stop offset="0%" style="stop-color:#7C2D12;stop-opacity:1" />
+<stop offset="25%" style="stop-color:#92400E;stop-opacity:1" />
+<stop offset="50%" style="stop-color:#B45309;stop-opacity:1" />
+<stop offset="75%" style="stop-color:#EA580C;stop-opacity:1" />
+<stop offset="100%" style="stop-color:#FDBA74;stop-opacity:0.9" />
+</linearGradient>
+<linearGradient id="tigerFireGrad2" x1="0%" y1="100%" x2="0%" y2="0%">
+<stop offset="0%" style="stop-color:#B45309;stop-opacity:0.9" />
+<stop offset="40%" style="stop-color:#EA580C;stop-opacity:1" />
+<stop offset="70%" style="stop-color:#F59E0B;stop-opacity:1" />
+<stop offset="100%" style="stop-color:#FEF3C7;stop-opacity:0.8" />
+</linearGradient>
+<linearGradient id="tigerFireGrad3" x1="0%" y1="100%" x2="0%" y2="0%">
+<stop offset="0%" style="stop-color:#EA580C;stop-opacity:0.7" />
+<stop offset="50%" style="stop-color:#F59E0B;stop-opacity:0.9" />
+<stop offset="100%" style="stop-color:#FDBA74;stop-opacity:0.6" />
+</linearGradient>
+<filter id="tigerFireDistort">
+<feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="4" seed="3" result="turbulence">
+<animate attributeName="baseFrequency" values="0.012;0.018;0.012" dur="4s" repeatCount="indefinite"/>
+<animate attributeName="seed" from="1" to="100" dur="8s" repeatCount="indefinite"/>
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="turbulence" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+<filter id="tigerFireGlow">
+<feGaussianBlur stdDeviation="3" result="blur"/>
+<feMerge>
+<feMergeNode in="blur"/>
+<feMergeNode in="blur"/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+<filter id="tigerFireGlowIntense">
+<feGaussianBlur stdDeviation="5" result="blur"/>
+<feMerge>
+<feMergeNode in="blur"/>
+<feMergeNode in="blur"/>
+<feMergeNode in="blur"/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+</defs>
+
+<!-- Capa exterior de llamas - Silueta completa del tigre -->
+<g filter="url(#tigerFireDistort)" class="flame-layer-1">
+<!-- Cabeza principal -->
+<path d="M120,35 C78,35 45,65 42,105 C40,122 44,135 50,148 L35,178 L65,162 C80,178 100,188 120,188 C140,188 160,178 175,162 L205,178 L190,148 C196,135 200,122 198,105 C195,65 162,35 120,35 Z" 
+fill="url(#tigerFireGrad1)" opacity="0.85"/>
+<!-- Orejas con llamas extendidas -->
+<path d="M72,50 L55,15 L88,42 Z" fill="url(#tigerFireGrad1)" opacity="0.9"/>
+<path d="M168,50 L185,15 L152,42 Z" fill="url(#tigerFireGrad1)" opacity="0.9"/>
+<!-- Llamas superiores de la cabeza -->
+<path d="M90,30 Q85,10 95,5 Q92,20 100,32 Z" fill="url(#tigerFireGrad3)" opacity="0.7"/>
+<path d="M150,30 Q155,10 145,5 Q148,20 140,32 Z" fill="url(#tigerFireGrad3)" opacity="0.7"/>
+<path d="M120,28 Q118,5 125,0 Q122,15 120,28 Z" fill="url(#tigerFireGrad3)" opacity="0.6"/>
+</g>
+
+<!-- Capa media de llamas -->
+<g filter="url(#tigerFireGlow)" class="flame-layer-2">
+<path d="M120,48 C85,48 58,72 55,108 C53,122 56,132 62,142 L50,165 L72,155 C85,168 102,176 120,176 C138,176 155,168 168,155 L190,165 L178,142 C184,132 187,122 185,108 C182,72 155,48 120,48 Z" 
+fill="url(#tigerFireGrad2)" opacity="0.9"/>
+<!-- Orejas internas -->
+<path d="M78,55 L65,28 L92,48 Z" fill="url(#tigerFireGrad2)" opacity="0.85"/>
+<path d="M162,55 L175,28 L148,48 Z" fill="url(#tigerFireGrad2)" opacity="0.85"/>
+</g>
+
+<!-- Detalles faciales del tigre -->
+<g filter="url(#tigerFireGlowIntense)" class="tiger-details">
+<!-- Ojos feroces brillantes -->
+<g>
+<path d="M85,98 L102,90 L102,106 Z" fill="#FEF3C7" opacity="0.95">
+<animate attributeName="opacity" values="0.95;0.6;0.95" dur="1.8s" repeatCount="indefinite"/>
+</path>
+<circle cx="95" cy="98" r="3" fill="#FDBA74">
+<animate attributeName="r" values="3;4;3" dur="1.8s" repeatCount="indefinite"/>
+</circle>
+</g>
+<g>
+<path d="M155,98 L138,90 L138,106 Z" fill="#FEF3C7" opacity="0.95">
+<animate attributeName="opacity" values="0.95;0.6;0.95" dur="1.8s" repeatCount="indefinite"/>
+</path>
+<circle cx="145" cy="98" r="3" fill="#FDBA74">
+<animate attributeName="r" values="3;4;3" dur="1.8s" repeatCount="indefinite"/>
+</circle>
+</g>
+
+<!-- Ceño fruncido - expresión agresiva -->
+<path d="M80,85 Q90,80 100,85" stroke="#7C2D12" stroke-width="2.5" fill="none" opacity="0.6"/>
+<path d="M160,85 Q150,80 140,85" stroke="#7C2D12" stroke-width="2.5" fill="none" opacity="0.6"/>
+
+<!-- Nariz -->
+<path d="M112,118 L128,118 L120,128 Z" fill="#451A03" opacity="0.9"/>
+
+<!-- Boca rugiendo con colmillos -->
+<path d="M88,138 Q120,168 152,138 Q145,160 120,168 Q95,160 88,138 Z" fill="#1C0A00" opacity="0.95"/>
+<!-- Colmillos superiores -->
+<path d="M98,138 L102,155 L107,138 Z" fill="#FEF3C7" opacity="0.95"/>
+<path d="M133,138 L138,155 L143,138 Z" fill="#FEF3C7" opacity="0.95"/>
+<!-- Colmillos inferiores -->
+<path d="M108,155 L112,145 L116,155 Z" fill="#FDBA74" opacity="0.8"/>
+<path d="M124,155 L128,145 L132,155 Z" fill="#FDBA74" opacity="0.8"/>
+
+<!-- Rayas del tigre - características -->
+<path d="M82,70 Q88,82 82,94" stroke="#451A03" stroke-width="3.5" fill="none" opacity="0.55" stroke-linecap="round"/>
+<path d="M158,70 Q152,82 158,94" stroke="#451A03" stroke-width="3.5" fill="none" opacity="0.55" stroke-linecap="round"/>
+<path d="M72,100 Q78,108 72,116" stroke="#451A03" stroke-width="3" fill="none" opacity="0.45" stroke-linecap="round"/>
+<path d="M168,100 Q162,108 168,116" stroke="#451A03" stroke-width="3" fill="none" opacity="0.45" stroke-linecap="round"/>
+<path d="M105,130 Q120,135 135,130" stroke="#451A03" stroke-width="2.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+<!-- Rayas frontales -->
+<path d="M110,60 Q115,68 110,76" stroke="#451A03" stroke-width="2.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+<path d="M130,60 Q125,68 130,76" stroke="#451A03" stroke-width="2.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+</g>
+
+<!-- Llamas y chispas alrededor del tigre -->
+<g class="flame-wisps">
+<!-- Llamas laterales izquierdas -->
+<path d="M38,85 Q25,60 32,35 Q36,58 45,78 Z" fill="#F59E0B" opacity="0.6">
+<animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.2s" repeatCount="indefinite"/>
+<animate attributeName="d" values="M38,85 Q25,60 32,35 Q36,58 45,78 Z;M38,85 Q22,55 30,30 Q35,55 45,78 Z;M38,85 Q25,60 32,35 Q36,58 45,78 Z" dur="3s" repeatCount="indefinite"/>
+</path>
+<!-- Llamas laterales derechas -->
+<path d="M202,85 Q215,60 208,35 Q204,58 195,78 Z" fill="#F59E0B" opacity="0.6">
+<animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.5s" repeatCount="indefinite"/>
+<animate attributeName="d" values="M202,85 Q215,60 208,35 Q204,58 195,78 Z;M202,85 Q218,55 210,30 Q205,55 195,78 Z;M202,85 Q215,60 208,35 Q204,58 195,78 Z" dur="3.2s" repeatCount="indefinite"/>
+</path>
+<!-- Llama central superior -->
+<path d="M120,25 Q115,5 120,-8 Q125,5 120,25 Z" fill="#FDBA74" opacity="0.7">
+<animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.8s" repeatCount="indefinite"/>
+<animate attributeName="d" values="M120,25 Q115,5 120,-8 Q125,5 120,25 Z;M120,25 Q112,0 120,-15 Q128,0 120,25 Z;M120,25 Q115,5 120,-8 Q125,5 120,25 Z" dur="2.5s" repeatCount="indefinite"/>
+</path>
+<!-- Llamas pequeñas adicionales -->
+<path d="M55,45 Q48,30 52,18 Q55,32 60,42 Z" fill="#EA580C" opacity="0.5">
+<animate attributeName="opacity" values="0.5;0.15;0.5" dur="2s" repeatCount="indefinite"/>
+</path>
+<path d="M185,45 Q192,30 188,18 Q185,32 180,42 Z" fill="#EA580C" opacity="0.5">
+<animate attributeName="opacity" values="0.5;0.15;0.5" dur="2.3s" repeatCount="indefinite"/>
+</path>
+</g>
+
+<!-- Chispas de fuego flotantes -->
+<g class="fire-sparks">
+<circle cx="45" cy="70" r="2" fill="#FDBA74" opacity="0.8">
+<animate attributeName="cy" values="70;40;70" dur="3s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.8;0;0.8" dur="3s" repeatCount="indefinite"/>
+</circle>
+<circle cx="195" cy="75" r="1.5" fill="#F59E0B" opacity="0.7">
+<animate attributeName="cy" values="75;45;75" dur="2.8s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.7;0;0.7" dur="2.8s" repeatCount="indefinite"/>
+</circle>
+<circle cx="120" cy="15" r="2.5" fill="#FDBA74" opacity="0.9">
+<animate attributeName="cy" values="15;-15;15" dur="2.5s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.9;0;0.9" dur="2.5s" repeatCount="indefinite"/>
+</circle>
+<circle cx="80" cy="35" r="1.5" fill="#EA580C" opacity="0.6">
+<animate attributeName="cy" values="35;10;35" dur="3.2s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.6;0;0.6" dur="3.2s" repeatCount="indefinite"/>
+</circle>
+<circle cx="160" cy="30" r="2" fill="#F59E0B" opacity="0.7">
+<animate attributeName="cy" values="30;5;30" dur="2.7s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0.7;0;0.7" dur="2.7s" repeatCount="indefinite"/>
+</circle>
+</g>
+</svg>
+<!-- Partículas de fuego adicionales -->
+<div class="fire-particles-container" id="fireParticles"></div>
+</div>
 </div>
 </h1>
 
@@ -1768,7 +2105,7 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 <p class="text-xs text-gray-500 mt-3 flex items-center gap-1.5"><i class="fa-solid fa-lock text-primary-orange"></i><span data-es="Tus datos se usarán únicamente para coordinar tu turno" data-en="Your data will only be used to coordinate your appointment">Tus datos se usarán únicamente para coordinar tu turno</span></p>
 </div>
 <button type="submit" class="btn-primary w-full font-bold uppercase text-base py-4.5 rounded-2xl hover:shadow-neon transition flex items-center justify-center gap-3 mt-2">
-<i class="fa-brands fa-whatsapp text-2xl"></i><span data-es="Enviar Solicitud a Taller Mecánico TR" data-en="Send Request to Taller Mecánico TR">Enviar Solicitud a Taller Mecánico TR</span>
+<i class="fa-brands fa-whatsapp text-2xl"></i><span data-es="Enviar Solicitud a Taller Mecánico San Francisco de Asís" data-en="Send Request to Taller Mecánico San Francisco de Asís">Enviar Solicitud a Taller Mecánico San Francisco de Asís</span>
 </button>
 <p class="text-center text-xs text-gray-500 pt-2"><span data-es="Al enviar, aceptas nuestros" data-en="By sending, you accept our">Al enviar, aceptas nuestros</span><a href="#" class="text-primary-orange hover:underline" data-es="términos de servicio" data-en="terms of service">términos de servicio</a></p>
 </form>
@@ -1852,7 +2189,7 @@ Lunes a Domingo las 24hs
 <div class="container mx-auto px-4">
 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
 <div class="text-center md:text-left">
-<p class="mb-2 text-white font-display font-bold text-xl md:text-2xl glow-text tracking-tight main-title">Taller Mecánico TR</p>
+<p class="mb-2 text-white font-display font-bold text-xl md:text-2xl glow-text tracking-tight main-title">Taller Mecánico San Francisco de Asís</p>
 <p class="text-sm" data-es="Diagnóstico Automotriz Profesional" data-en="Professional Automotive Diagnosis">Diagnóstico Automotriz Profesional</p>
 <div class="mt-3 text-xs text-gray-400 space-y-2">
 <p>
@@ -1931,6 +2268,26 @@ container.appendChild(particle);
 }
 }
 createParticles();
+
+// ===== CREAR PARTÍCULAS DE FUEGO PARA EL TIGRE =====
+function createFireParticles(){
+const container = document.getElementById('fireParticles');
+if(!container) return;
+for(let i=0; i<12; i++){
+const particle = document.createElement('div');
+particle.className = 'fire-particle';
+const startX = 20 + Math.random() * 60;
+const startY = 40 + Math.random() * 40;
+particle.style.left = startX + '%';
+particle.style.top = startY + '%';
+particle.style.setProperty('--drift-x', (Math.random() * 30 - 15) + 'px');
+particle.style.animationDelay = (Math.random() * 2) + 's';
+particle.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+particle.style.width = (2 + Math.random() * 4) + 'px';
+particle.style.height = particle.style.width;
+container.appendChild(particle);
+}
+}
 
 function checkStatus(){
 const dotDesktop= document.getElementById('status-dot-desktop');
@@ -2073,6 +2430,20 @@ auxilioForm?.addEventListener('submit', (e) => {
         }, 2000);
     }, 800);
 });
+
+// ===== EFECTO FUEGO TIGRE - ACTIVACIÓN DESPUÉS DE 5 SEGUNDOS =====
+const tigerFireOverlay = document.getElementById('tigerFireOverlay');
+const heroLogoImg = document.getElementById('heroLogoImg');
+
+setTimeout(() => {
+    if(tigerFireOverlay){
+        createFireParticles();
+        tigerFireOverlay.classList.add('active');
+        if(heroLogoImg){
+            heroLogoImg.classList.add('tiger-active');
+        }
+    }
+}, 5000);
 
 const parallaxImg= document.getElementById('parallax-img');
 if(parallaxImg){
