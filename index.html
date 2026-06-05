@@ -1409,7 +1409,7 @@ img{
 <a href="#" class="flex items-center md:absolute md:left-4 md:translate-x-0">
 <img src="SANFRANCISCO.png" alt="Taller Mecánico San Francisco de Asís Logo" class="navbar-logo">
 </a>
-<a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg main-title" data-es="TALLER MECANICO SAN FRANCISCO DE ASIS" data-en="TALLER MECANICO SAN FRANCISCO DE ASIS">TALLER MECANICO SAN FRANCISCO DE ASIS</a>
+<a href="#" class="absolute left-[58%] top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg main-title" data-es="TALLER MECANICO SAN FRANCISCO DE ASIS" data-en="TALLER MECANICO SAN FRANCISCO DE ASIS">TALLER MECANICO SAN FRANCISCO DE ASIS</a>
 <div class="ml-auto flex items-center gap-2 md:gap-3">
 <button id="langToggle" class="lang-switcher flex items-center gap-2 order-2 md:order-3"><i class="fa-solid fa-language"></i><span id="langText">EN</span></button>
 <div id="status-badge-desktop" class="hidden md:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-bronze/40 transition-all order-4">
@@ -2071,7 +2071,7 @@ auxilioForm?.addEventListener('submit', (e) => {
     const unitType = document.getElementById('auxilioUnitType').value || 'No especificado';
     const problem = document.getElementById('auxilioProblem').value || 'No especificado';
 
-    const message = `🚨 *¡AUXILIO MECÁNICO 24HS!* 🚨\n\n👤 *Nombre:* ${name}\n🚘 *Tipo de Unidad:* ${unitType}\n📍 *Ubicación del inconveniente:* ${location}\n⚠️ *Problema:* ${problem}\n\n📞 *Solicito auxilio mecánico urgente.*`;
+    const message = `🚨 *¡AUXILIO MECÁNICO 24HS!* 🚨\n\n👤 *Nombre:* ${name}\n🚘 *Tipo de Unidad:* ${unitType}\n📍 *Ubicación del inconveniente:* ${location}\n⚠️ *Problema:* ${problem}\n\n📞 *Solicito auxilio mecánico urgente.`;
     const whatsappUrl = `https://api.whatsapp.com/send?phone=542664464091&text=${encodeURIComponent(message)}`;
 
     setTimeout(() => {
