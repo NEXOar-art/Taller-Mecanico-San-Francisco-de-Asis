@@ -64,6 +64,7 @@ animation:{
 'micro-bounce':'micro-bounce 0.6s ease-in-out',
 'micro-tilt':'micro-tilt 0.3s ease-out',
 'shimmer':'shimmer 2.5s infinite linear',
+'auxilio-pulse':'auxilio-pulse 2.5s ease-in-out infinite',
 },
 keyframes:{
 float:{
@@ -73,6 +74,10 @@ float:{
 'pulse-urgent':{
 '0%, 100%':{boxShadow:'0 0 0 0 rgba(251, 191, 36, 0.4), 0 0 20px rgba(245, 158, 11, 0.3)'},
 '50%':{boxShadow:'0 0 0 12px rgba(251, 191, 36, 0), 0 0 35px rgba(245, 158, 11, 0.6)'},
+},
+'auxilio-pulse':{
+'0%, 100%':{boxShadow:'0 0 0 0 rgba(239, 68, 68, 0.5), 0 0 20px rgba(239, 68, 68, 0.3), 0 0 40px rgba(245, 158, 11, 0.2)'},
+'50%':{boxShadow:'0 0 0 15px rgba(239, 68, 68, 0), 0 0 40px rgba(239, 68, 68, 0.5), 0 0 60px rgba(245, 158, 11, 0.4)'},
 },
 'micro-bounce':{
 '0%, 100%':{transform:'scale(1)'},
@@ -101,6 +106,7 @@ shimmer:{
 --gradient-green-glow: linear-gradient(135deg, rgba(34,197,94,0.3) 0%, rgba(16,185,129,0.1) 100%);
 --gradient-gold: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #F59E0B 100%);
 --gradient-accent: linear-gradient(135deg, #3B82F6 0%, #06B6D4 50%, #22C55E 100%);
+--gradient-auxilio: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);
 }
 *{
 -webkit-tap-highlight-color: transparent;
@@ -792,6 +798,274 @@ transition: transform 0.3s ease;
 }
 
 /* ============================================================ */
+/* ===== BOTÓN AUXILIO MECÁNICO 24HS ===== */
+/* ============================================================ */
+
+.btn-auxilio-float{
+position: fixed;
+bottom: 10rem;
+right: 1rem;
+z-index: 60;
+width: 68px;
+height: 68px;
+border-radius: 50%;
+background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);
+border: 2.5px solid rgba(255, 255, 255, 0.25);
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+animation: auxilio-pulse 2.5s ease-in-out infinite;
+box-shadow: 0 0 25px rgba(239, 68, 68, 0.5), 0 0 50px rgba(245, 158, 11, 0.3);
+}
+.btn-auxilio-float::before{
+content: '';
+position: absolute;
+top: -4px; left: -4px; right: -4px; bottom: -4px;
+border-radius: 50%;
+background: linear-gradient(135deg, rgba(239,68,68,0.4) 0%, rgba(245,158,11,0.3) 100%);
+filter: blur(8px);
+opacity: 0.6;
+animation: auxilio-pulse 2.5s ease-in-out infinite;
+z-index: -1;
+}
+.btn-auxilio-float:hover{
+transform: scale(1.15) translateY(-4px);
+box-shadow: 0 0 40px rgba(239, 68, 68, 0.7), 0 0 70px rgba(245, 158, 11, 0.5);
+border-color: rgba(255, 255, 255, 0.5);
+}
+.btn-auxilio-float:active{
+transform: scale(1.05);
+}
+.btn-auxilio-float i{
+font-size: 1.6rem;
+color: #fff;
+text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+transition: transform 0.3s ease;
+}
+.btn-auxilio-float:hover i{
+transform: scale(1.1) rotate(-10deg);
+}
+.btn-auxilio-float .auxilio-badge{
+position: absolute;
+top: -6px;
+right: -6px;
+background: #FBBF24;
+color: #0A0A0A;
+font-size: 0.55rem;
+font-weight: 800;
+padding: 2px 6px;
+border-radius: 10px;
+border: 1.5px solid rgba(255,255,255,0.3);
+text-transform: uppercase;
+letter-spacing: 0.05em;
+box-shadow: 0 2px 8px rgba(245, 158, 11, 0.5);
+animation: micro-bounce 2s ease-in-out infinite;
+}
+.btn-auxilio-float .auxilio-tooltip{
+position: absolute;
+right: calc(100% + 12px);
+top: 50%;
+transform: translateY(-50%);
+background: rgba(10, 10, 10, 0.95);
+border: 1px solid rgba(245, 158, 11, 0.4);
+color: #fff;
+font-size: 0.75rem;
+font-weight: 600;
+padding: 6px 12px;
+border-radius: 10px;
+white-space: nowrap;
+opacity: 0;
+pointer-events: none;
+transition: all 0.3s ease;
+box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+.btn-auxilio-float .auxilio-tooltip::after{
+content: '';
+position: absolute;
+top: 50%;
+right: -6px;
+transform: translateY(-50%);
+border-left: 6px solid rgba(245, 158, 11, 0.4);
+border-top: 6px solid transparent;
+border-bottom: 6px solid transparent;
+}
+.btn-auxilio-float:hover .auxilio-tooltip{
+opacity: 1;
+transform: translateY(-50%) translateX(-4px);
+}
+
+@media(max-width: 768px){
+.btn-auxilio-float{
+bottom: 7.5rem;
+right: 0.75rem;
+width: 58px;
+height: 58px;
+}
+.btn-auxilio-float i{ font-size: 1.3rem; }
+.btn-auxilio-float .auxilio-badge{ font-size: 0.5rem; padding: 1.5px 5px; }
+.btn-auxilio-float .auxilio-tooltip{ display: none; }
+}
+@media(max-width: 475px){
+.btn-auxilio-float{
+bottom: 6.5rem;
+right: 0.5rem;
+width: 52px;
+height: 52px;
+}
+.btn-auxilio-float i{ font-size: 1.15rem; }
+}
+
+/* MODAL AUXILIO */
+.auxilio-modal-overlay{
+position: fixed;
+top: 0; left: 0; right: 0; bottom: 0;
+background: rgba(0, 0, 0, 0.75);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+z-index: 2000;
+display: flex;
+align-items: center;
+justify-content: center;
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.35s ease;
+padding: 1rem;
+}
+.auxilio-modal-overlay.active{
+opacity: 1;
+pointer-events: all;
+}
+.auxilio-modal{
+background: linear-gradient(145deg, rgba(38, 38, 38, 0.98), rgba(23, 23, 23, 0.99));
+border: 1px solid rgba(239, 68, 68, 0.3);
+border-radius: 24px;
+max-width: 480px;
+width: 100%;
+max-height: 90vh;
+overflow-y: auto;
+padding: 2rem;
+position: relative;
+transform: scale(0.9) translateY(20px);
+transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 0 40px rgba(239, 68, 68, 0.15);
+}
+.auxilio-modal-overlay.active .auxilio-modal{
+transform: scale(1) translateY(0);
+}
+.auxilio-modal::before{
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+background: linear-gradient(90deg, #EF4444, #F59E0B, #EF4444);
+border-radius: 24px 24px 0 0;
+}
+.auxilio-modal-close{
+position: absolute;
+top: 1rem;
+right: 1rem;
+width: 36px;
+height: 36px;
+border-radius: 50%;
+background: rgba(255,255,255,0.08);
+border: 1px solid rgba(255,255,255,0.15);
+color: #fff;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: all 0.3s ease;
+font-size: 1rem;
+z-index: 10;
+}
+.auxilio-modal-close:hover{
+background: rgba(239, 68, 68, 0.3);
+border-color: rgba(239, 68, 68, 0.5);
+transform: rotate(90deg);
+}
+.auxilio-modal-header{
+text-align: center;
+margin-bottom: 1.5rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.auxilio-modal-icon{
+width: 60px;
+height: 60px;
+border-radius: 50%;
+background: linear-gradient(135deg, rgba(239,68,68,0.2) 0%, rgba(245,158,11,0.15) 100%);
+border: 2px solid rgba(239, 68, 68, 0.4);
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 0.75rem;
+animation: auxilio-pulse 2.5s ease-in-out infinite;
+}
+.auxilio-modal-icon i{
+font-size: 1.5rem;
+color: #EF4444;
+}
+.auxilio-modal-title{
+font-family: 'Space Grotesk', sans-serif;
+font-weight: 700;
+font-size: 1.3rem;
+color: #fff;
+margin-bottom: 0.25rem;
+}
+.auxilio-modal-subtitle{
+font-size: 0.8rem;
+color: rgba(226, 232, 240, 0.6);
+}
+.auxilio-modal .input-modern{
+background: rgba(10, 10, 10, 0.6);
+border-color: rgba(255,255,255,0.1);
+}
+.auxilio-modal .input-modern:focus{
+border-color: #EF4444;
+box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2), 0 0 15px rgba(239, 68, 68, 0.1);
+}
+.auxilio-modal .label-below{
+color: #F59E0B;
+}
+.auxilio-modal .label-below:focus-within,
+.auxilio-modal .input-modern:focus + .label-below{
+color: #EF4444;
+}
+.btn-auxilio-submit{
+background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);
+color: #fff;
+font-weight: 700;
+letter-spacing: 0.02em;
+position: relative;
+overflow: hidden;
+transition: all 0.35s ease;
+width: 100%;
+padding: 1rem;
+border-radius: 16px;
+border: none;
+cursor: pointer;
+text-transform: uppercase;
+font-size: 0.9rem;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+}
+.btn-auxilio-submit:hover{
+transform: translateY(-3px);
+box-shadow: 0 12px 35px rgba(239, 68, 68, 0.4), 0 0 25px rgba(245, 158, 11, 0.3);
+}
+.btn-auxilio-submit:active{
+transform: translateY(-1px) scale(0.98);
+}
+
+/* ============================================================ */
+/* ===== FIN BOTÓN AUXILIO MECÁNICO ===== */
+/* ============================================================ */
+
+/* ============================================================ */
 /* ===== RESPONSIVIDAD MEJORADA PARA MÓVIL Y TABLET ===== */
 /* ============================================================ */
 
@@ -1081,7 +1355,7 @@ img{
 <span class="banner-divider">|</span>
 <div class="banner-item"><i class="fa-solid fa-oil-can"></i><span>Aceite de calidad cada 10.000 km = vida útil prolongada</span><i class="fa-solid fa-gears"></i></div>
 <span class="banner-divider">|</span>
-<div class="banner-whatsapp"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp: 02995570772</span></div>
+<div class="banner-whatsapp"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp: 02664464091</span></div>
 <span class="banner-divider">|</span>
 <div class="banner-item"><i class="fa-solid fa-hand-pointer"></i><span>Tres hábitos simples = menos consumo, menos fallas y más años de motor</span><i class="fa-solid fa-circle-check"></i></div>
 </div>
@@ -1101,7 +1375,7 @@ img{
 <button id="langToggle" class="lang-switcher flex items-center gap-2 order-2 md:order-3"><i class="fa-solid fa-language"></i><span id="langText">EN</span></button>
 <div id="status-badge-desktop" class="hidden md:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-green/40 transition-all order-4">
 <span id="status-dot-desktop" class="status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-green"></span>
-<span id="status-text-desktop" class="text-primary-green font-semibold" data-es="Abierto" data-en="Open">Abierto</span>
+<span id="status-text-desktop" class="text-primary-green font-semibold" data-es="Abierto 24hs" data-en="Open 24h">Abierto 24hs</span>
 </div>
 <div class="hidden md:flex items-center gap-3 lg:gap-5 order-5">
 <a href="#asesoramiento" class="text-gray-300 hover:text-primary-green transition text-sm lg:text-base font-medium relative group" data-es="Asesoramiento" data-en="Consultation">Asesoramiento<span class="absolute bottom-1 left-0 w-0 h-0.5 bg-primary-green transition-all group-hover:w-full"></span></a>
@@ -1109,11 +1383,64 @@ img{
 </div>
 </div>
 </div>
-<div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-white bg-gradient-to-r from-primary-green/20 to-green-700/20" data-es="🟢 Abierto - Atención Profesional" data-en="🟢 Open - Professional Service">🟢 Abierto - Atención Profesional</div>
+<div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-white bg-gradient-to-r from-primary-green/20 to-green-700/20" data-es="🟢 Abierto 24hs - Atención Profesional" data-en="🟢 Open 24h - Professional Service">🟢 Abierto 24hs - Atención Profesional</div>
 </nav>
 
+<!-- BOTÓN FLOTANTE AUXILIO MECÁNICO 24HS -->
+<button class="btn-auxilio-float" id="btnAuxilio" title="Auxilio Mecánico 24hs">
+<i class="fa-solid fa-truck-medical"></i>
+<span class="auxilio-badge">24HS</span>
+<span class="auxilio-tooltip">🚨 Auxilio Mecánico 24hs</span>
+</button>
+
+<!-- MODAL AUXILIO MECÁNICO -->
+<div class="auxilio-modal-overlay" id="auxilioModal">
+<div class="auxilio-modal">
+<button class="auxilio-modal-close" id="auxilioClose"><i class="fa-solid fa-xmark"></i></button>
+<div class="auxilio-modal-header">
+<div class="auxilio-modal-icon">
+<i class="fa-solid fa-truck-medical"></i>
+</div>
+<h3 class="auxilio-modal-title">🚨 Auxilio Mecánico 24hs</h3>
+<p class="auxilio-modal-subtitle">Completá el formulario y te contactamos de inmediato</p>
+</div>
+<form id="auxilioForm" class="space-y-5">
+<div>
+<input type="text" id="auxilioLocation" placeholder="Ej: Ruta 1 km 45, o Av. Lafinur y 25 de Mayo..." class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required>
+<label for="auxilioLocation" class="label-below"><span>¿Dónde tuviste el inconveniente?</span><span class="required">*</span></label>
+</div>
+<div>
+<input type="text" id="auxilioName" placeholder="Tu nombre completo" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required>
+<label for="auxilioName" class="label-below"><span>Nombre</span><span class="required">*</span></label>
+</div>
+<div>
+<select id="auxilioUnitType" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm appearance-none" required>
+<option value="" disabled selected>Tipo de unidad...</option>
+<option value="Auto">Auto</option>
+<option value="Camioneta">Camioneta</option>
+<option value="Transporte Pesado">Transporte Pesado</option>
+</select>
+<label for="auxilioUnitType" class="label-below"><span>Tipo de Unidad</span><span class="required">*</span></label>
+<i class="fa-solid fa-chevron-down absolute right-4 top-[10.5rem] -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
+</div>
+<div>
+<textarea id="auxilioProblem" rows="3" placeholder="Describí el problema: no arranca, pinchadura, sobrecalentamiento..." class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm resize-none" required></textarea>
+<label for="auxilioProblem" class="label-below"><span>Explicá el problema</span><span class="required">*</span></label>
+</div>
+<button type="submit" class="btn-auxilio-submit">
+<i class="fa-brands fa-whatsapp text-xl"></i>
+<span>Enviar Solicitud de Auxilio</span>
+</button>
+<p class="text-center text-xs text-gray-500 pt-1 flex items-center justify-center gap-1.5">
+<i class="fa-solid fa-clock text-[#F59E0B]"></i>
+<span>Respuesta inmediata - Atención las 24hs</span>
+</p>
+</form>
+</div>
+</div>
+
 <div class="fixed bottom-24 md:bottom-8 right-4 z-50 animate-float flex flex-col gap-3">
-<a href="https://api.whatsapp.com/send?phone=542995570772" target="_blank" rel="noopener noreferrer"
+<a href="https://api.whatsapp.com/send?phone=542664464091" target="_blank" rel="noopener noreferrer"
 class="bg-[#25D366] hover:bg-[#128C7E] text-white p-3.5 md:p-4 rounded-full shadow-lg transition-all hover:scale-110 flex items-center justify-center gap-2 group"
 title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinite;">
 <i class="fa-brands fa-whatsapp text-2xl md:text-3xl"></i><span class="hidden lg:inline text-xs font-bold whitespace-nowrap">Chat</span>
@@ -1121,7 +1448,7 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 <a href="#diagnostico" class="btn-primary px-5 py-3 md:px-7 md:py-3.5 rounded-2xl shadow-neon transition flex items-center gap-2.5 hover:shadow-glow text-sm font-semibold group">
 <i class="fa-solid fa-calendar-check text-lg"></i><span class="hidden xs:inline" data-es="Pedir Turno" data-en="Book Appointment">Pedir Turno</span><i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
 </a>
-<a href="https://maps.app.goo.gl/GeWiYxvDSCN3ZDEo9" target="_blank" rel="noopener noreferrer" class="btn-review px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 0.5s;">
+<a href="https://maps.app.goo.gl/dHh615LvSqSRr3dNA" target="_blank" rel="noopener noreferrer" class="btn-review px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 0.5s;">
 <i class="fa-solid fa-star text-lg"></i><span class="hidden xs:inline" data-es="Deja tu Reseña" data-en="Leave Review">Deja tu Reseña</span>
 </a>
 </div>
@@ -1449,7 +1776,7 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 <div class="location-info-text">
 <p class="location-info-label">Dirección</p>
-<p class="location-info-value">8324, Cipolletti, Río Negro</p>
+<p class="location-info-value">Entre 25 de Mayo y Balcarce a 2 cuadras de<br>Tacuarí 278, Av. Lafinur 5700, San Luis</p>
 </div>
 </div>
 <div class="location-info-item">
@@ -1458,7 +1785,7 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 </div>
 <div class="location-info-text">
 <p class="location-info-label">WhatsApp</p>
-<p class="location-info-value">0299 557 0772</p>
+<p class="location-info-value">0266 446 4091</p>
 </div>
 </div>
 <div class="location-info-item">
@@ -1468,18 +1795,18 @@ title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinit
 <div class="location-info-text">
 <p class="location-info-label">Horarios de Atención</p>
 <p class="location-info-value font-semibold text-primary-green">
-Lun-Vie: 09:00-18:00 | Sáb: 09:00-13:00 | Dom: Cerrado
+Lunes a Domingo las 24hs
 </p>
 </div>
 </div>
 </div>
 
 <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
-<a href="https://maps.app.goo.gl/GeWiYxvDSCN3ZDEo9" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3.5 rounded-2xl font-bold transition hover:shadow-neon flex items-center gap-2.5 text-sm md:text-base shadow-soft w-full sm:w-auto justify-center">
+<a href="https://maps.app.goo.gl/dHh615LvSqSRr3dNA" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3.5 rounded-2xl font-bold transition hover:shadow-neon flex items-center gap-2.5 text-sm md:text-base shadow-soft w-full sm:w-auto justify-center">
 <i class="fa-solid fa-map-location-dot text-lg"></i>
 <span>Ver en Google Maps</span>
 </a>
-<a href="https://maps.app.goo.gl/GeWiYxvDSCN3ZDEo9" target="_blank" rel="noopener noreferrer" class="btn-review px-6 py-3.5 rounded-2xl font-bold transition hover:shadow-neon flex items-center gap-2.5 text-sm md:text-base shadow-soft w-full sm:w-auto justify-center">
+<a href="https://maps.app.goo.gl/dHh615LvSqSRr3dNA" target="_blank" rel="noopener noreferrer" class="btn-review px-6 py-3.5 rounded-2xl font-bold transition hover:shadow-neon flex items-center gap-2.5 text-sm md:text-base shadow-soft w-full sm:w-auto justify-center">
 <i class="fa-solid fa-star text-lg"></i>
 <span>Deja tu Reseña</span>
 </a>
@@ -1502,25 +1829,25 @@ Lun-Vie: 09:00-18:00 | Sáb: 09:00-13:00 | Dom: Cerrado
 <p class="text-sm" data-es="Diagnóstico Automotriz Profesional" data-en="Professional Automotive Diagnosis">Diagnóstico Automotriz Profesional</p>
 <div class="mt-3 text-xs text-gray-400 space-y-2">
 <p>
-<a href="https://maps.app.goo.gl/GeWiYxvDSCN3ZDEo9" target="_blank" rel="noopener noreferrer" class="footer-btn" title="Ver ubicación en Google Maps">
+<a href="https://maps.app.goo.gl/dHh615LvSqSRr3dNA" target="_blank" rel="noopener noreferrer" class="footer-btn" title="Ver ubicación en Google Maps">
 <span class="footer-btn-icon"><i class="fa-solid fa-location-dot"></i></span>
-<span>8324, Cipolletti, Río Negro</span>
+<span>Entre 25 de Mayo y Balcarce a 2 cuadras de, Tacuarí 278, Av. Lafinur 5700, San Luis</span>
 </a>
 </p>
 <p>
-<a href="https://api.whatsapp.com/send?phone=542995570772" target="_blank" rel="noopener noreferrer" class="footer-btn" title="Chatear por WhatsApp">
+<a href="https://api.whatsapp.com/send?phone=542664464091" target="_blank" rel="noopener noreferrer" class="footer-btn" title="Chatear por WhatsApp">
 <span class="footer-btn-icon"><i class="fa-brands fa-whatsapp"></i></span>
-<span>0299 557 0772</span>
+<span>0266 446 4091</span>
 </a>
 </p>
 <p>
 <i class="fa-regular fa-clock text-primary-green mr-1"></i>
-<span>Lun-Vie: 09:00-18:00 | Sáb: 09:00-13:00 | Dom: Cerrado</span>
+<span>Lunes a Domingo las 24hs</span>
 </p>
 </div>
 </div>
 <div class="flex items-center gap-4">
-<a href="https://maps.app.goo.gl/GeWiYxvDSCN3ZDEo9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-green hover:text-yellow-400 transition text-sm font-semibold group">
+<a href="https://maps.app.goo.gl/dHh615LvSqSRr3dNA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-green hover:text-yellow-400 transition text-sm font-semibold group">
 <i class="fa-solid fa-star group-hover:scale-110 transition-transform"></i><span data-es="Deja tu Reseña" data-en="Leave Review">Deja tu Reseña</span>
 </a>
 </div>
@@ -1582,27 +1909,12 @@ function checkStatus(){
 const dotDesktop= document.getElementById('status-dot-desktop');
 const textDesktop= document.getElementById('status-text-desktop');
 const barMobile= document.getElementById('status-bar-mobile');
-const now = new Date();
-const day = now.getDay();
-const hour = now.getHours();
-const minutes = now.getMinutes();
-const currentTime = hour * 60 + minutes;
-let isOpen = false;
-if(day >= 1 && day <= 5){ isOpen = currentTime >= 540 && currentTime < 1080; } 
-else if(day === 6){ isOpen = currentTime >= 540 && currentTime < 780; }
-if(isOpen){
+// Siempre abierto 24hs
 dotDesktop.className='status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-green';
-textDesktop.textContent= currentLang=== 'es' ? 'Abierto' : 'Open';
+textDesktop.textContent= currentLang=== 'es' ? 'Abierto 24hs' : 'Open 24h';
 textDesktop.className='text-primary-green font-semibold';
-barMobile.textContent= currentLang=== 'es' ? '🟢 Abierto - Atención Profesional' : '🟢 Open - Professional Service';
+barMobile.textContent= currentLang=== 'es' ? '🟢 Abierto 24hs - Atención Profesional' : '🟢 Open 24h - Professional Service';
 barMobile.className='md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-white bg-gradient-to-r from-primary-green/20 to-green-700/20';
-} else {
-dotDesktop.className='status-dot w-2 h-2 rounded-full mr-2.5 bg-gray-500';
-textDesktop.textContent= currentLang=== 'es' ? 'Cerrado' : 'Closed';
-textDesktop.className='text-gray-400 font-semibold';
-barMobile.textContent= currentLang=== 'es' ? '⚪ Cerrado - Próxima apertura: Lunes 09:00' : '⚪ Closed - Next: Mon 9AM';
-barMobile.className='md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-gray-400 bg-gradient-to-r from-gray-700/20 to-gray-800/20';
-}
 }
 
 function animateCounter(id, start, target, duration) {
@@ -1669,7 +1981,7 @@ const context= contextSelect.options[contextSelect.selectedIndex]?.text||'No esp
 const name= document.getElementById('inputName').value||'Cliente';
 const phone= document.getElementById('inputPhone').value||'No proporcionado';
 const message=`🚗 *¡Hola Taller Mecánico TR!* 👋\n*Cliente:* ${name}\n📱 *Contacto:* ${phone}\n🚘 *Tipo de Vehículo:* ${vehicleType}\n*Vehículo:* ${vehicle}\n🛣 *Kilometraje:* ${km} km\n⛽ *Combustible:* ${fuelType}\n⚠ *Síntomas reportados:*\n${symptoms}\n🔍 *Contexto:* ${context}\n📅 *Solicito turno para diagnóstico profesional.* 💨`;
-const whatsappUrl=`https://api.whatsapp.com/send?phone=542995570772&text=${encodeURIComponent(message)}`;
+const whatsappUrl=`https://api.whatsapp.com/send?phone=542664464091&text=${encodeURIComponent(message)}`;
 setTimeout(()=>{
 window.open(whatsappUrl,'_blank','noopener,noreferrer');
 btn.innerHTML='<i class="fa-solid fa-circle-check"></i> '+(currentLang=== 'es' ? '¡Solicitud Enviada! ✅' : 'Request Sent! ✅');
@@ -1682,6 +1994,57 @@ e.target.reset();
 document.querySelectorAll('.input-modern').forEach(el=>{ el.classList.remove('input-valid','input-invalid'); });
 }, 3500);
 }, 1200);
+});
+
+// ===== AUXILIO MECÁNICO 24HS - MODAL =====
+const btnAuxilio = document.getElementById('btnAuxilio');
+const auxilioModal = document.getElementById('auxilioModal');
+const auxilioClose = document.getElementById('auxilioClose');
+const auxilioForm = document.getElementById('auxilioForm');
+
+btnAuxilio?.addEventListener('click', () => {
+    auxilioModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+
+function closeAuxilioModal() {
+    auxilioModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+auxilioClose?.addEventListener('click', closeAuxilioModal);
+auxilioModal?.addEventListener('click', (e) => {
+    if (e.target === auxilioModal) closeAuxilioModal();
+});
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && auxilioModal.classList.contains('active')) closeAuxilioModal();
+});
+
+auxilioForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalBtnContent = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+    btn.disabled = true;
+
+    const location = document.getElementById('auxilioLocation').value || 'No especificado';
+    const name = document.getElementById('auxilioName').value || 'No especificado';
+    const unitType = document.getElementById('auxilioUnitType').value || 'No especificado';
+    const problem = document.getElementById('auxilioProblem').value || 'No especificado';
+
+    const message = `🚨 *¡AUXILIO MECÁNICO 24HS!* 🚨\n\n👤 *Nombre:* ${name}\n🚘 *Tipo de Unidad:* ${unitType}\n📍 *Ubicación del inconveniente:* ${location}\n⚠️ *Problema:* ${problem}\n\n📞 *Solicito auxilio mecánico urgente.*`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=542664464091&text=${encodeURIComponent(message)}`;
+
+    setTimeout(() => {
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Solicitud Enviada!';
+        setTimeout(() => {
+            btn.innerHTML = originalBtnContent;
+            btn.disabled = false;
+            e.target.reset();
+            closeAuxilioModal();
+        }, 2000);
+    }, 800);
 });
 
 const parallaxImg= document.getElementById('parallax-img');
